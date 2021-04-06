@@ -1,0 +1,633 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3530B88F256E762500A703F7 /* BitUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3530B88D256E762500A703F7 /* BitUnit.swift */; };
+		3530B894256E763100A703F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3530B893256E763100A703F7 /* AppDelegate.swift */; };
+		3530B8B1256E769B00A703F7 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3530B8B0256E769B00A703F7 /* Shell.swift */; };
+		3530B8B6256E76A400A703F7 /* StringExe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3530B8B5256E76A300A703F7 /* StringExe.swift */; };
+		3534436E256E75EA00673BF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3534436D256E75EA00673BF2 /* Assets.xcassets */; };
+		35344371256E75EA00673BF2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35344370256E75EA00673BF2 /* Preview Assets.xcassets */; };
+		35344374256E75EA00673BF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35344372256E75EA00673BF2 /* Main.storyboard */; };
+		35344380256E75EA00673BF2 /* DoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534437F256E75EA00673BF2 /* DoreTests.swift */; };
+		3534438B256E75EA00673BF2 /* DoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534438A256E75EA00673BF2 /* DoreUITests.swift */; };
+		35514A732571642E000AF9E3 /* MyProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35514A722571642E000AF9E3 /* MyProgress.swift */; };
+		35BF9D352577C81D0011FAC8 /* SetPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BF9D342577C81D0011FAC8 /* SetPadView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3534437C256E75EA00673BF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3534435E256E75E800673BF2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35344365256E75E800673BF2;
+			remoteInfo = Dore;
+		};
+		35344387256E75EA00673BF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3534435E256E75E800673BF2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35344365256E75E800673BF2;
+			remoteInfo = Dore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3530B88D256E762500A703F7 /* BitUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitUnit.swift; sourceTree = "<group>"; };
+		3530B893256E763100A703F7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3530B8B0256E769B00A703F7 /* Shell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
+		3530B8B5256E76A300A703F7 /* StringExe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExe.swift; sourceTree = "<group>"; };
+		35344366256E75E800673BF2 /* Dore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3534436D256E75EA00673BF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		35344370256E75EA00673BF2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		35344373256E75EA00673BF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		35344375256E75EA00673BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35344376256E75EA00673BF2 /* Dore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dore.entitlements; sourceTree = "<group>"; };
+		3534437B256E75EA00673BF2 /* DoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3534437F256E75EA00673BF2 /* DoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoreTests.swift; sourceTree = "<group>"; };
+		35344381256E75EA00673BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35344386256E75EA00673BF2 /* DoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3534438A256E75EA00673BF2 /* DoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoreUITests.swift; sourceTree = "<group>"; };
+		3534438C256E75EA00673BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35514A722571642E000AF9E3 /* MyProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProgress.swift; sourceTree = "<group>"; };
+		35BF9D342577C81D0011FAC8 /* SetPadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPadView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		35344363256E75E800673BF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35344378256E75EA00673BF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35344383256E75EA00673BF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3530B88B256E762500A703F7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3530B88D256E762500A703F7 /* BitUnit.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3534435D256E75E800673BF2 = {
+			isa = PBXGroup;
+			children = (
+				35344368256E75E800673BF2 /* Dore */,
+				3534437E256E75EA00673BF2 /* DoreTests */,
+				35344389256E75EA00673BF2 /* DoreUITests */,
+				35344367256E75E800673BF2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		35344367256E75E800673BF2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				35344366256E75E800673BF2 /* Dore.app */,
+				3534437B256E75EA00673BF2 /* DoreTests.xctest */,
+				35344386256E75EA00673BF2 /* DoreUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		35344368256E75E800673BF2 /* Dore */ = {
+			isa = PBXGroup;
+			children = (
+				3530B88B256E762500A703F7 /* Utilities */,
+				3530B893256E763100A703F7 /* AppDelegate.swift */,
+				35514A722571642E000AF9E3 /* MyProgress.swift */,
+				3530B8B0256E769B00A703F7 /* Shell.swift */,
+				3530B8B5256E76A300A703F7 /* StringExe.swift */,
+				3534436D256E75EA00673BF2 /* Assets.xcassets */,
+				35344372256E75EA00673BF2 /* Main.storyboard */,
+				35BF9D342577C81D0011FAC8 /* SetPadView.swift */,
+				35344375256E75EA00673BF2 /* Info.plist */,
+				35344376256E75EA00673BF2 /* Dore.entitlements */,
+				3534436F256E75EA00673BF2 /* Preview Content */,
+			);
+			path = Dore;
+			sourceTree = "<group>";
+		};
+		3534436F256E75EA00673BF2 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				35344370256E75EA00673BF2 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3534437E256E75EA00673BF2 /* DoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				3534437F256E75EA00673BF2 /* DoreTests.swift */,
+				35344381256E75EA00673BF2 /* Info.plist */,
+			);
+			path = DoreTests;
+			sourceTree = "<group>";
+		};
+		35344389256E75EA00673BF2 /* DoreUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3534438A256E75EA00673BF2 /* DoreUITests.swift */,
+				3534438C256E75EA00673BF2 /* Info.plist */,
+			);
+			path = DoreUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		35344365256E75E800673BF2 /* Dore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3534438F256E75EA00673BF2 /* Build configuration list for PBXNativeTarget "Dore" */;
+			buildPhases = (
+				35344362256E75E800673BF2 /* Sources */,
+				35344363256E75E800673BF2 /* Frameworks */,
+				35344364256E75E800673BF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Dore;
+			productName = Dore;
+			productReference = 35344366256E75E800673BF2 /* Dore.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3534437A256E75EA00673BF2 /* DoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35344392256E75EA00673BF2 /* Build configuration list for PBXNativeTarget "DoreTests" */;
+			buildPhases = (
+				35344377256E75EA00673BF2 /* Sources */,
+				35344378256E75EA00673BF2 /* Frameworks */,
+				35344379256E75EA00673BF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3534437D256E75EA00673BF2 /* PBXTargetDependency */,
+			);
+			name = DoreTests;
+			productName = DoreTests;
+			productReference = 3534437B256E75EA00673BF2 /* DoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		35344385256E75EA00673BF2 /* DoreUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35344395256E75EA00673BF2 /* Build configuration list for PBXNativeTarget "DoreUITests" */;
+			buildPhases = (
+				35344382256E75EA00673BF2 /* Sources */,
+				35344383256E75EA00673BF2 /* Frameworks */,
+				35344384256E75EA00673BF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				35344388256E75EA00673BF2 /* PBXTargetDependency */,
+			);
+			name = DoreUITests;
+			productName = DoreUITests;
+			productReference = 35344386256E75EA00673BF2 /* DoreUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3534435E256E75E800673BF2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					35344365256E75E800673BF2 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					3534437A256E75EA00673BF2 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 35344365256E75E800673BF2;
+					};
+					35344385256E75EA00673BF2 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 35344365256E75E800673BF2;
+					};
+				};
+			};
+			buildConfigurationList = 35344361256E75E800673BF2 /* Build configuration list for PBXProject "Dore" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3534435D256E75E800673BF2;
+			productRefGroup = 35344367256E75E800673BF2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				35344365256E75E800673BF2 /* Dore */,
+				3534437A256E75EA00673BF2 /* DoreTests */,
+				35344385256E75EA00673BF2 /* DoreUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		35344364256E75E800673BF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35344374256E75EA00673BF2 /* Main.storyboard in Resources */,
+				35344371256E75EA00673BF2 /* Preview Assets.xcassets in Resources */,
+				3534436E256E75EA00673BF2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35344379256E75EA00673BF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35344384256E75EA00673BF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		35344362256E75E800673BF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3530B8B1256E769B00A703F7 /* Shell.swift in Sources */,
+				35BF9D352577C81D0011FAC8 /* SetPadView.swift in Sources */,
+				35514A732571642E000AF9E3 /* MyProgress.swift in Sources */,
+				3530B8B6256E76A400A703F7 /* StringExe.swift in Sources */,
+				3530B894256E763100A703F7 /* AppDelegate.swift in Sources */,
+				3530B88F256E762500A703F7 /* BitUnit.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35344377256E75EA00673BF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35344380256E75EA00673BF2 /* DoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35344382256E75EA00673BF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3534438B256E75EA00673BF2 /* DoreUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3534437D256E75EA00673BF2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35344365256E75E800673BF2 /* Dore */;
+			targetProxy = 3534437C256E75EA00673BF2 /* PBXContainerItemProxy */;
+		};
+		35344388256E75EA00673BF2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35344365256E75E800673BF2 /* Dore */;
+			targetProxy = 35344387256E75EA00673BF2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		35344372256E75EA00673BF2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				35344373256E75EA00673BF2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3534438D256E75EA00673BF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3534438E256E75EA00673BF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		35344390256E75EA00673BF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Dore/Dore.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Dore/Preview Content\"";
+				DEVELOPMENT_TEAM = NVF47AP6H6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Dore/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "WeIHa-S.Dore";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		35344391256E75EA00673BF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Dore/Dore.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Dore/Preview Content\"";
+				DEVELOPMENT_TEAM = NVF47AP6H6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Dore/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "WeIHa-S.Dore";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		35344393256E75EA00673BF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = NVF47AP6H6;
+				INFOPLIST_FILE = DoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "WeIHa-S.DoreTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dore.app/Contents/MacOS/Dore";
+			};
+			name = Debug;
+		};
+		35344394256E75EA00673BF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = NVF47AP6H6;
+				INFOPLIST_FILE = DoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "WeIHa-S.DoreTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dore.app/Contents/MacOS/Dore";
+			};
+			name = Release;
+		};
+		35344396256E75EA00673BF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = NVF47AP6H6;
+				INFOPLIST_FILE = DoreUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WeIHa-S.DoreUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Dore;
+			};
+			name = Debug;
+		};
+		35344397256E75EA00673BF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = NVF47AP6H6;
+				INFOPLIST_FILE = DoreUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WeIHa-S.DoreUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Dore;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		35344361256E75E800673BF2 /* Build configuration list for PBXProject "Dore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3534438D256E75EA00673BF2 /* Debug */,
+				3534438E256E75EA00673BF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3534438F256E75EA00673BF2 /* Build configuration list for PBXNativeTarget "Dore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35344390256E75EA00673BF2 /* Debug */,
+				35344391256E75EA00673BF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		35344392256E75EA00673BF2 /* Build configuration list for PBXNativeTarget "DoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35344393256E75EA00673BF2 /* Debug */,
+				35344394256E75EA00673BF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		35344395256E75EA00673BF2 /* Build configuration list for PBXNativeTarget "DoreUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35344396256E75EA00673BF2 /* Debug */,
+				35344397256E75EA00673BF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3534435E256E75E800673BF2 /* Project object */;
+}
