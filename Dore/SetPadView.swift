@@ -1,6 +1,6 @@
 //
 //  SetPadView.swift
-//  StingTest
+//  Dore
 //
 //  Created by WeIHa'S on 2020/11/28.
 //

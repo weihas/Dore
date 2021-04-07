@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Doll
+//  Dore
 //
 //  Created by WeIHa'S on 2020/11/24.
 //
