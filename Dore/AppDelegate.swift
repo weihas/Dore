@@ -5,7 +5,6 @@
 //  Created by WeIHa'S on 2020/11/24.
 //
 
-import Cocoa
 import SwiftUI
 import ServiceManagement
 import NetworkExtension
@@ -59,12 +58,12 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     
     @IBAction func ShowSettingView(_ sender: Any) {
         // Create the SwiftUI view that provides the window contents.
-        let contentView = SetPadView()
+        let contentView = SettingView()
 
         // Create the window and set the content view.
         window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 400, height: 300),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView,.texturedBackground],
+            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
             backing: .buffered, defer: false)
         window.isReleasedWhenClosed = false
         window.center()

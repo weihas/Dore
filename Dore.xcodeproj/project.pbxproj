@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		350BD098262C65A600CB2BC1 /* MyProgress1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350BD095262C65A600CB2BC1 /* MyProgress1.swift */; };
+		350BD099262C65A600CB2BC1 /* MyProgress2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350BD096262C65A600CB2BC1 /* MyProgress2.swift */; };
+		350BD09A262C65A600CB2BC1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350BD097262C65A600CB2BC1 /* SettingView.swift */; };
 		3530B88F256E762500A703F7 /* BitUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3530B88D256E762500A703F7 /* BitUnit.swift */; };
 		3530B894256E763100A703F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3530B893256E763100A703F7 /* AppDelegate.swift */; };
 		3530B8B1256E769B00A703F7 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3530B8B0256E769B00A703F7 /* Shell.swift */; };
@@ -38,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		350BD095262C65A600CB2BC1 /* MyProgress1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProgress1.swift; sourceTree = "<group>"; };
+		350BD096262C65A600CB2BC1 /* MyProgress2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProgress2.swift; sourceTree = "<group>"; };
+		350BD097262C65A600CB2BC1 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		3530B88D256E762500A703F7 /* BitUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitUnit.swift; sourceTree = "<group>"; };
 		3530B893256E763100A703F7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3530B8B0256E769B00A703F7 /* Shell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
@@ -118,6 +124,9 @@
 				3530B893256E763100A703F7 /* AppDelegate.swift */,
 				35514A722571642E000AF9E3 /* MyProgress.swift */,
 				3530B8B0256E769B00A703F7 /* Shell.swift */,
+				350BD095262C65A600CB2BC1 /* MyProgress1.swift */,
+				350BD096262C65A600CB2BC1 /* MyProgress2.swift */,
+				350BD097262C65A600CB2BC1 /* SettingView.swift */,
 				3530B8B5256E76A300A703F7 /* StringExe.swift */,
 				3534436D256E75EA00673BF2 /* Assets.xcassets */,
 				35344372256E75EA00673BF2 /* Main.storyboard */,
@@ -286,10 +295,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3530B8B1256E769B00A703F7 /* Shell.swift in Sources */,
+				350BD099262C65A600CB2BC1 /* MyProgress2.swift in Sources */,
 				35BF9D352577C81D0011FAC8 /* SetPadView.swift in Sources */,
+				350BD09A262C65A600CB2BC1 /* SettingView.swift in Sources */,
 				35514A732571642E000AF9E3 /* MyProgress.swift in Sources */,
 				3530B8B6256E76A400A703F7 /* StringExe.swift in Sources */,
 				3530B894256E763100A703F7 /* AppDelegate.swift in Sources */,
+				350BD098262C65A600CB2BC1 /* MyProgress1.swift in Sources */,
 				3530B88F256E762500A703F7 /* BitUnit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,7 +482,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "WeIHa-S.Dore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -496,7 +508,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "WeIHa-S.Dore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
