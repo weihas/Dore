@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingView: View {
-    @State private var selectedTab = 1
+    @State private var selectedTab = 0
     var body: some View {
         TabView(selection: $selectedTab) {
             GeneralSettingsView()
@@ -18,7 +18,7 @@ struct SettingView: View {
                 .tabItem { Text("Theme") }
                 .tag(1)
         }
-        .frame(width: 400, height: 240, alignment: .center)
+        .frame(width: 400, height: 280, alignment: .center)
     }
 }
 
@@ -29,6 +29,58 @@ struct SettingView_Previews: PreviewProvider {
 }
 
 
+
+
+struct GeneralSettingsView: View {
+
+    @AppStorage("maxSetting") private var maxSetting = "500KB/s"
+    @AppStorage("maxSetting") private var minSetting = "5KB/s"
+    @AppStorage("showPreview") private var startAuto = true
+    @AppStorage("conserveEnergy") private var conserveEnergy = true
+    
+    
+    var body: some View {
+        Form {
+            GroupBox(label: Label("SpeedSet", systemImage: "speedometer")) {
+                HStack {
+                    Label("Max", systemImage: "hare.fill")
+                    TextField("Placeholder", text: $maxSetting)
+                    Label("Min", systemImage: "tortoise.fill")
+                    TextField("Placeholder", text: $minSetting)
+                }
+            }
+            Spacer()
+            GroupBox(label: Label("ClickFunc", systemImage: "cursorarrow.click")) {
+                Picker(selection: .constant(1), label: Text("Func")) {
+                    Text("DarkMode").tag(1)
+                    Text("SpeedPad").tag(2)
+                }
+            }
+            Spacer()
+            
+            HStack {
+                GroupBox(label: Label("Automatic", systemImage: "person.circle")) {
+                    HStack{
+                        Toggle(isOn: $startAuto) {
+                            Text("Self-start")
+                        }
+                        Spacer()
+                        Spacer()
+                        Toggle(isOn: $conserveEnergy) {
+                            Text("ConserveEnergy")
+                        }
+                        Spacer()
+                    }
+                }
+                
+            }
+            Spacer()
+
+        }
+        .padding(20)
+        .frame(width: 350, height: 100)
+    }
+}
 
 
 struct ThemeSettingsView: View {
@@ -45,13 +97,13 @@ struct ThemeSettingsView: View {
             HStack{
                 
                 VStack {
-                    MyProgress1()
+                    MyProgress1(ViewModel: PreviewHandel)
                         .frame(width: 80, height: 120, alignment: .center)
                     Text("Capsule")
                 }
                 Spacer()
                 VStack {
-                    MyProgress2()
+                    MyProgress2(ViewModel: PreviewHandel)
                         .frame(width: 80, height: 120, alignment: .center)
                     Text("Circle")
                 }
@@ -73,44 +125,3 @@ struct ThemeSettingsView: View {
 
 
 
-
-
-
-
-
-struct GeneralSettingsView: View {
-
-    @AppStorage("maxSetting") private var maxSetting = "500KB/s"
-    @AppStorage("maxSetting") private var minSetting = "5KB/s"
-    @AppStorage("showPreview") private var startAuto = true
-    
-    
-    var body: some View {
-        Form {
-            GroupBox(label: Label("SpeedSet", systemImage: "speedometer")) {
-                HStack {
-                    Label("Max", systemImage: "hare.fill")
-                    TextField("Placeholder", text: $maxSetting)
-                    Label("Min", systemImage: "tortoise.fill")
-                    TextField("Placeholder", text: $minSetting)
-                }
-            }
-            Spacer()
-            GroupBox(label: Label("ClickFunc", systemImage: "cursorarrow.click")) {
-                Picker(selection: .constant(1), label: Text("Func")) {
-                    Text("DarkMode").tag(1)
-                    Text("SpeedPad").tag(2)
-                }
-            }
-            Spacer()
-            GroupBox(label: Label("Automatic", systemImage: "person.circle")) {
-                Toggle(isOn: $startAuto) {
-                    Text("Start when the system starts.")
-                }
-            }
-            Spacer()
-        }
-        .padding(20)
-        .frame(width: 350, height: 100)
-    }
-}

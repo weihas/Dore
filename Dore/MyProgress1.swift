@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MyProgress1: View {
-    @State private var placeholder = "hello"
+    @ObservedObject var ViewModel : ButtonViewControl
     var body: some View {
         VStack{
             ZStack {
@@ -17,22 +17,20 @@ struct MyProgress1: View {
                     .foregroundColor(Color.blue)
                     .opacity(0.3)
                 Capsule()
-                    .clipShape(RectBand(from: 0.3, to: 1))
+                    .clipShape(RectBand(from: CGFloat(ViewModel.NowPercent), to: 1))
                     .frame(alignment: .center)
                     .foregroundColor(Color.blue)
-                
+
             }
-            
         }
-        .padding()
     }
 }
 
-struct MyProgress1_Previews: PreviewProvider {
-    static var previews: some View {
-        MyProgress1()
-    }
-}
+//struct MyProgress1_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MyProgress1(ViewModel: previewControl)
+//    }
+//}
 
 struct RectBand: Shape {
     var from: CGFloat
