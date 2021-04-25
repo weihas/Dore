@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingView: View {
     @State private var selectedTab = 0
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             GeneralSettingsView()
@@ -32,22 +33,39 @@ struct SettingView_Previews: PreviewProvider {
 
 
 struct GeneralSettingsView: View {
-
-    @AppStorage("maxSetting") private var maxSetting = "500KB/s"
-    @AppStorage("maxSetting") private var minSetting = "5KB/s"
-    @AppStorage("showPreview") private var startAuto = true
-    @AppStorage("conserveEnergy") private var conserveEnergy = true
     
+    @AppStorage("showPreview") private var startAuto = true
+    @AppStorage("energySaving") private var EnergySaving = true
+    @AppStorage("maxSetting") private var maxSetting : String  = "500"
+    @AppStorage("minSetting") private var minSetting : String  = "50"
+    @AppStorage("maxUnit") private var maxUnit : Bool = true
+    @AppStorage("minUnit") private var minUint : Bool = true
     
     var body: some View {
         Form {
-            GroupBox(label: Label("SpeedSet", systemImage: "speedometer")) {
-                HStack {
-                    Label("Max", systemImage: "hare.fill")
-                    TextField("Placeholder", text: $maxSetting)
-                    Label("Min", systemImage: "tortoise.fill")
-                    TextField("Placeholder", text: $minSetting)
+            GroupBox(label: Label("SpeedRange", systemImage: "speedometer")) {
+                VStack{
+                    HStack {
+                        Label("Max", systemImage: "hare.fill")
+                        TextField("Max", text: $maxSetting)
+                        Picker("Unit", selection: $maxUnit) {
+                            Text("KB/S").tag(false)
+                            Text("MB/S").tag(true)
+                        }
+                    }
+                    
+                    HStack{
+                        Label("Min", systemImage: "tortoise.fill")
+                        TextField("Min", text: $minSetting)
+                        Picker("Unit", selection: $minUint) {
+                            Text("KB/S").tag(false)
+                            Text("MB/S").tag(true)
+                        }
+                    }
                 }
+                .pickerStyle(PopUpButtonPickerStyle())
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                
             }
             Spacer()
             GroupBox(label: Label("ClickFunc", systemImage: "cursorarrow.click")) {
@@ -66,8 +84,8 @@ struct GeneralSettingsView: View {
                         }
                         Spacer()
                         Spacer()
-                        Toggle(isOn: $conserveEnergy) {
-                            Text("ConserveEnergy")
+                        Toggle(isOn: $EnergySaving) {
+                            Text("EnergySaving")
                         }
                         Spacer()
                     }
@@ -85,17 +103,17 @@ struct GeneralSettingsView: View {
 
 struct ThemeSettingsView: View {
     
-    @AppStorage("themeSetting") private var themeSetting = true
+    @AppStorage("themeSetting") private var themeSetting : Bool = true
     
     
     var body: some View {
         VStack{
-            Picker(selection: .constant(1), label: Label("Theme", systemImage: "paintbrush")) {
-                Text("Capsule").tag(1)
-                Text("Circle").tag(2)
+            Picker(selection: $themeSetting , label: Label("Theme", systemImage: "paintbrush")) {
+                Text("Capsule").tag(true)
+                Text("Circle").tag(false)
             }
+
             HStack{
-                
                 VStack {
                     MyProgress1(ViewModel: PreviewHandel)
                         .frame(width: 80, height: 120, alignment: .center)
@@ -107,6 +125,9 @@ struct ThemeSettingsView: View {
                         .frame(width: 80, height: 120, alignment: .center)
                     Text("Circle")
                 }
+            }
+            Button("Save"){
+                
             }
             
         }

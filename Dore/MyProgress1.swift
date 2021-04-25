@@ -14,12 +14,14 @@ struct MyProgress1: View {
             ZStack {
                 Capsule()
                     .frame(alignment: .center)
-                    .foregroundColor(Color.blue)
-                    .opacity(0.3)
+                    .foregroundColor(Color.white)
+                    .opacity(0.4)
                 Capsule()
                     .clipShape(RectBand(from: CGFloat(ViewModel.NowPercent), to: 1))
+
                     .frame(alignment: .center)
                     .foregroundColor(Color.blue)
+                    .animation(.default)
 
             }
         }

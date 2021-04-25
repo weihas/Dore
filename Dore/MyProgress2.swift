@@ -24,6 +24,7 @@ struct MyProgress2: View {
                     .stroke(style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
                     .foregroundColor(Color.blue)
                     .rotationEffect(Angle(degrees: 145.0))
+                    .animation(.default)
             }
             
         }

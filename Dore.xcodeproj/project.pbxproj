@@ -8,12 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		351C03BD26346F3600C8F8D0 /* BitsValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351C03BC26346F3600C8F8D0 /* BitsValue.swift */; };
-		351C03C626346F9800C8F8D0 /* StatusItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351C03C426346F9800C8F8D0 /* StatusItemControl.swift */; };
 		351C03C726346F9800C8F8D0 /* ButtonViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351C03C526346F9800C8F8D0 /* ButtonViewControl.swift */; };
-		351C03D526346FC300C8F8D0 /* ValuePadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351C03D126346FC200C8F8D0 /* ValuePadView.swift */; };
-		351C03D626346FC300C8F8D0 /* MyProgress1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351C03D226346FC200C8F8D0 /* MyProgress1.swift */; };
-		351C03D726346FC300C8F8D0 /* MyProgress2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351C03D326346FC200C8F8D0 /* MyProgress2.swift */; };
-		351C03D826346FC300C8F8D0 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351C03D426346FC300C8F8D0 /* SettingView.swift */; };
 		3530B894256E763100A703F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3530B893256E763100A703F7 /* AppDelegate.swift */; };
 		3530B8B1256E769B00A703F7 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3530B8B0256E769B00A703F7 /* Shell.swift */; };
 		3530B8B6256E76A400A703F7 /* StringExe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3530B8B5256E76A300A703F7 /* StringExe.swift */; };
@@ -22,6 +17,11 @@
 		35344374256E75EA00673BF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35344372256E75EA00673BF2 /* Main.storyboard */; };
 		35344380256E75EA00673BF2 /* DoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534437F256E75EA00673BF2 /* DoreTests.swift */; };
 		3534438B256E75EA00673BF2 /* DoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534438A256E75EA00673BF2 /* DoreUITests.swift */; };
+		35528E38263595D1009F570F /* StatusItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E37263595D1009F570F /* StatusItemControl.swift */; };
+		35528E402635961D009F570F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E3F2635961D009F570F /* SettingView.swift */; };
+		35528E4A26359637009F570F /* ValuePadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E4726359636009F570F /* ValuePadView.swift */; };
+		35528E4B26359637009F570F /* MyProgress1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E4826359637009F570F /* MyProgress1.swift */; };
+		35528E4C26359637009F570F /* MyProgress2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E4926359637009F570F /* MyProgress2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,12 +43,7 @@
 
 /* Begin PBXFileReference section */
 		351C03BC26346F3600C8F8D0 /* BitsValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitsValue.swift; sourceTree = "<group>"; };
-		351C03C426346F9800C8F8D0 /* StatusItemControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemControl.swift; sourceTree = "<group>"; };
 		351C03C526346F9800C8F8D0 /* ButtonViewControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonViewControl.swift; sourceTree = "<group>"; };
-		351C03D126346FC200C8F8D0 /* ValuePadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValuePadView.swift; sourceTree = "<group>"; };
-		351C03D226346FC200C8F8D0 /* MyProgress1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProgress1.swift; sourceTree = "<group>"; };
-		351C03D326346FC200C8F8D0 /* MyProgress2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProgress2.swift; sourceTree = "<group>"; };
-		351C03D426346FC300C8F8D0 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		3530B893256E763100A703F7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3530B8B0256E769B00A703F7 /* Shell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
 		3530B8B5256E76A300A703F7 /* StringExe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExe.swift; sourceTree = "<group>"; };
@@ -64,6 +59,11 @@
 		35344386256E75EA00673BF2 /* DoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3534438A256E75EA00673BF2 /* DoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoreUITests.swift; sourceTree = "<group>"; };
 		3534438C256E75EA00673BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35528E37263595D1009F570F /* StatusItemControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemControl.swift; sourceTree = "<group>"; };
+		35528E3F2635961D009F570F /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		35528E4726359636009F570F /* ValuePadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValuePadView.swift; sourceTree = "<group>"; };
+		35528E4826359637009F570F /* MyProgress1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProgress1.swift; sourceTree = "<group>"; };
+		35528E4926359637009F570F /* MyProgress2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProgress2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,14 +124,14 @@
 			children = (
 				3530B88B256E762500A703F7 /* Utilities */,
 				3530B893256E763100A703F7 /* AppDelegate.swift */,
-				351C03C426346F9800C8F8D0 /* StatusItemControl.swift */,
+				35528E37263595D1009F570F /* StatusItemControl.swift */,
 				351C03C526346F9800C8F8D0 /* ButtonViewControl.swift */,
 				3530B8B5256E76A300A703F7 /* StringExe.swift */,
 				3530B8B0256E769B00A703F7 /* Shell.swift */,
-				351C03D426346FC300C8F8D0 /* SettingView.swift */,
-				351C03D226346FC200C8F8D0 /* MyProgress1.swift */,
-				351C03D326346FC200C8F8D0 /* MyProgress2.swift */,
-				351C03D126346FC200C8F8D0 /* ValuePadView.swift */,
+				35528E3F2635961D009F570F /* SettingView.swift */,
+				35528E4826359637009F570F /* MyProgress1.swift */,
+				35528E4926359637009F570F /* MyProgress2.swift */,
+				35528E4726359636009F570F /* ValuePadView.swift */,
 				3534436D256E75EA00673BF2 /* Assets.xcassets */,
 				35344372256E75EA00673BF2 /* Main.storyboard */,
 				35344375256E75EA00673BF2 /* Info.plist */,
@@ -298,15 +298,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				351C03C726346F9800C8F8D0 /* ButtonViewControl.swift in Sources */,
+				35528E402635961D009F570F /* SettingView.swift in Sources */,
+				35528E4A26359637009F570F /* ValuePadView.swift in Sources */,
 				3530B8B1256E769B00A703F7 /* Shell.swift in Sources */,
-				351C03D526346FC300C8F8D0 /* ValuePadView.swift in Sources */,
 				351C03BD26346F3600C8F8D0 /* BitsValue.swift in Sources */,
-				351C03C626346F9800C8F8D0 /* StatusItemControl.swift in Sources */,
-				351C03D626346FC300C8F8D0 /* MyProgress1.swift in Sources */,
-				351C03D726346FC300C8F8D0 /* MyProgress2.swift in Sources */,
+				35528E38263595D1009F570F /* StatusItemControl.swift in Sources */,
+				35528E4B26359637009F570F /* MyProgress1.swift in Sources */,
+				35528E4C26359637009F570F /* MyProgress2.swift in Sources */,
 				3530B8B6256E76A400A703F7 /* StringExe.swift in Sources */,
 				3530B894256E763100A703F7 /* AppDelegate.swift in Sources */,
-				351C03D826346FC300C8F8D0 /* SettingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +487,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "WeIHa-S.Dore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -513,7 +513,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "WeIHa-S.Dore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
