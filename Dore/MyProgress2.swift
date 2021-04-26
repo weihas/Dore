@@ -20,7 +20,7 @@ struct MyProgress2: View {
                     .foregroundColor(Color.white)
                 
                 Circle()
-                    .trim(from: 0.0, to: CGFloat(min(self.ViewModel.NowPercent*0.7, 0.7)))
+                    .trim(from: 0.0, to: CGFloat(self.ViewModel.NowPercent*0.7))
                     .stroke(style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
                     .foregroundColor(Color.blue)
                     .rotationEffect(Angle(degrees: 145.0))

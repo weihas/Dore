@@ -11,6 +11,7 @@ import NetworkExtension
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
     var statusItem :NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     var Settingwindow: NSWindow!
     
