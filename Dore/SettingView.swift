@@ -39,8 +39,8 @@ struct GeneralSettingsView: View {
     @AppStorage("clickFunction") private var clickfunction : Bool = true
     @AppStorage("maxSetting") private var maxSetting : String  = "500"
     @AppStorage("minSetting") private var minSetting : String  = "50"
-    @AppStorage("maxUnit") private var maxUnit : Bool = true
-    @AppStorage("minUnit") private var minUint : Bool = true
+    @AppStorage("maxUnit") private var maxUnit : Bool = false
+    @AppStorage("minUnit") private var minUint : Bool = false
     
     var body: some View {
         Form {
@@ -74,6 +74,7 @@ struct GeneralSettingsView: View {
                     Text("DarkMode").tag(true)
                     Text("SpeedPad").tag(false)
                 }
+                .disabled(true)
             }
             Spacer()
             
@@ -83,6 +84,7 @@ struct GeneralSettingsView: View {
                         Toggle(isOn: $startAuto) {
                             Text("Self-start")
                         }
+                        .disabled(true)
                         Spacer()
                         Spacer()
                         Toggle(isOn: $EnergySaving) {
@@ -102,6 +104,10 @@ struct GeneralSettingsView: View {
 }
 
 
+
+
+
+
 struct ThemeSettingsView: View {
     
     @AppStorage("themeSetting") private var themeSetting : Bool = true
@@ -117,7 +123,7 @@ struct ThemeSettingsView: View {
             HStack{
                 VStack {
                     MyProgress1(ViewModel: PreviewHandel)
-                        .frame(width: 80, height: 120, alignment: .center)
+                        .frame(width: 60, height: 120, alignment: .center)
                     Text("Capsule")
                 }
                 Spacer()
@@ -126,9 +132,6 @@ struct ThemeSettingsView: View {
                         .frame(width: 80, height: 120, alignment: .center)
                     Text("Circle")
                 }
-            }
-            Button("Save"){
-                
             }
             
         }

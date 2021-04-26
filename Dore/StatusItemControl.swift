@@ -24,7 +24,7 @@ class StatusItemControl: ObservableObject{
     
     let ButtonViewModel = ButtonViewControl()
     
-    var  theme : Bool = UserDefaults.standard.bool(forKey: "themeSetting")
+    var theme : Bool = UserDefaults.standard.bool(forKey: "themeSetting")
     
     
     let source = """
@@ -41,7 +41,7 @@ class StatusItemControl: ObservableObject{
     init(_ statusItem :NSStatusItem , _ Menu :NSMenu) {
         self.statusItem = statusItem
         self.Menu = Menu
-//        ConvertSet()
+        ConvertSet()
     }
     
     func creatStatusBarItem(){
@@ -161,8 +161,8 @@ extension StatusItemControl{
     
     func ConvertSet() {
         
-        self.MaxSet = Double(Int(UserDefaults.standard.string(forKey: "maxSetting")!) ?? 500)
-        self.MinSet = Double(Int(UserDefaults.standard.string(forKey: "minSetting")!) ?? 5)
+        self.MaxSet = Double(Int(UserDefaults.standard.string(forKey: "maxSetting") ?? "500") ?? 500)
+        self.MinSet = Double(Int(UserDefaults.standard.string(forKey: "minSetting") ?? "5") ?? 5)
         self.MaxSet = self.MaxSet * 1024
         self.MinSet = self.MinSet * 1024
         if UserDefaults.standard.bool(forKey: "maxUnit") {
