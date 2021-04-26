@@ -1,16 +1,13 @@
 # Dore
+[Download](https://github.com/weihas/Dore/releases/download/v0.4.1-alpha/Dore.0.4.1.2021-04-26.zip/)
 ## v0.4.1-alpha
+
 only in macOS Bigsur 11.0 and later
 ### Coding By WEIHA.Thanks.
 
 My personal little App which runs in macos.
 A easy statusbar app to monitor your network speed.
 You'll see a capsule at the top, and the faster the net speed, the higher the blue stripe! 
-
-
-
-
-
 
 
 
@@ -29,3 +26,5 @@ You'll see a capsule at the top, and the faster the net speed, the higher the bl
 
 ### Attention!
 If the settings are changed, the application must be closed and restarted, I will fix it later.
+
+### Please send an email for more questions : weihas@icloud.com
