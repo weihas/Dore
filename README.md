@@ -17,7 +17,7 @@ You'll see a capsule at the top, and the faster the net speed, the higher the bl
 
 - [x] You can choose the theme in second page , of Capsule or Circle.  Capsules are simpler, but they look better and cooler.
 - [ ] Add a small interface that can watch the detailed network speed, and exhale only when clicking.
-- [ ] Can start when the system is login
+- [ ] Can start when the system is logining
 
 ### Attention!
 If the settings are changed, the application must be closed and restarted, I will fix it later.
