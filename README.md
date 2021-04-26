@@ -1,11 +1,19 @@
 # Dore
 ## v0.4.1-alpha
-
+only in macOS Bigsur 11.0 and later
 ### Coding By WEIHA.Thanks.
 
 My personal little App which runs in macos.
 A easy statusbar app to monitor your network speed.
 You'll see a capsule at the top, and the faster the net speed, the higher the blue stripe! 
+
+
+
+
+
+
+
+
 
 ### Done and will
 
