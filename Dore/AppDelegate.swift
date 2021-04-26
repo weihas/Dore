@@ -31,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             contentRect: NSRect(x: 0, y: 0, width: 400, height: 300),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
             backing: .buffered, defer: false)
-        Settingwindow.isReleasedWhenClosed = true
+        Settingwindow.isReleasedWhenClosed = false
         Settingwindow.center()
         Settingwindow.isRestorable = false
         Settingwindow.title = "Dore"

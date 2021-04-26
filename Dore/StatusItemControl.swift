@@ -141,8 +141,11 @@ extension StatusItemControl{
         if let event = NSApp.currentEvent {
             switch event.type {
             case .leftMouseUp:
-                print("Hello")
-                Process.launchedProcess(launchPath: "/usr/bin/osascript", arguments: ["-e",source])
+                if UserDefaults.standard.bool(forKey: "clickFunction") {
+                    Process.launchedProcess(launchPath: "/usr/bin/osascript", arguments: ["-e",source])
+                }else{
+                    print("Hello")
+                }
                 break
             case .rightMouseUp:
                 statusItem.menu = Menu

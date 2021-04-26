@@ -36,6 +36,7 @@ struct GeneralSettingsView: View {
     
     @AppStorage("showPreview") private var startAuto = true
     @AppStorage("energySaving") private var EnergySaving = true
+    @AppStorage("clickFunction") private var clickfunction : Bool = true
     @AppStorage("maxSetting") private var maxSetting : String  = "500"
     @AppStorage("minSetting") private var minSetting : String  = "50"
     @AppStorage("maxUnit") private var maxUnit : Bool = true
@@ -69,9 +70,9 @@ struct GeneralSettingsView: View {
             }
             Spacer()
             GroupBox(label: Label("ClickFunc", systemImage: "cursorarrow.click")) {
-                Picker(selection: .constant(1), label: Text("Func")) {
-                    Text("DarkMode").tag(1)
-                    Text("SpeedPad").tag(2)
+                Picker(selection: $clickfunction, label: Text("Func")) {
+                    Text("DarkMode").tag(true)
+                    Text("SpeedPad").tag(false)
                 }
             }
             Spacer()
