@@ -20,7 +20,7 @@ You'll see a capsule at the top, and the faster the net speed, the higher the bl
 
 - [x] I added an energy-saving button, if you select this button, the StatusBar's view will be refreshed 1.5s, otherwise it will be refreshed once in 1s, which is more expensive.
 
-- [x] You can choose the theme in second page , of Capsule or Circle.  Capsules are simpler, but they look better and cooler.
+- [x] You can choose the theme in second page , of Capsule or Circle.  Capsule is simpler, circle looks better and cooler but it may consume ten times the power.
 - [ ] Add a small interface that can watch the detailed network speed, and exhale only when clicking.
 - [ ] Can start when the system is logining
 
