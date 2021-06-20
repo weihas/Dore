@@ -15,6 +15,7 @@
 		35344374256E75EA00673BF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35344372256E75EA00673BF2 /* Main.storyboard */; };
 		35344380256E75EA00673BF2 /* DoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534437F256E75EA00673BF2 /* DoreTests.swift */; };
 		3534438B256E75EA00673BF2 /* DoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534438A256E75EA00673BF2 /* DoreUITests.swift */; };
+		353A8979267F94500044D751 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 353A8978267F94500044D751 /* README.md */; };
 		35528E38263595D1009F570F /* StatusItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E37263595D1009F570F /* StatusItemControl.swift */; };
 		35528E4A26359637009F570F /* ValuePadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E4726359636009F570F /* ValuePadView.swift */; };
 		35CAC0BE267F65920003409B /* BitsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAC0BD267F65920003409B /* BitsData.swift */; };
@@ -60,6 +61,7 @@
 		35344386256E75EA00673BF2 /* DoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3534438A256E75EA00673BF2 /* DoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoreUITests.swift; sourceTree = "<group>"; };
 		3534438C256E75EA00673BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		353A8978267F94500044D751 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		35528E37263595D1009F570F /* StatusItemControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemControl.swift; sourceTree = "<group>"; };
 		35528E4726359636009F570F /* ValuePadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValuePadView.swift; sourceTree = "<group>"; };
 		35CAC0BD267F65920003409B /* BitsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitsData.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		3534435D256E75E800673BF2 = {
 			isa = PBXGroup;
 			children = (
+				353A8978267F94500044D751 /* README.md */,
 				35344368256E75E800673BF2 /* Dore */,
 				3534437E256E75EA00673BF2 /* DoreTests */,
 				35344389256E75EA00673BF2 /* DoreUITests */,
@@ -329,6 +332,7 @@
 			files = (
 				35344374256E75EA00673BF2 /* Main.storyboard in Resources */,
 				35344371256E75EA00673BF2 /* Preview Assets.xcassets in Resources */,
+				353A8979267F94500044D751 /* README.md in Resources */,
 				3534436E256E75EA00673BF2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

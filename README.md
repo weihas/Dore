@@ -1,8 +1,8 @@
 # Dore
-[Download](https://github.com/weihas/Dore/releases/download/v0.4.1-alpha/Dore.0.4.1.2021-04-26.zip/)
-## v0.4.1-alpha
-
-only in macOS Bigsur 11.0 and later
+[Download](https://github.com/weihas/Dore/releases/download/v0.5.1-alpha/Dore_0.5.1.dmg)
+## v0.5.1-alpha
+#### (In this version, the animation also modifies the whole code and makes the circuit model more power-saving.)
+only in macOS Bigsur 11.0 and later(Both M1 and Intel)
 ### Coding By WEIHA.Thanks.
 
 My personal little App which runs in macos.
@@ -20,7 +20,7 @@ You'll see a capsule at the top, and the faster the net speed, the higher the bl
 
 - [x] I added an energy-saving button, if you select this button, the StatusBar's view will be refreshed 1.5s, otherwise it will be refreshed once in 1s, which is more expensive.
 
-- [x] You can choose the theme in second page , of Capsule or Circle.  Capsule is simpler, circle looks better and cooler but it may consume ten times the power.
+- [x] You can choose the theme in second page , of Capsule or Circle.  Capsule is simpler, circle looks better and cooler but it may consume ten times the power. 
 - [ ] Add a small interface that can watch the detailed network speed, and exhale only when clicking.
 - [ ] Can start when the system is logining
 
