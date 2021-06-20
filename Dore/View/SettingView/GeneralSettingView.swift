@@ -1,36 +1,11 @@
 //
-//  SettingView.swift
-//  PadDesign
+//  GeneralSettingView.swift
+//  Dore
 //
-//  Created by WeIHa'S on 2021/4/17.
+//  Created by WeIHa'S on 2021/6/20.
 //
 
 import SwiftUI
-
-struct SettingView: View {
-    @State private var selectedTab = 0
-    
-    var body: some View {
-        TabView(selection: $selectedTab) {
-            GeneralSettingsView()
-                .tabItem { Text("General") }
-                .tag(0)
-            ThemeSettingsView()
-                .tabItem { Text("Theme") }
-                .tag(1)
-        }
-        .frame(width: 400, height: 280, alignment: .center)
-    }
-}
-
-struct SettingView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingView()
-    }
-}
-
-
-
 
 struct GeneralSettingsView: View {
     
@@ -102,51 +77,3 @@ struct GeneralSettingsView: View {
         .frame(width: 350, height: 100)
     }
 }
-
-
-
-
-
-
-struct ThemeSettingsView: View {
-    
-    @AppStorage("themeSetting") private var themeSetting : Bool = true
-    
-    
-    var body: some View {
-        VStack{
-            Picker(selection: $themeSetting , label: Label("Theme", systemImage: "paintbrush")) {
-                Text("Capsule").tag(true)
-                Text("Circle").tag(false)
-            }
-
-            HStack{
-                VStack {
-                    MyProgress1(ViewModel: PreviewHandel)
-                        .frame(width: 60, height: 120, alignment: .center)
-                    Text("Capsule")
-                }
-                Spacer()
-                VStack {
-                    MyProgress2(ViewModel: PreviewHandel)
-                        .frame(width: 80, height: 120, alignment: .center)
-                    Text("Circle")
-                }
-            }
-            
-        }
-        .padding(20)
-        .frame(width: 350, height: 100)
-    }
-}
-
-
-
-
-
-
-
-
-
-
-

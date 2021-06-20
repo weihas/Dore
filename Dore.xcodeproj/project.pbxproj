@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		351C03BD26346F3600C8F8D0 /* BitsValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351C03BC26346F3600C8F8D0 /* BitsValue.swift */; };
-		351C03C726346F9800C8F8D0 /* ButtonViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351C03C526346F9800C8F8D0 /* ButtonViewControl.swift */; };
 		3530B894256E763100A703F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3530B893256E763100A703F7 /* AppDelegate.swift */; };
 		3530B8B1256E769B00A703F7 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3530B8B0256E769B00A703F7 /* Shell.swift */; };
 		3530B8B6256E76A400A703F7 /* StringExe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3530B8B5256E76A300A703F7 /* StringExe.swift */; };
@@ -18,10 +16,15 @@
 		35344380256E75EA00673BF2 /* DoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534437F256E75EA00673BF2 /* DoreTests.swift */; };
 		3534438B256E75EA00673BF2 /* DoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534438A256E75EA00673BF2 /* DoreUITests.swift */; };
 		35528E38263595D1009F570F /* StatusItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E37263595D1009F570F /* StatusItemControl.swift */; };
-		35528E402635961D009F570F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E3F2635961D009F570F /* SettingView.swift */; };
 		35528E4A26359637009F570F /* ValuePadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E4726359636009F570F /* ValuePadView.swift */; };
-		35528E4B26359637009F570F /* MyProgress1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E4826359637009F570F /* MyProgress1.swift */; };
-		35528E4C26359637009F570F /* MyProgress2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E4926359637009F570F /* MyProgress2.swift */; };
+		35CAC0BE267F65920003409B /* BitsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAC0BD267F65920003409B /* BitsData.swift */; };
+		35CAC0C1267F65EC0003409B /* CapsuleProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAC0C0267F65EC0003409B /* CapsuleProgress.swift */; };
+		35CAC0C3267F66120003409B /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAC0C2267F66120003409B /* CircleView.swift */; };
+		35CAC0C7267F667B0003409B /* GeneralSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAC0C6267F667B0003409B /* GeneralSettingView.swift */; };
+		35CAC0CB267F66B60003409B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAC0CA267F66B60003409B /* SettingsView.swift */; };
+		35CAC0CD267F66EF0003409B /* ThemeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAC0CC267F66EF0003409B /* ThemeSettingView.swift */; };
+		35CAC0CF267F67160003409B /* ProgressViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAC0CE267F67160003409B /* ProgressViewControl.swift */; };
+		35CAC0D3267F67EA0003409B /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAC0D2267F67EA0003409B /* SettingItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		351C03BC26346F3600C8F8D0 /* BitsValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitsValue.swift; sourceTree = "<group>"; };
-		351C03C526346F9800C8F8D0 /* ButtonViewControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonViewControl.swift; sourceTree = "<group>"; };
 		3530B893256E763100A703F7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3530B8B0256E769B00A703F7 /* Shell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
 		3530B8B5256E76A300A703F7 /* StringExe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExe.swift; sourceTree = "<group>"; };
@@ -60,10 +61,15 @@
 		3534438A256E75EA00673BF2 /* DoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoreUITests.swift; sourceTree = "<group>"; };
 		3534438C256E75EA00673BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35528E37263595D1009F570F /* StatusItemControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemControl.swift; sourceTree = "<group>"; };
-		35528E3F2635961D009F570F /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		35528E4726359636009F570F /* ValuePadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValuePadView.swift; sourceTree = "<group>"; };
-		35528E4826359637009F570F /* MyProgress1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProgress1.swift; sourceTree = "<group>"; };
-		35528E4926359637009F570F /* MyProgress2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProgress2.swift; sourceTree = "<group>"; };
+		35CAC0BD267F65920003409B /* BitsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitsData.swift; sourceTree = "<group>"; };
+		35CAC0C0267F65EC0003409B /* CapsuleProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleProgress.swift; sourceTree = "<group>"; };
+		35CAC0C2267F66120003409B /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		35CAC0C6267F667B0003409B /* GeneralSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingView.swift; sourceTree = "<group>"; };
+		35CAC0CA267F66B60003409B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		35CAC0CC267F66EF0003409B /* ThemeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSettingView.swift; sourceTree = "<group>"; };
+		35CAC0CE267F67160003409B /* ProgressViewControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewControl.swift; sourceTree = "<group>"; };
+		35CAC0D2267F67EA0003409B /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,14 +97,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3530B88B256E762500A703F7 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				351C03BC26346F3600C8F8D0 /* BitsValue.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
 		3534435D256E75E800673BF2 = {
 			isa = PBXGroup;
 			children = (
@@ -122,15 +120,11 @@
 		35344368256E75E800673BF2 /* Dore */ = {
 			isa = PBXGroup;
 			children = (
-				3530B88B256E762500A703F7 /* Utilities */,
 				3530B893256E763100A703F7 /* AppDelegate.swift */,
-				35528E37263595D1009F570F /* StatusItemControl.swift */,
-				351C03C526346F9800C8F8D0 /* ButtonViewControl.swift */,
-				3530B8B5256E76A300A703F7 /* StringExe.swift */,
-				3530B8B0256E769B00A703F7 /* Shell.swift */,
-				35528E3F2635961D009F570F /* SettingView.swift */,
-				35528E4826359637009F570F /* MyProgress1.swift */,
-				35528E4926359637009F570F /* MyProgress2.swift */,
+				35CAC0D1267F67CF0003409B /* Controller */,
+				35CAC0BF267F65AE0003409B /* Model */,
+				35CAC0D0267F67280003409B /* ViewModel */,
+				35CAC0C4267F66290003409B /* View */,
 				35528E4726359636009F570F /* ValuePadView.swift */,
 				3534436D256E75EA00673BF2 /* Assets.xcassets */,
 				35344372256E75EA00673BF2 /* Main.storyboard */,
@@ -165,6 +159,69 @@
 				3534438C256E75EA00673BF2 /* Info.plist */,
 			);
 			path = DoreUITests;
+			sourceTree = "<group>";
+		};
+		35CAC0BF267F65AE0003409B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				35CAC0BD267F65920003409B /* BitsData.swift */,
+				35CAC0C5267F66310003409B /* Shell */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		35CAC0C4267F66290003409B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35CAC0C9267F66970003409B /* ProgressView */,
+				35CAC0C8267F66880003409B /* SettingView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		35CAC0C5267F66310003409B /* Shell */ = {
+			isa = PBXGroup;
+			children = (
+				3530B8B5256E76A300A703F7 /* StringExe.swift */,
+				3530B8B0256E769B00A703F7 /* Shell.swift */,
+			);
+			path = Shell;
+			sourceTree = "<group>";
+		};
+		35CAC0C8267F66880003409B /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				35CAC0C6267F667B0003409B /* GeneralSettingView.swift */,
+				35CAC0CA267F66B60003409B /* SettingsView.swift */,
+				35CAC0CC267F66EF0003409B /* ThemeSettingView.swift */,
+			);
+			path = SettingView;
+			sourceTree = "<group>";
+		};
+		35CAC0C9267F66970003409B /* ProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				35CAC0C0267F65EC0003409B /* CapsuleProgress.swift */,
+				35CAC0C2267F66120003409B /* CircleView.swift */,
+			);
+			path = ProgressView;
+			sourceTree = "<group>";
+		};
+		35CAC0D0267F67280003409B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				35CAC0CE267F67160003409B /* ProgressViewControl.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		35CAC0D1267F67CF0003409B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				35528E37263595D1009F570F /* StatusItemControl.swift */,
+				35CAC0D2267F67EA0003409B /* SettingItem.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,14 +354,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				351C03C726346F9800C8F8D0 /* ButtonViewControl.swift in Sources */,
-				35528E402635961D009F570F /* SettingView.swift in Sources */,
 				35528E4A26359637009F570F /* ValuePadView.swift in Sources */,
+				35CAC0BE267F65920003409B /* BitsData.swift in Sources */,
 				3530B8B1256E769B00A703F7 /* Shell.swift in Sources */,
-				351C03BD26346F3600C8F8D0 /* BitsValue.swift in Sources */,
+				35CAC0C1267F65EC0003409B /* CapsuleProgress.swift in Sources */,
+				35CAC0C7267F667B0003409B /* GeneralSettingView.swift in Sources */,
+				35CAC0D3267F67EA0003409B /* SettingItem.swift in Sources */,
+				35CAC0CD267F66EF0003409B /* ThemeSettingView.swift in Sources */,
 				35528E38263595D1009F570F /* StatusItemControl.swift in Sources */,
-				35528E4B26359637009F570F /* MyProgress1.swift in Sources */,
-				35528E4C26359637009F570F /* MyProgress2.swift in Sources */,
+				35CAC0C3267F66120003409B /* CircleView.swift in Sources */,
+				35CAC0CB267F66B60003409B /* SettingsView.swift in Sources */,
+				35CAC0CF267F67160003409B /* ProgressViewControl.swift in Sources */,
 				3530B8B6256E76A400A703F7 /* StringExe.swift in Sources */,
 				3530B894256E763100A703F7 /* AppDelegate.swift in Sources */,
 			);
