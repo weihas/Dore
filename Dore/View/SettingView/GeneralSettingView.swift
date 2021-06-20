@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GeneralSettingsView: View {
-    
     @AppStorage("showPreview") private var startAuto = true
     @AppStorage("energySaving") private var EnergySaving = true
     @AppStorage("clickFunction") private var clickfunction : Bool = true

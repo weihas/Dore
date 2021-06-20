@@ -8,21 +8,62 @@
 import SwiftUI
 
 struct SettingView: View {
-    @State private var selectedTab = 0
+    @State var tabNum: Int = 0
     var body: some View {
-        TabView(selection: $selectedTab) {
-            GeneralSettingsView()
-                .tabItem { Text("General") }
-                .tag(0)
-            ThemeSettingsView()
-                .tabItem { Text("Theme") }
-                .tag(1)
+        VStack{
+            GroupBox{
+                HStack {
+                    Spacer()
+                    Spacer()
+                    tabItem(name: "General",picture: "gear" ,count: 0)
+                    Spacer()
+                    tabItem(name: "Theme", picture: "paintbrush", count: 1)
+                    Spacer()
+                    Spacer()
+                }
+            }
+            .frame(width: 400, height: 30, alignment: .center)
+            SettingViewNow()
         }
-        .padding()
         .frame(width: 400, height: 280, alignment: .center)
     }
+    
+    @ViewBuilder
+    func SettingViewNow() -> some View {
+        Group{
+            switch tabNum{
+            case 0: GeneralSettingsView().padding()
+            default:
+                ThemeSettingsView().padding()
+            }
+        }
+        .animation(.easeIn)
+        .frame(width: 400, height: 215, alignment: .center)
+    }
+    
+    
+    @ViewBuilder
+    func tabItem(name: String, picture: String, count: Int) -> some View {
+        VStack{
+            ZStack{
+                RoundedRectangle(cornerRadius: 5)
+                    .fill(Color.gray)
+                    .frame(width: 30, height: 30, alignment: .center)
+                    .opacity(tabNum == count ? 0.2 : 0)
+                    .animation(.easeIn)
+                Image(systemName: picture)
+            }
+            Text(name)
+                .font(.footnote)
+        }
+        .onTapGesture {
+            tabNum = count
+        }
+    }
+    
+    
+    
 }
-
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView()

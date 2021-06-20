@@ -21,10 +21,6 @@ struct SettingItem {
     }
     
 
-    
-    
-    
-
     func Convert(_ Delta :Double) -> (Double,speedUnit) {
         var num :Double = Delta
         var unit = speedUnit.B

@@ -25,7 +25,6 @@ class StatusItemControl: ObservableObject{
     
     func creatStatusBarItem(){
         self.statusItem.button?.target = self
-//        statusItem.button?.action = #selector(AppDelegate.itemAction(_:))
         self.statusItem.button?.action = #selector(mouseClickHandler)
         self.statusItem.button?.sendAction(on: [.leftMouseUp,.rightMouseUp])
         DrawStatusBarItem()
@@ -63,19 +62,6 @@ class StatusItemControl: ObservableObject{
         gcdTimer?.resume()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

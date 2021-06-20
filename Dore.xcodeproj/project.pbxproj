@@ -173,8 +173,8 @@
 		35CAC0C4267F66290003409B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				35CAC0C9267F66970003409B /* ProgressView */,
 				35CAC0C8267F66880003409B /* SettingView */,
+				35CAC0C9267F66970003409B /* ProgressView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,8 +191,8 @@
 		35CAC0C8267F66880003409B /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
-				35CAC0C6267F667B0003409B /* GeneralSettingView.swift */,
 				35CAC0CA267F66B60003409B /* SettingsView.swift */,
+				35CAC0C6267F667B0003409B /* GeneralSettingView.swift */,
 				35CAC0CC267F66EF0003409B /* ThemeSettingView.swift */,
 			);
 			path = SettingView;
@@ -547,7 +547,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 0.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "WeIHa-S.Dore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -573,7 +573,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 0.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "WeIHa-S.Dore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
