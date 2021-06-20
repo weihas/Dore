@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import ServiceManagement
-import NetworkExtension
+import Foundation
+
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -29,9 +29,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Create the window and set the content view.
         Settingwindow = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 400, height: 300),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView, .docModalWindow],
             backing: .buffered, defer: false)
-        Settingwindow.isReleasedWhenClosed = false
+        Settingwindow.isReleasedWhenClosed = true
         Settingwindow.center()
         Settingwindow.isRestorable = false
         Settingwindow.title = "Dore"
@@ -44,9 +44,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        let ViewModel = StatusItemControl(statusItem, Menu)
-        ViewModel.creatStatusBarItem()
-        statusItem = ViewModel.statusItem
+        let progressViewModel = ProgressViewControl()
+        let Control = StatusItemControl(statusItem, Menu, progressViewModel)
+        Control.creatStatusBarItem()
+        statusItem = Control.statusItem
     }
     
 
@@ -55,6 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
         
         let statusBar = NSStatusBar.system
+
         statusBar.removeStatusItem(statusItem)
         
     }
