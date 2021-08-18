@@ -11,18 +11,17 @@ struct SettingView: View {
     @State var tabNum: Int = 0
     var body: some View {
         VStack{
-            GroupBox{
-                HStack {
-                    Spacer()
-                    Spacer()
-                    tabItem(name: "General",picture: "gear" ,count: 0)
-                    Spacer()
-                    tabItem(name: "Theme", picture: "paintbrush", count: 1)
-                    Spacer()
-                    Spacer()
-                }
+            HStack {
+                Spacer()
+                Spacer()
+                tabItem(name: "General",picture: "gear" ,count: 0)
+                Spacer()
+                tabItem(name: "Theme", picture: "paintbrush", count: 1)
+                Spacer()
+                Spacer()
             }
             .frame(width: 400, height: 30, alignment: .center)
+            Divider()
             SettingViewNow()
         }
         .frame(width: 400, height: 280, alignment: .center)
@@ -48,16 +47,20 @@ struct SettingView: View {
             ZStack{
                 RoundedRectangle(cornerRadius: 5)
                     .fill(Color.gray)
-                    .frame(width: 30, height: 30, alignment: .center)
+                    .frame(width: 40, height: 35, alignment: .center)
                     .opacity(tabNum == count ? 0.2 : 0)
-                    .animation(.easeIn)
                 Image(systemName: picture)
+                    .font(.title2)
             }
             Text(name)
-                .font(.footnote)
+                .font(.callout)
+                .multilineTextAlignment(.center)
+                .padding(.bottom)
         }
         .onTapGesture {
-            tabNum = count
+            withAnimation{
+                tabNum = count
+            }
         }
     }
     

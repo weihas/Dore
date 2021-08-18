@@ -7,8 +7,7 @@
 
 struct BitsDate {
     private var value: BitsValue
-    let MaxSet :Double = 500*1024
-    let MinSet :Double = 5*1024
+    let settings = SettingItems()
     var nowPrecent: Double = 0
     
     init() {
@@ -16,15 +15,13 @@ struct BitsDate {
     }
     
     mutating func calculateSpeed() {
-       
-        
         let nowdate = value.nowdata
         value.lastDelta = value.nowDelta
         value.nowDelta = nowdate - value.lastdata
-        let precent =  value.nowDelta / MaxSet
+        let precent =  value.nowDelta / settings.maxBits
         if precent > 1 {
             nowPrecent = 1
-        }else if precent < MinSet/MaxSet{
+        }else if precent < settings.minBits / settings.maxBits {
             nowPrecent = 0
         }else{
             nowPrecent = precent

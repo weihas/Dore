@@ -9,12 +9,12 @@ import SwiftUI
 
 struct GeneralSettingsView: View {
     @AppStorage("showPreview") private var startAuto = true
-    @AppStorage("energySaving") private var EnergySaving = true
-    @AppStorage("clickFunction") private var clickfunction : Bool = true
-    @AppStorage("maxSetting") private var maxSetting : String  = "500"
-    @AppStorage("minSetting") private var minSetting : String  = "50"
+    @AppStorage("energySaving") private var energySaving = true
+    @AppStorage("clickFunction") private var clickFunc : Bool = true
+    @AppStorage("maxSetting") private var maxValue : String  = "500"
+    @AppStorage("minSetting") private var minValue : String  = "50"
     @AppStorage("maxUnit") private var maxUnit : Bool = false
-    @AppStorage("minUnit") private var minUint : Bool = false
+    @AppStorage("minUnit") private var minUnit : Bool = false
     
     var body: some View {
         Form {
@@ -22,7 +22,7 @@ struct GeneralSettingsView: View {
                 VStack{
                     HStack {
                         Label("Max", systemImage: "hare.fill")
-                        TextField("Max", text: $maxSetting)
+                        TextField("Max", text: $maxValue)
                         Picker("Unit", selection: $maxUnit) {
                             Text("KB/S").tag(false)
                             Text("MB/S").tag(true)
@@ -31,8 +31,8 @@ struct GeneralSettingsView: View {
                     
                     HStack{
                         Label("Min", systemImage: "tortoise.fill")
-                        TextField("Min", text: $minSetting)
-                        Picker("Unit", selection: $minUint) {
+                        TextField("Min", text: $minValue)
+                        Picker("Unit", selection: $minUnit) {
                             Text("KB/S").tag(false)
                             Text("MB/S").tag(true)
                         }
@@ -44,7 +44,7 @@ struct GeneralSettingsView: View {
             }
             Spacer()
             GroupBox(label: Label("ClickFunc", systemImage: "cursorarrow.click")) {
-                Picker(selection: $clickfunction, label: Text("Func")) {
+                Picker(selection: $clickFunc, label: Text("Func")) {
                     Text("DarkMode").tag(true)
                     Text("SpeedPad").tag(false)
                 }
@@ -61,7 +61,7 @@ struct GeneralSettingsView: View {
                         .disabled(true)
                         Spacer()
                         Spacer()
-                        Toggle(isOn: $EnergySaving) {
+                        Toggle(isOn: $energySaving) {
                             Text("EnergySaving")
                         }
                         Spacer()

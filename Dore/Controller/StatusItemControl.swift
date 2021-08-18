@@ -9,18 +9,20 @@ import Foundation
 import SwiftUI
 
 class StatusItemControl: ObservableObject{
-    @Published var statusItem : NSStatusItem
-    @Published var Menu: NSMenu
+    @Published var statusItem : NSStatusItem!
+    @Published var menu: NSMenu!
     @ObservedObject var progressViewModel: ProgressViewControl
+    var window: NSWindow?
     
+    var settings: SettingItems
     
     var gcdTimer: DispatchSourceTimer?
-   
     
-    init(_ statusItem :NSStatusItem , _ Menu :NSMenu , _ progressViewModel : ProgressViewControl) {
-        self.statusItem = statusItem
-        self.Menu = Menu
-        self.progressViewModel = progressViewModel
+    init() {
+        self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        self.settings = SettingItems()
+        self.progressViewModel = ProgressViewControl()
+        
     }
     
     func creatStatusBarItem(){
@@ -29,12 +31,12 @@ class StatusItemControl: ObservableObject{
         self.statusItem.button?.sendAction(on: [.leftMouseUp,.rightMouseUp])
         DrawStatusBarItem()
         Refresh()
+        setUpMenuForItem()
     }
     
     func DrawStatusBarItem(){
         self.statusItem.button!.subviews.removeAll()
-        
-        if SettingItem.themeSetting {
+        if !settings.themeSetting {
             let BottonView1 = CapsuleProgress(ViewModel: progressViewModel).frame(width: 9 , height: 21, alignment: .center)
             let progressIndicator = NSHostingView(rootView: BottonView1)
             progressIndicator.frame = NSRect(x: 0, y: 0, width: 22, height: 23)
@@ -49,7 +51,7 @@ class StatusItemControl: ObservableObject{
     
     
     func Refresh() {
-        let time = SettingItem.energySaving ? 1:1.5
+        let time = settings.energySaving ? 1:1.5
         
         gcdTimer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
         gcdTimer?.setEventHandler(handler: {
@@ -61,11 +63,52 @@ class StatusItemControl: ObservableObject{
         //gcdTimer?.schedule(deadline: .now() + 1)
         gcdTimer?.resume()
     }
+    
+    func setUpMenuForItem() {
+        let menu = NSMenu()
+        menu.addItem(withTitle: "Settings", action: #selector(showSettingView), keyEquivalent: ",").target = self
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(withTitle: "About", action: #selector(about), keyEquivalent: "").target = self
+        menu.addItem(withTitle: "Quit", action: #selector(quit), keyEquivalent: "q").target = self
+        self.menu = menu
+    }
+    
+    
 }
 
 
 
 extension StatusItemControl{
+    @objc func showSettingView() {
+        // Create the SwiftUI view that provides the window contents.
+        let contentView = SettingView()
+        // Create the window and set the content view.
+        let window = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 400, height: 300),
+            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView, .titled],
+            backing: .buffered, defer: false)
+        window.isReleasedWhenClosed = false
+        window.center()
+        window.isRestorable = false
+        window.title = "Dore"
+        window.setFrameAutosaveName("Dore Window")
+        window.contentView = NSHostingView(rootView: contentView)
+        window.makeKeyAndOrderFront(nil)
+        window.titlebarAppearsTransparent = true
+        self.window = window
+    }
+    
+    @objc func quit(){
+        NSApplication.shared.terminate(self)
+    }
+    
+    
+    
+    @objc func about(){
+        
+    }
+    
+    
     @objc func mouseClickHandler(){
         let source = """
                         tell application "System Events"
@@ -82,7 +125,7 @@ extension StatusItemControl{
                     print("Hello1")
                 break
             case .rightMouseUp:
-                statusItem.menu = Menu
+                statusItem.menu = menu
                 statusItem.button?.performClick(nil)
                 self.statusItem.menu = nil
                 print("Hello2")

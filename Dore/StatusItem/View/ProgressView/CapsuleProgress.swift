@@ -18,9 +18,7 @@ struct CapsuleProgress: View {
             Capsule()
                 .clipShape(RectBand(value: CGFloat(ViewModel.nowPersent)))
                 .animation(.easeOut)
-                .frame(alignment: .center)
                 .foregroundColor(.blue)
-            
         }
     }
 }
