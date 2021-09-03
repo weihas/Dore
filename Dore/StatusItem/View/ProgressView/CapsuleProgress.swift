@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CapsuleProgress: View {
-    @ObservedObject var ViewModel : ProgressViewControl
+    @ObservedObject var ViewModel : StatusItem
     var body: some View {
         ZStack {
             Capsule()

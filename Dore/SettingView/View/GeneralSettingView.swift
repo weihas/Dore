@@ -8,13 +8,7 @@
 import SwiftUI
 
 struct GeneralSettingsView: View {
-    @AppStorage("showPreview") private var startAuto = true
-    @AppStorage("energySaving") private var energySaving = true
-    @AppStorage("clickFunction") private var clickFunc : Bool = true
-    @AppStorage("maxSetting") private var maxValue : String  = "500"
-    @AppStorage("minSetting") private var minValue : String  = "50"
-    @AppStorage("maxUnit") private var maxUnit : Bool = false
-    @AppStorage("minUnit") private var minUnit : Bool = false
+    @ObservedObject var viewmodel: SettingItems
     
     var body: some View {
         Form {
@@ -22,8 +16,8 @@ struct GeneralSettingsView: View {
                 VStack{
                     HStack {
                         Label("Max", systemImage: "hare.fill")
-                        TextField("Max", text: $maxValue)
-                        Picker("Unit", selection: $maxUnit) {
+                        TextField("Max", text: $viewmodel.maxValue)
+                        Picker("Unit", selection: $viewmodel.minUnit) {
                             Text("KB/S").tag(false)
                             Text("MB/S").tag(true)
                         }
@@ -31,8 +25,8 @@ struct GeneralSettingsView: View {
                     
                     HStack{
                         Label("Min", systemImage: "tortoise.fill")
-                        TextField("Min", text: $minValue)
-                        Picker("Unit", selection: $minUnit) {
+                        TextField("Min", text: $viewmodel.minValue)
+                        Picker("Unit", selection: $viewmodel.minUnit) {
                             Text("KB/S").tag(false)
                             Text("MB/S").tag(true)
                         }
@@ -44,7 +38,7 @@ struct GeneralSettingsView: View {
             }
             Spacer()
             GroupBox(label: Label("ClickFunc", systemImage: "cursorarrow.click")) {
-                Picker(selection: $clickFunc, label: Text("Func")) {
+                Picker(selection: $viewmodel.clickFunc, label: Text("Func")) {
                     Text("DarkMode").tag(true)
                     Text("SpeedPad").tag(false)
                 }
@@ -55,13 +49,13 @@ struct GeneralSettingsView: View {
             HStack {
                 GroupBox(label: Label("Automatic", systemImage: "person.circle")) {
                     HStack{
-                        Toggle(isOn: $startAuto) {
+                        Toggle(isOn: $viewmodel.startAuto) {
                             Text("Self-start")
                         }
                         .disabled(true)
                         Spacer()
                         Spacer()
-                        Toggle(isOn: $energySaving) {
+                        Toggle(isOn: $viewmodel.energySaving) {
                             Text("EnergySaving")
                         }
                         Spacer()

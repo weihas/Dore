@@ -7,48 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3823C051-B4AF-496A-BC86-0906171831CB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dore/SettingView/Model/SettingItems.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "themeSetting"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "46D2DD8A-B4F2-420D-BE77-8268BF0C6478"
+            uuid = "364ACC56-4325-44E2-A435-7A0FE57EAC17"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dore/Controller/StatusItemControl.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "showSettingView()"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "DrawStatusBarItem()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "140D4993-2C0E-453E-B89F-4BB094D0A931"
-            shouldBeEnabled = "Yes"
+            uuid = "328466E2-E2CE-41A3-AA6B-499B0867397A"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dore/Controller/StatusItemControl.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "showSettingView()"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "Refresh()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

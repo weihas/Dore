@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingView: View {
     @State var tabNum: Int = 0
+    @ObservedObject var viewmodel: SettingItems
     var body: some View {
         VStack{
             HStack {
@@ -31,9 +32,9 @@ struct SettingView: View {
     func SettingViewNow() -> some View {
         Group{
             switch tabNum{
-            case 0: GeneralSettingsView().padding()
+            case 0: GeneralSettingsView(viewmodel: viewmodel).padding()
             default:
-                ThemeSettingsView().padding()
+                ThemeSettingsView(viewmodel: viewmodel).padding()
             }
         }
         .animation(.easeIn)
@@ -69,7 +70,7 @@ struct SettingView: View {
 }
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingView()
+        SettingView(viewmodel: SettingItems())
     }
 }
 

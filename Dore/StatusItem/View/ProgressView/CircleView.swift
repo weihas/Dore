@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CircleView: View {
-    @ObservedObject var ViewModel : ProgressViewControl
+    @ObservedObject var ViewModel : StatusItem
     var body: some View {
         GeometryReader { geometry in
             ZStack{

@@ -8,21 +8,32 @@
 import Foundation
 import SwiftUI
 
-class StatusItemControl: ObservableObject{
-    @Published var statusItem : NSStatusItem!
-    @Published var menu: NSMenu!
-    @ObservedObject var progressViewModel: ProgressViewControl
-    var window: NSWindow?
+class StatusItem: ObservableObject{
+    @Published private var model: BitsDate
+    var statusItem : NSStatusItem!
+    var menu: NSMenu!
+    
+    // MARK: -Access to the model
+    
+    var nowPersent: Double {
+        return model.nowPrecent
+    }
+    
+    
+    
+    // MARK: -Intent(s)
+    func refresh() {
+        model.calculateSpeed()
+    }
     
     var settings: SettingItems
     
     var gcdTimer: DispatchSourceTimer?
     
     init() {
+        self.model = BitsDate()
         self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         self.settings = SettingItems()
-        self.progressViewModel = ProgressViewControl()
-        
     }
     
     func creatStatusBarItem(){
@@ -37,12 +48,12 @@ class StatusItemControl: ObservableObject{
     func DrawStatusBarItem(){
         self.statusItem.button!.subviews.removeAll()
         if !settings.themeSetting {
-            let BottonView1 = CapsuleProgress(ViewModel: progressViewModel).frame(width: 9 , height: 21, alignment: .center)
+            let BottonView1 = CapsuleProgress(ViewModel: self).frame(width: 9 , height: 21, alignment: .center)
             let progressIndicator = NSHostingView(rootView: BottonView1)
             progressIndicator.frame = NSRect(x: 0, y: 0, width: 22, height: 23)
             self.statusItem.button!.addSubview(progressIndicator)
         }else{
-            let BottonView2 =  CircleView(ViewModel: progressViewModel).frame(width: 20 , height: 16, alignment: .center)
+            let BottonView2 =  CircleView(ViewModel: self).frame(width: 20 , height: 16, alignment: .center)
             let progressIndicator = NSHostingView(rootView: BottonView2)
             progressIndicator.frame = NSRect(x: 0, y: 1, width: 22, height: 23)
             self.statusItem.button!.addSubview(progressIndicator)
@@ -55,7 +66,7 @@ class StatusItemControl: ObservableObject{
         
         gcdTimer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
         gcdTimer?.setEventHandler(handler: {
-            self.progressViewModel.refresh()
+            self.refresh()
         })
         
         
@@ -78,24 +89,10 @@ class StatusItemControl: ObservableObject{
 
 
 
-extension StatusItemControl{
+extension StatusItem{
     @objc func showSettingView() {
         // Create the SwiftUI view that provides the window contents.
-        let contentView = SettingView()
-        // Create the window and set the content view.
-        let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 400, height: 300),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView, .titled],
-            backing: .buffered, defer: false)
-        window.isReleasedWhenClosed = false
-        window.center()
-        window.isRestorable = false
-        window.title = "Dore"
-        window.setFrameAutosaveName("Dore Window")
-        window.contentView = NSHostingView(rootView: contentView)
-        window.makeKeyAndOrderFront(nil)
-        window.titlebarAppearsTransparent = true
-        self.window = window
+        AppDelegate.openSettingPane()
     }
     
     @objc func quit(){

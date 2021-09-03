@@ -8,9 +8,18 @@
 import Foundation
 import SwiftUI
 
-class SettingItems {
-    let defaults = UserDefaults.standard
-    let settings = Settings()
+class SettingItems: ObservableObject {
+    @SetStorage(key: "startAuto", default: false) var startAuto: Bool
+    @SetStorage(key: "energySaving", default: true) var energySaving: Bool
+    @SetStorage(key: "clickFunc", default: false) var clickFunc: Bool
+    @SetStorage(key: "maxValue", default: "500") var maxValue: String
+    @SetStorage(key: "maxUnit", default: false) var maxUnit: Bool
+    @SetStorage(key: "minValue", default: "50") var minValue: String
+    @SetStorage(key: "minUnit", default: false) var minUnit: Bool
+    @SetStorage(key: "themeSetting", default: false) var themeSetting: Bool
+}
+
+extension SettingItems{
     var maxBits: Double{
         get{
             SettingItems.maxSetting * 1024 * (maxUnit ? 1024 : 1)
@@ -21,36 +30,6 @@ class SettingItems {
             SettingItems.minSetting * 1024 * (minUnit ? 1024 : 1)
         }
     }
-   
-    
-    var startAuto: Bool{
-        get{ defaults.bool(forKey: settings.startAuto)}
-    }
-    
-    var energySaving: Bool{
-        get{defaults.bool(forKey: settings.energySaving)}
-    }
-    var clickFunc: Bool{
-        get{defaults.bool(forKey: settings.clickFunction)}
-    }
-    var maxSetting: String{
-        get{defaults.string(forKey: settings.maxSetting) ?? "500"}
-    }
-    var maxUnit: Bool{
-        get{defaults.bool(forKey: settings.maxUnit)}
-    }
-    
-    var minSetting: String{
-        get{defaults.string(forKey: settings.minSetting) ?? "50"}
-    }
-    
-    var minUnit: Bool{
-        get{defaults.bool(forKey: settings.minUnit)}
-    }
-    
-    var themeSetting: Bool{
-        get{defaults.bool(forKey: settings.themeSetting)}
-    }
     
     static var maxSetting: Double{
         get{ Double(Int(UserDefaults.standard.string(forKey: "maxSetting") ?? "500") ?? 500)}
@@ -60,18 +39,7 @@ class SettingItems {
         get{ return Double(Int(UserDefaults.standard.string(forKey: "minSetting") ?? "5") ?? 5) }
     }
     
-    struct Settings {
-        let startAuto = "startAuto"
-        let energySaving = "energySaving"
-        let clickFunction = "clickFunction"
-        let maxSetting = "maxSetting"
-        let maxUnit = "maxUnit"
-        let minSetting = "minSetting"
-        let minUnit = "minUnit"
-        let themeSetting = "themeSetting"
-    }
 }
-
 
 
 enum speedUnit {
