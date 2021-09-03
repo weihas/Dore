@@ -8,32 +8,25 @@
 import Foundation
 import SwiftUI
 
-class StatusItem: ObservableObject{
+class StatusBarItem: ObservableObject{
     @Published private var model: BitsDate
     var statusItem : NSStatusItem!
     var menu: NSMenu!
     
     // MARK: -Access to the model
-    
     var nowPersent: Double {
         return model.nowPrecent
-    }
-    
-    
-    
-    // MARK: -Intent(s)
-    func refresh() {
-        model.calculateSpeed()
     }
     
     var settings: SettingItems
     
     var gcdTimer: DispatchSourceTimer?
     
-    init() {
-        self.model = BitsDate()
+    init(settingItems: SettingItems) {
         self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-        self.settings = SettingItems()
+        self.settings = settingItems
+        self.model = BitsDate(maxBits: settingItems.maxBits, minBits: settingItems.minBits)
+        
     }
     
     func creatStatusBarItem(){
@@ -41,8 +34,9 @@ class StatusItem: ObservableObject{
         self.statusItem.button?.action = #selector(mouseClickHandler)
         self.statusItem.button?.sendAction(on: [.leftMouseUp,.rightMouseUp])
         DrawStatusBarItem()
-        Refresh()
         setUpMenuForItem()
+        Refresh()
+        
     }
     
     func DrawStatusBarItem(){
@@ -66,7 +60,7 @@ class StatusItem: ObservableObject{
         
         gcdTimer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
         gcdTimer?.setEventHandler(handler: {
-            self.refresh()
+            self.model.calculateSpeed()
         })
         
         
@@ -89,7 +83,7 @@ class StatusItem: ObservableObject{
 
 
 
-extension StatusItem{
+extension StatusBarItem{
     @objc func showSettingView() {
         // Create the SwiftUI view that provides the window contents.
         AppDelegate.openSettingPane()

@@ -10,7 +10,7 @@ import Foundation
 
 
 @main
-class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
     
     var window: NSWindow!
     
@@ -30,9 +30,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 extension AppDelegate{
     
     func launchTask() {
-        let Control = StatusItem()
-        let SettingItems = SettingItems()
-        Control.creatStatusBarItem()
+        let items = SettingItems()
+        StatusBarItem(settingItems: items).creatStatusBarItem()
         window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
@@ -40,11 +39,10 @@ extension AppDelegate{
         window.isReleasedWhenClosed = false
         window.center()
         window.setFrameAutosaveName("Dore Settings")
-        window.contentView = NSHostingView(rootView: SettingView(viewmodel: SettingItems))
+        window.contentView = NSHostingView(rootView: SettingView(viewmodel: items))
         window.titlebarAppearsTransparent = true
         window.standardWindowButton(.zoomButton)?.isHidden = true
         window.standardWindowButton(.miniaturizeButton)?.isHidden = true
-        window.delegate = self
     }
     
     

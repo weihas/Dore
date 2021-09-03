@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CircleView: View {
-    @ObservedObject var ViewModel : StatusItem
+    @ObservedObject var ViewModel : StatusBarItem
     var body: some View {
         GeometryReader { geometry in
             ZStack{

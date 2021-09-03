@@ -16,7 +16,7 @@
 		35344380256E75EA00673BF2 /* DoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534437F256E75EA00673BF2 /* DoreTests.swift */; };
 		3534438B256E75EA00673BF2 /* DoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3534438A256E75EA00673BF2 /* DoreUITests.swift */; };
 		353A8979267F94500044D751 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 353A8978267F94500044D751 /* README.md */; };
-		35528E38263595D1009F570F /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E37263595D1009F570F /* StatusItem.swift */; };
+		35528E38263595D1009F570F /* StatusBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E37263595D1009F570F /* StatusBarItem.swift */; };
 		35528E4A26359637009F570F /* ValuePadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E4726359636009F570F /* ValuePadView.swift */; };
 		35900CDA26DBCE4900EBDC19 /* AppSettings+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35900CD926DBCE4900EBDC19 /* AppSettings+Wrapper.swift */; };
 		359C09CB26CC0675008F1FC2 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359C09CA26CC0675008F1FC2 /* Util.swift */; };
@@ -63,7 +63,7 @@
 		3534438A256E75EA00673BF2 /* DoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoreUITests.swift; sourceTree = "<group>"; };
 		3534438C256E75EA00673BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		353A8978267F94500044D751 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		35528E37263595D1009F570F /* StatusItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
+		35528E37263595D1009F570F /* StatusBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarItem.swift; sourceTree = "<group>"; };
 		35528E4726359636009F570F /* ValuePadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValuePadView.swift; sourceTree = "<group>"; };
 		35900CD926DBCE4900EBDC19 /* AppSettings+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppSettings+Wrapper.swift"; sourceTree = "<group>"; };
 		359C09CA26CC0675008F1FC2 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -162,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				3530B893256E763100A703F7 /* AppDelegate.swift */,
-				35CAC0D1267F67CF0003409B /* Controller */,
 				359C09CC26CC067B008F1FC2 /* Tool */,
 				3522456A26BFB852000B8AA6 /* StatusItem */,
 				35CAC0C8267F66880003409B /* SettingView */,
@@ -258,16 +257,9 @@
 		35CAC0D0267F67280003409B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				35528E37263595D1009F570F /* StatusItem.swift */,
+				35528E37263595D1009F570F /* StatusBarItem.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		35CAC0D1267F67CF0003409B /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,7 +401,7 @@
 				35CAC0C7267F667B0003409B /* GeneralSettingView.swift in Sources */,
 				35CAC0D3267F67EA0003409B /* SettingItems.swift in Sources */,
 				35CAC0CD267F66EF0003409B /* ThemeSettingView.swift in Sources */,
-				35528E38263595D1009F570F /* StatusItem.swift in Sources */,
+				35528E38263595D1009F570F /* StatusBarItem.swift in Sources */,
 				35CAC0C3267F66120003409B /* CircleView.swift in Sources */,
 				35CAC0CB267F66B60003409B /* SettingsView.swift in Sources */,
 				359C09CB26CC0675008F1FC2 /* Util.swift in Sources */,
