@@ -21,7 +21,9 @@ struct BitsDate {
     
     mutating func calculateSpeed() {
         self.value.refreshData()
-        nowPrecent =  value.nowDelta / maxBits
+        if value.nowDelta - value.lastDelta > minBits/maxBits {
+            nowPrecent =  value.nowDelta / maxBits
+        }
     }
 }
 

@@ -20,8 +20,6 @@ struct presentData {
                 num = 1
             }else if newValue < allowDelta{
                 num = 0
-            }else if (newValue-num) < allowDelta {
-                
             }else{
                 num = newValue
             }
