@@ -18,6 +18,7 @@
 		353A8979267F94500044D751 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 353A8978267F94500044D751 /* README.md */; };
 		35528E38263595D1009F570F /* StatusBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E37263595D1009F570F /* StatusBarItem.swift */; };
 		35528E4A26359637009F570F /* ValuePadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35528E4726359636009F570F /* ValuePadView.swift */; };
+		356A00F526E30C390071A6BB /* BitsData+PresentValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356A00F426E30C390071A6BB /* BitsData+PresentValue.swift */; };
 		35900CDA26DBCE4900EBDC19 /* AppSettings+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35900CD926DBCE4900EBDC19 /* AppSettings+Wrapper.swift */; };
 		359C09CB26CC0675008F1FC2 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359C09CA26CC0675008F1FC2 /* Util.swift */; };
 		35CAC0BE267F65920003409B /* BitsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAC0BD267F65920003409B /* BitsData.swift */; };
@@ -65,6 +66,7 @@
 		353A8978267F94500044D751 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		35528E37263595D1009F570F /* StatusBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarItem.swift; sourceTree = "<group>"; };
 		35528E4726359636009F570F /* ValuePadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValuePadView.swift; sourceTree = "<group>"; };
+		356A00F426E30C390071A6BB /* BitsData+PresentValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitsData+PresentValue.swift"; sourceTree = "<group>"; };
 		35900CD926DBCE4900EBDC19 /* AppSettings+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppSettings+Wrapper.swift"; sourceTree = "<group>"; };
 		359C09CA26CC0675008F1FC2 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		35CAC0BD267F65920003409B /* BitsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitsData.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				35CAC0BD267F65920003409B /* BitsData.swift */,
+				356A00F426E30C390071A6BB /* BitsData+PresentValue.swift */,
 				35CAC0C5267F66310003409B /* Shell */,
 			);
 			path = Model;
@@ -394,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35528E4A26359637009F570F /* ValuePadView.swift in Sources */,
+				356A00F526E30C390071A6BB /* BitsData+PresentValue.swift in Sources */,
 				35CAC0BE267F65920003409B /* BitsData.swift in Sources */,
 				35900CDA26DBCE4900EBDC19 /* AppSettings+Wrapper.swift in Sources */,
 				3530B8B1256E769B00A703F7 /* Shell.swift in Sources */,

@@ -9,7 +9,7 @@ import Foundation
 
 
 @discardableResult
-func Shell(_ args: String...) ->String? {
+func shellData(_ args: String...) ->Data? {
     let task = Process()
     let pipe = Pipe()
     let error = Pipe()
@@ -25,7 +25,6 @@ func Shell(_ args: String...) ->String? {
     
     
     let data = pipe.fileHandleForReading.readDataToEndOfFile()
-    let output = String(data: data, encoding: String.Encoding.utf8)
     
     task.waitUntilExit()
     
@@ -34,5 +33,15 @@ func Shell(_ args: String...) ->String? {
         return nil
     }
     
-    return output
+    return data
+}
+
+func shellAsync(_ args: String, result: @escaping (String?)->Void){
+    DispatchQueue.global().async {
+        guard let data = shellData(args) else{
+            result(nil)
+            return
+        }
+        result(String(data: data, encoding: String.Encoding.utf8))
+    }
 }

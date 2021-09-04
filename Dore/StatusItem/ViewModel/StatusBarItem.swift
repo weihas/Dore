@@ -35,7 +35,7 @@ class StatusBarItem: ObservableObject{
         self.statusItem.button?.sendAction(on: [.leftMouseUp,.rightMouseUp])
         DrawStatusBarItem()
         setUpMenuForItem()
-        Refresh()
+        refresh()
         
     }
     
@@ -55,7 +55,7 @@ class StatusBarItem: ObservableObject{
     }
     
     
-    func Refresh() {
+    func refresh() {
         let time = settings.energySaving ? 1:1.5
         
         gcdTimer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
