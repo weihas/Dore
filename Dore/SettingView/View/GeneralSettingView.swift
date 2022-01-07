@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GeneralSettingsView: View {
-    @ObservedObject var viewmodel: SettingItems
+    @ObservedObject var vm = SettingItems.defaults
     
     var body: some View {
         Form {
@@ -16,8 +16,8 @@ struct GeneralSettingsView: View {
                 VStack{
                     HStack {
                         Label("Max", systemImage: "hare.fill")
-                        TextField("Max", text: $viewmodel.maxValue)
-                        Picker("Unit", selection: $viewmodel.minUnit) {
+                        TextField("Max", text: $vm.maxValue)
+                        Picker("Unit", selection: $vm.minUnit) {
                             Text("KB/S").tag(false)
                             Text("MB/S").tag(true)
                         }
@@ -25,8 +25,8 @@ struct GeneralSettingsView: View {
                     
                     HStack{
                         Label("Min", systemImage: "tortoise.fill")
-                        TextField("Min", text: $viewmodel.minValue)
-                        Picker("Unit", selection: $viewmodel.minUnit) {
+                        TextField("Min", text: $vm.minValue)
+                        Picker("Unit", selection: $vm.minUnit) {
                             Text("KB/S").tag(false)
                             Text("MB/S").tag(true)
                         }
@@ -38,7 +38,7 @@ struct GeneralSettingsView: View {
             }
             Spacer()
             GroupBox(label: Label("ClickFunc", systemImage: "cursorarrow.click")) {
-                Picker(selection: $viewmodel.clickFunc, label: Text("Func")) {
+                Picker(selection: $vm.clickFunc, label: Text("Func")) {
                     Text("DarkMode").tag(true)
                     Text("SpeedPad").tag(false)
                 }
@@ -49,13 +49,13 @@ struct GeneralSettingsView: View {
             HStack {
                 GroupBox(label: Label("Automatic", systemImage: "person.circle")) {
                     HStack{
-                        Toggle(isOn: $viewmodel.startAuto) {
+                        Toggle(isOn: $vm.startAuto) {
                             Text("Self-start")
                         }
                         .disabled(true)
                         Spacer()
                         Spacer()
-                        Toggle(isOn: $viewmodel.energySaving) {
+                        Toggle(isOn: $vm.energySaving) {
                             Text("EnergySaving")
                         }
                         Spacer()

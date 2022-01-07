@@ -8,18 +8,19 @@
 import SwiftUI
 
 struct CapsuleProgress: View {
-    @ObservedObject var ViewModel : StatusBarItem
+    @ObservedObject var vm : StatusItemShow
     var body: some View {
-        ZStack {
-            Capsule()
-                .frame(alignment: .center)
-                .foregroundColor(.white)
-                .opacity(0.4)
-            Capsule()
-                .clipShape(RectBand(value: CGFloat(ViewModel.nowPersent)))
-                .animation(.easeOut)
-                .foregroundColor(.blue)
-        }
+        Capsule()
+            .clipShape(RectBand(value: CGFloat(vm.nowPersent)))
+            .animation(.easeOut)
+            .foregroundColor(.blue)
+            .background(
+                Capsule()
+                    .foregroundColor(.white)
+                    .opacity(0.4))
+            .onAppear {
+                vm.startTimer()
+            }
     }
 }
 

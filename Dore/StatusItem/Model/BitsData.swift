@@ -7,57 +7,56 @@
 import Foundation
 
 struct BitsDate {
-    private var value: BitsValue
-    let maxBits: Double
-    let minBits: Double
-    @presentData() var nowPrecent: Double
+    @PresentData var persent: Double
     
-    init(maxBits: Double, minBits: Double) {
-        value = BitsValue()
-        self.maxBits = maxBits
-        self.minBits = minBits
-        _nowPrecent.allowDelta = minBits/maxBits
-    }
+    private var nowData: Double = 0
+    private var lastData: Double = 0
+    private var nowDelta: Double = 0
+    private var lastDelta: Double = 0
     
-    mutating func calculateSpeed() {
-        self.value.refreshData()
-        if value.nowDelta - value.lastDelta > minBits/maxBits {
-            nowPrecent =  value.nowDelta / maxBits
+    @discardableResult
+    private func shellData(_ args: String...) ->Data? {
+        let task = Process()
+        let pipe = Pipe()
+        let error = Pipe()
+        
+        
+        //    print("shellwith",args)
+        
+        task.launchPath = "/bin/zsh"
+        task.arguments = ["-c"] + args
+        task.standardOutput = pipe
+        task.standardError = error
+        task.launch()
+        
+        
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        
+        task.waitUntilExit()
+        
+        if task.terminationStatus != 0 {
+            return nil
         }
-    }
-}
-
-class BitsValue{
-    var nowdata : Double = 0{
-        didSet{
-            lastdata = oldValue
-            nowDelta = nowdata - oldValue
-        }
+        
+        return data
     }
     
-    var lastdata: Double = 0
-    
-    var lastDelta : Double = 0
-    
-    var nowDelta: Double = 0{
-        didSet{
-            lastDelta = oldValue
-        }
-    }
-    
-    func refreshData(){
+    mutating func refreshData(){
         let args = "netstat -bI en0"    //Terminal command
-        shellAsync(args) { result in
-            guard let rows = result?.split(separator: "\n").map({ String($0) }),
-                  rows.count > 1 else{ return }
-            let headers = rows[0].splittedByWhitespace
-            let values = rows[1].splittedByWhitespace
-            
-            guard let raw = String.getValue(of: "ibytes", in: values, of: headers), let bytes = Double(raw) else {return}
-            DispatchQueue.main.sync {
-                self.nowdata = bytes
-            }
+        
+        guard let data = shellData(args),
+              let rows = String(data: data, encoding: String.Encoding.utf8)?.split(separator: "\n").map({ String($0) }), rows.count > 1 else { return }
+        let headers = rows[0].splittedByWhitespace
+        let values = rows[1].splittedByWhitespace
+        
+        guard let raw = String.getValue(of: "ibytes", in: values, of: headers), let bytes = Double(raw) else {return}
+        lastDelta = nowDelta
+        nowDelta = bytes - nowData
+        if nowDelta/lastDelta > 0.9, nowDelta/lastDelta < 1.1 {
+            return
         }
+        lastData = nowData
+        nowData = bytes
+        persent = nowDelta/SettingItems.maxBits
     }
-    
 }

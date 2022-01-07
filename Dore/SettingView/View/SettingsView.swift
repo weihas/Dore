@@ -9,71 +9,69 @@ import SwiftUI
 
 struct SettingView: View {
     @State var tabNum: Int = 0
-    @ObservedObject var viewmodel: SettingItems
     var body: some View {
         VStack{
             HStack {
-                Spacer()
-                Spacer()
-                tabItem(name: "General",picture: "gear" ,count: 0)
-                Spacer()
-                tabItem(name: "Theme", picture: "paintbrush", count: 1)
-                Spacer()
-                Spacer()
+                    TabItem(name: "General", icon: "gear", tabNum: $tabNum, count: 0)
+                    TabItem(name: "Theme", icon: "paintbrush", tabNum: $tabNum, count: 1)
             }
             .frame(width: 400, height: 30, alignment: .center)
             Divider()
-            SettingViewNow()
+            settingViewNow
         }
         .frame(width: 400, height: 280, alignment: .center)
     }
     
-    @ViewBuilder
-    func SettingViewNow() -> some View {
+    var settingViewNow: some View {
         Group{
             switch tabNum{
-            case 0: GeneralSettingsView(viewmodel: viewmodel).padding()
+            case 0: GeneralSettingsView()
+                    .padding()
+                    .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
             default:
-                ThemeSettingsView(viewmodel: viewmodel).padding()
+                ThemeSettingsView()
+                    .padding()
+                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                
             }
         }
-        .animation(.easeIn)
         .frame(width: 400, height: 215, alignment: .center)
     }
     
-    
-    @ViewBuilder
-    func tabItem(name: String, picture: String, count: Int) -> some View {
+
+}
+
+
+struct TabItem: View{
+    var name: String
+    var icon: String
+    @Binding var tabNum: Int
+    @State var isHover: Bool = false
+    var count: Int
+    var body: some View {
         VStack{
-            ZStack{
-                RoundedRectangle(cornerRadius: 5)
-                    .fill(Color.gray)
-                    .frame(width: 40, height: 35, alignment: .center)
-                    .opacity(tabNum == count ? 0.2 : 0)
-                Image(systemName: picture)
-                    .font(.title2)
-            }
+            Image(systemName: icon)
+                .font(.title2)
+                .padding(.vertical, 5)
+                .padding(.horizontal, 20)
+                .background(
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(Color.gray)
+                        .opacity(tabNum == count ? 0.3: 0)
+                )
             Text(name)
                 .font(.callout)
                 .multilineTextAlignment(.center)
                 .padding(.bottom)
         }
         .onTapGesture {
-            withAnimation{
+            withAnimation {
                 tabNum = count
             }
+            
         }
     }
-    
-    
-    
 }
-struct SettingView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingView(viewmodel: SettingItems())
-    }
-}
-
 
 
 
