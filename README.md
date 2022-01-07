@@ -1,5 +1,5 @@
 # Dore
-[Download](https://github.com/weihas/Dore/releases/download/v0.5.1-alpha/Dore_0.5.1.dmg)
+[Download](https://github.com/weihas/Dore/releases/download/v0.6.1-alpha/Dore.dmg)
 
 ## v0.6.1-alpha
 #### (In this version, the animation also modifies the whole code and makes the circuit model more power-saving.)
