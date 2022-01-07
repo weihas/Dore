@@ -7,7 +7,7 @@
   .DS_Store
 
 ## User settings 
- *.xcuserdata/
+ *.xcuserdata
  *.xcscmblueprint
  *.xccheckout
 
