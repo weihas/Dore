@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ThemeSettingsView: View {
-    @ObservedObject var viewmodel: SettingItems
+    @ObservedObject var vm = SettingItems.defaults
     
     var body: some View {
         VStack{
-            Picker(selection: $viewmodel.themeSetting , label: Label("Theme", systemImage: "paintbrush")) {
+            Picker(selection: $vm.themeSetting , label: Label("Theme", systemImage: "paintbrush")) {
                 Text("Capsule").tag(false)
                 Text("Circle").tag(true)
             }

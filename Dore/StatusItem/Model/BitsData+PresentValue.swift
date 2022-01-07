@@ -8,9 +8,10 @@
 import Foundation
 
 @propertyWrapper
-struct presentData {
+struct PresentData {
     private var num: Double = 0
-    var allowDelta: Double = 0.005
+    private let min: Double = 0.005
+    private let delta: Double = 0.05
     var wrappedValue: Double {
         get{
             return num
@@ -18,8 +19,10 @@ struct presentData {
         set{
             if newValue > 1 {
                 num = 1
-            }else if newValue < allowDelta{
+            }else if newValue < min{
                 num = 0
+            }else if abs(newValue - num) < delta{
+                
             }else{
                 num = newValue
             }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CircleView: View {
-    @ObservedObject var ViewModel : StatusBarItem
+    @ObservedObject var vm : StatusItemShow
     var body: some View {
         GeometryReader { geometry in
             ZStack{
@@ -16,9 +16,12 @@ struct CircleView: View {
                 CircleShape()
                     .stroke(Color.white ,style: StrokeStyle(lineWidth: thickness , lineCap: .round, lineJoin: .round))
                     .opacity(0.4)
-                CircleShape(value: ViewModel.nowPersent)
+                CircleShape(value: vm.nowPersent)
                     .stroke(Color.blue ,style: StrokeStyle(lineWidth: thickness, lineCap: .round, lineJoin: .round))
                     .animation(.easeInOut)
+                    .onAppear {
+                        vm.startTimer()
+                    }
             }
         }
     }
