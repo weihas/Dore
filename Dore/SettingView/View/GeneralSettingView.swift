@@ -17,7 +17,7 @@ struct GeneralSettingsView: View {
                     HStack {
                         Label("Max", systemImage: "hare.fill")
                         TextField("Max", text: $vm.maxValue)
-                        Picker("Unit", selection: $vm.minUnit) {
+                        Picker("Unit", selection: $vm.maxUnit) {
                             Text("KB/S").tag(false)
                             Text("MB/S").tag(true)
                         }
