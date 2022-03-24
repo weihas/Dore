@@ -9,14 +9,13 @@ import SwiftUI
 
 struct CapsuleProgress: View {
     @ObservedObject var vm : StatusItemShow
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
     var body: some View {
         
         Capsule()
-            .clipShape(RectBand(value: CGFloat(vm.nowPersent)))
+            .clipShape(RectBand(value: vm.nowPersent))
             .animation(.easeOut)
             .aspectRatio(0.45, contentMode: .fit)
-            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+            .foregroundColor(Color.primary)
             .background(
                 Capsule()
                     .foregroundColor(.white)
@@ -32,9 +31,9 @@ struct CapsuleProgress: View {
 
 
 struct RectBand: Shape {
-    var value: CGFloat
+    var value: Double
     
-    var animatableData: CGFloat{
+    var animatableData: Double {
         get { value }
         set { value = newValue }
     }
