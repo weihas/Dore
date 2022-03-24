@@ -7,7 +7,7 @@
 import Foundation
 
 struct BitsDate {
-    var persent: Double = 0.0
+    @PresentData var persent: Double
     
     private var nowData: Double = 0
     private var lastData: Double = 0
@@ -59,24 +59,7 @@ struct BitsDate {
         
         nowData = bytes
         
-        
-        var value: Double = 0.0
-        
-        if nowDelta > SettingItems.defaults.maxBits {
-            //如果当前比最大还大，等于1
-            value = 1
-        } else if nowDelta < SettingItems.defaults.minBits {
-            //比最小还小，等于0
-            value = 0
-        } else {
-            //如果上一秒和这一秒十分接近啥也不干
-            if (nowDelta/lastDelta).isContained(by: 0.9..<1.1){
-                return
-            }
-            value = nowDelta/SettingItems.defaults.maxBits
-        }
-        
-        persent = value
+        persent = nowDelta/SettingItems.defaults.maxBits
     }
     
     
