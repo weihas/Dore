@@ -75,8 +75,15 @@ struct TabItem: View{
 
 
 
+#if DEBUG
+struct SettingView_Previews: PreviewProvider {
 
+    static var previews: some View {
+        SettingView()
+    }
+}
 
+#endif
 
 
 

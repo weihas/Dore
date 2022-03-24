@@ -11,34 +11,47 @@ import SwiftUI
 class SettingItems: ObservableObject {
     static var defaults = SettingItems()
     
+    var maxBits: Double = 500*1024
+    var minBits: Double = 5*1024
+    
+    init(){
+        freshBits()
+    }
+    
     @AppStorage("startAuto", store: .standard) var startAuto: Bool = false
     @AppStorage("energySaving", store: .standard) var energySaving: Bool = true
     @AppStorage("clickFunc", store: .standard) var clickFunc: Bool = true
-    @AppStorage("maxValue", store: .standard) var maxValue: String = "500"
-    @AppStorage("maxUnit", store: .standard) var maxUnit: Bool = true
-    @AppStorage("minValue", store: .standard) var minValue: String = "5"
-    @AppStorage("minUnit", store: .standard) var minUnit: Bool = true
     @AppStorage("themeSettingisCircle", store: .standard) var themeSettingisCircle: Bool = false
-}
-
-extension SettingItems{
     
-    var maxBits: Double{
-        get{
-            let value = Double(maxValue) ?? 500
-            return value * 1024 * (maxUnit ? 1024 : 1)
+    @AppStorage("maxValue", store: .standard) var maxValue: String = "2" {
+        didSet {
+            freshBits()
         }
     }
-    
-    var minBits: Double{
-        get{
-            let value = Double(minValue) ?? 5
-            return value * 1024 * (minUnit ? 1024 : 1)
+    @AppStorage("maxUnit", store: .standard) var maxUnit: Int = 2 {
+        didSet {
+            freshBits()
         }
     }
+    @AppStorage("minValue", store: .standard) var minValue: String = "5" {
+        didSet {
+            freshBits()
+        }
+    }
+    @AppStorage("minUnit", store: .standard) var minUnit: Int = 1 {
+        didSet {
+            freshBits()
+        }
+    }
+   
     
+    
+    func freshBits() {
+        guard let maxValue = Double(maxValue),
+              let maxUnit = SpeedUnit(rawValue: maxUnit)?.bitsValue,
+              let minValue = Double(minValue),
+              let minUnit = SpeedUnit(rawValue: minUnit)?.bitsValue else { return }
+        self.maxBits = maxValue*maxUnit
+        self.minBits = minValue*minUnit
+    }
 }
-
-
-
-

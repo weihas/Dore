@@ -18,8 +18,10 @@ struct GeneralSettingsView: View {
                         Label("Max", systemImage: "hare.fill")
                         TextField("Max", text: $vm.maxValue)
                         Picker("Unit", selection: $vm.maxUnit) {
-                            Text("KB/S").tag(false)
-                            Text("MB/S").tag(true)
+                            Text("B/S").tag(0)
+                            Text("KB/S").tag(1)
+                            Text("MB/S").tag(2)
+                            Text("GB/S").tag(3)
                         }
                     }
                     
@@ -27,8 +29,10 @@ struct GeneralSettingsView: View {
                         Label("Min", systemImage: "tortoise.fill")
                         TextField("Min", text: $vm.minValue)
                         Picker("Unit", selection: $vm.minUnit) {
-                            Text("KB/S").tag(false)
-                            Text("MB/S").tag(true)
+                            Text("B/S").tag(0)
+                            Text("KB/S").tag(1)
+                            Text("MB/S").tag(2)
+                            Text("GB/S").tag(3)
                         }
                     }
                 }

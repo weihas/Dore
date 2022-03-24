@@ -28,16 +28,16 @@ extension SpeedUnit {
         }
     }
     
-    var value: Int{
+    var bitsValue: Double {
         switch self {
         case .B:
-            return 1
+            return 1.0
         case .KB:
-            return 1024
+            return 1024.0
         case .MB:
-            return 1024*1024
+            return 1024.0*1024.0
         case .GB:
-            return 1024*1024
+            return 1024.0*1024.0*1024.0
         }
     }
     
