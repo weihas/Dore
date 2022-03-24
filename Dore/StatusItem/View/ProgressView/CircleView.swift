@@ -8,17 +8,16 @@
 import SwiftUI
 
 struct CircleView: View {
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @ObservedObject var vm : StatusItemShow
     var body: some View {
         GeometryReader { geometry in
             ZStack{
                 let thickness = geometry.size.height * 0.2
                 CircleShape()
-                    .stroke(Color.white ,style: StrokeStyle(lineWidth: thickness , lineCap: .round, lineJoin: .round))
+                    .stroke(Color.gray ,style: StrokeStyle(lineWidth: thickness , lineCap: .round, lineJoin: .round))
                     .opacity(0.4)
                 CircleShape(value: vm.nowPersent)
-                    .stroke(colorScheme == .dark ? Color.white : Color.black ,style: StrokeStyle(lineWidth: thickness, lineCap: .round, lineJoin: .round))
+                    .stroke(Color.primary ,style: StrokeStyle(lineWidth: thickness, lineCap: .round, lineJoin: .round))
                     .animation(.easeInOut)
                     .onAppear {
                         vm.startTimer()
