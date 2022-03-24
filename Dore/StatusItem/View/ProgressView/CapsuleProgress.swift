@@ -9,11 +9,14 @@ import SwiftUI
 
 struct CapsuleProgress: View {
     @ObservedObject var vm : StatusItemShow
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     var body: some View {
+        
         Capsule()
             .clipShape(RectBand(value: CGFloat(vm.nowPersent)))
             .animation(.easeOut)
-            .foregroundColor(.blue)
+            .aspectRatio(0.45, contentMode: .fit)
+            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
             .background(
                 Capsule()
                     .foregroundColor(.white)
@@ -22,6 +25,9 @@ struct CapsuleProgress: View {
                 vm.startTimer()
             }
     }
+    
+    
+
 }
 
 

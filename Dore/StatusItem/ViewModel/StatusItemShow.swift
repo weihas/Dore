@@ -8,8 +8,8 @@
 import SwiftUI
 import Foundation
 
-class StatusItemShow: ObservableObject{
-    @Published var model = BitsDate()
+class StatusItemShow: ObservableObject {
+    @Published private var model = BitsDate()
     
     lazy var statusItem: NSStatusItem = {
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -24,19 +24,19 @@ class StatusItemShow: ObservableObject{
         menu.addItem(withTitle: "Settings", action: #selector(showSettingView), keyEquivalent: ",").target = self
         menu.addItem(NSMenuItem.separator())
         menu.addItem(withTitle: "About", action: #selector(about), keyEquivalent: "A").target = self
-        menu.addItem(withTitle: "Quit", action: #selector(quit), keyEquivalent: "q").target = self
+        menu.addItem(withTitle: "Quit", action: #selector(quit), keyEquivalent: "Q").target = self
         return menu
     }()
     
     
     private lazy var timer: DispatchSourceTimer? = {
-        let time = SettingItems.defaults.energySaving ? 1.5:1
+        let time = SettingItems.defaults.energySaving ? 1.5 : 1
         
         let gcdTimer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
-        gcdTimer.setEventHandler {[weak self] in
-            self?.model.refreshData()
-        }
         
+        gcdTimer.setEventHandler {[weak self] in
+            self?.freshModel()
+        }
         
         gcdTimer.schedule(deadline: .now(), repeating: time, leeway: .seconds(1))
         return gcdTimer
@@ -52,6 +52,11 @@ class StatusItemShow: ObservableObject{
         return model.persent
     }
     
+    var nowValue: (String, String) {
+        let value = SpeedUnit.getUnit(val: model.nowDelta)
+        return  (String(format: "%.2f", value.0), value.1.name)
+    }
+    
     
     // MARK: -Intents
 
@@ -59,16 +64,22 @@ class StatusItemShow: ObservableObject{
     func drawStatusBarItem(){
         self.statusItem.button?.subviews.removeAll()
         
-        if SettingItems.defaults.themeSetting {
+        if SettingItems.defaults.themeSettingisCircle {
             let BottonView2 =  CircleView(vm: self).frame(width: 20 , height: 16, alignment: .center)
             let progressIndicator = NSHostingView(rootView: BottonView2)
             progressIndicator.frame = NSRect(x: 0, y: 1, width: 22, height: 23)
             self.statusItem.button!.addSubview(progressIndicator)
         }else{
-            let BottonView1 = CapsuleProgress(vm: self).frame(width: 9 , height: 21, alignment: .center)
+            let BottonView1 = CapsuleProgress(vm: self).frame(width: 22 , height: 20, alignment: .center)
             let progressIndicator = NSHostingView(rootView: BottonView1)
-            progressIndicator.frame = NSRect(x: 0, y: 0, width: 22, height: 23)
+            progressIndicator.frame = NSRect(x: 0, y: 0, width: 22, height: 24)
             self.statusItem.button!.addSubview(progressIndicator)
+        }
+    }
+    
+    func freshModel(){
+        DispatchQueue.main.async { [weak self] in
+            self?.model.refreshData()
         }
     }
     

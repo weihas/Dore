@@ -18,32 +18,27 @@ class SettingItems: ObservableObject {
     @AppStorage("maxUnit", store: .standard) var maxUnit: Bool = true
     @AppStorage("minValue", store: .standard) var minValue: String = "5"
     @AppStorage("minUnit", store: .standard) var minUnit: Bool = true
-    @AppStorage("themeSetting", store: .standard) var themeSetting: Bool = false
+    @AppStorage("themeSettingisCircle", store: .standard) var themeSettingisCircle: Bool = false
 }
 
 extension SettingItems{
     
-    static var maxBits: Double{
+    var maxBits: Double{
         get{
-            let value = Double(SettingItems.defaults.maxValue) ?? 500
-            return value * 1024 * (SettingItems.defaults.maxUnit ? 1024 : 1)
+            let value = Double(maxValue) ?? 500
+            return value * 1024 * (maxUnit ? 1024 : 1)
         }
     }
     
-    static var minBits: Double{
+    var minBits: Double{
         get{
-            let value = Double(SettingItems.defaults.minValue) ?? 5
-            return value * 1024 * (SettingItems.defaults.minUnit ? 1024 : 1)
+            let value = Double(minValue) ?? 5
+            return value * 1024 * (minUnit ? 1024 : 1)
         }
     }
     
 }
 
 
-enum speedUnit {
-    case B
-    case KB
-    case MB
-    case GB
-}
+
 

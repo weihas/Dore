@@ -8,9 +8,9 @@
 import Foundation
 
 extension Double{
-    func Convert(_ Delta :Double) -> (Double,speedUnit) {
+    func Convert(_ Delta :Double) -> (Double,SpeedUnit) {
         var num :Double = Delta
-        var unit = speedUnit.B
+        var unit = SpeedUnit.B
         var times = 0
         
         
@@ -20,33 +20,27 @@ extension Double{
         }
         switch times {
         case 0:
-            unit = speedUnit.B
+            unit = SpeedUnit.B
         case 1:
-            unit = speedUnit.KB
+            unit = SpeedUnit.KB
         case 2:
-            unit = speedUnit.MB
+            unit = SpeedUnit.MB
         case 3:
-            unit = speedUnit.GB
+            unit = SpeedUnit.GB
         default:
-            unit = speedUnit.B
+            unit = SpeedUnit.B
         }
         return (num,unit)
         
     }
+    
+    func isContained(by range: Range<Double>) -> Bool {
+        return range.contains(self)
+    }
+    
 }
 
 extension String {
-    
-    static func getValue(of column: String, in values: [String], of headers: [String]) -> String? {
-        guard
-            let index = headers.firstIndex(where: { $0.lowercased() == column }),
-            values.indices.contains(index)
-        else {
-            return nil
-        }
-        return values[index]
-    }
-    
     var splittedByWhitespace: [String] {
         guard let trimWhiteSpaceRegEx = try? NSRegularExpression(pattern: "/ +/g") else { return [] }
         let trimmed = trimWhiteSpaceRegEx.stringByReplacingMatches(

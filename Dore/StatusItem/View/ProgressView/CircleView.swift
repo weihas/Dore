@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CircleView: View {
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @ObservedObject var vm : StatusItemShow
     var body: some View {
         GeometryReader { geometry in
@@ -17,7 +18,7 @@ struct CircleView: View {
                     .stroke(Color.white ,style: StrokeStyle(lineWidth: thickness , lineCap: .round, lineJoin: .round))
                     .opacity(0.4)
                 CircleShape(value: vm.nowPersent)
-                    .stroke(Color.blue ,style: StrokeStyle(lineWidth: thickness, lineCap: .round, lineJoin: .round))
+                    .stroke(colorScheme == .dark ? Color.white : Color.black ,style: StrokeStyle(lineWidth: thickness, lineCap: .round, lineJoin: .round))
                     .animation(.easeInOut)
                     .onAppear {
                         vm.startTimer()
