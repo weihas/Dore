@@ -39,7 +39,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     static func openSettingPane() {
-        (NSApp.delegate as! AppDelegate).window.makeKeyAndOrderFront(nil)
+        guard let window = (NSApp.delegate as? AppDelegate)?.window else {return}
+        window.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
 }

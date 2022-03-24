@@ -12,7 +12,7 @@ struct ThemeSettingsView: View {
     
     var body: some View {
         VStack{
-            Picker(selection: $vm.themeSetting , label: Label("Theme", systemImage: "paintbrush")) {
+            Picker(selection: $vm.themeSettingisCircle , label: Label("Theme", systemImage: "paintbrush")) {
                 Text("Capsule").tag(false)
                 Text("Circle").tag(true)
             }
