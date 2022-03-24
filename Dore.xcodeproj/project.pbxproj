@@ -17,6 +17,7 @@
 		357D2BDF278849A400C93116 /* StatusItemShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357D2BDE278849A400C93116 /* StatusItemShow.swift */; };
 		35900CDA26DBCE4900EBDC19 /* AppSettings+Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35900CD926DBCE4900EBDC19 /* AppSettings+Wrapper.swift */; };
 		359C09CB26CC0675008F1FC2 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359C09CA26CC0675008F1FC2 /* Util.swift */; };
+		35B3FFFB27EC76A500C88300 /* BitsData+PresentValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3FFFA27EC76A500C88300 /* BitsData+PresentValue.swift */; };
 		35CAC0BE267F65920003409B /* BitsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAC0BD267F65920003409B /* BitsData.swift */; };
 		35CAC0C1267F65EC0003409B /* CapsuleProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAC0C0267F65EC0003409B /* CapsuleProgress.swift */; };
 		35CAC0C3267F66120003409B /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CAC0C2267F66120003409B /* CircleView.swift */; };
@@ -59,6 +60,7 @@
 		357D2BDE278849A400C93116 /* StatusItemShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemShow.swift; sourceTree = "<group>"; };
 		35900CD926DBCE4900EBDC19 /* AppSettings+Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppSettings+Wrapper.swift"; sourceTree = "<group>"; };
 		359C09CA26CC0675008F1FC2 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		35B3FFFA27EC76A500C88300 /* BitsData+PresentValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BitsData+PresentValue.swift"; sourceTree = "<group>"; };
 		35CAC0BD267F65920003409B /* BitsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitsData.swift; sourceTree = "<group>"; };
 		35CAC0C0267F65EC0003409B /* CapsuleProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleProgress.swift; sourceTree = "<group>"; };
 		35CAC0C2267F66120003409B /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			children = (
 				356C787627EB1D4200B27CA9 /* SpeedUnit.swift */,
 				35CAC0BD267F65920003409B /* BitsData.swift */,
+				35B3FFFA27EC76A500C88300 /* BitsData+PresentValue.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				35528E4A26359637009F570F /* ValuePadView.swift in Sources */,
 				35CAC0BE267F65920003409B /* BitsData.swift in Sources */,
 				35900CDA26DBCE4900EBDC19 /* AppSettings+Wrapper.swift in Sources */,
+				35B3FFFB27EC76A500C88300 /* BitsData+PresentValue.swift in Sources */,
 				357D2BDF278849A400C93116 /* StatusItemShow.swift in Sources */,
 				35CAC0C1267F65EC0003409B /* CapsuleProgress.swift in Sources */,
 				35CAC0C7267F667B0003409B /* GeneralSettingView.swift in Sources */,
@@ -537,7 +541,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Dore/Preview Content\"";
 				DEVELOPMENT_TEAM = 4WB3QMP893;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -564,7 +568,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Dore/Preview Content\"";
 				DEVELOPMENT_TEAM = 4WB3QMP893;
 				ENABLE_HARDENED_RUNTIME = YES;
