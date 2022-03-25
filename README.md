@@ -1,7 +1,7 @@
 # Dore
-[Download](https://github.com/weihas/Dore/releases/download/v0.6.1-alpha/Dore.dmg)
+[Download](https://github.com/weihas/Dore/releases/download/v0.6.5-alpha/Dore-0.6.5.dmg)
 
-## v0.6.1-alpha
+## v0.6.5-alpha
 #### (In this version, the animation also modifies the whole code and makes the circuit model more power-saving.)
 only in macOS Bigsur 11.0 and later(Both M1 and Intel)
 ### Coding By WEIHA.Thanks.
