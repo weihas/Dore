@@ -24,8 +24,6 @@ struct CapsuleProgress: View {
                 vm.startTimer()
             }
     }
-    
-    
 
 }
 
