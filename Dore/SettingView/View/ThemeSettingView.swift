@@ -11,25 +11,27 @@ struct ThemeSettingsView: View {
     @ObservedObject var vm = SettingItems.defaults
     
     var body: some View {
-        VStack{
+        VStack {
             Picker(selection: $vm.themeSettingisCircle , label: Label("Theme", systemImage: "paintbrush")) {
                 Text("Capsule").tag(false)
                 Text("Circle").tag(true)
             }
-            HStack{
+            
+            HStack {
                 Spacer()
-                VStack{
+                VStack {
                     capsule()
                         .frame(width: 50, height: 100, alignment: .center)
                     Text("Capsule")
                 }
                 Spacer()
                 Spacer()
-                VStack{
+                VStack {
                     circle()
                         .frame(width: 100, height: 100, alignment: .center)
                     Text("Circle")
                 }
+                
                 Spacer()
             }
             .padding()
