@@ -13,10 +13,10 @@ private extension TemperatureGroup {
     }
     var tint: Color {
         switch self {
-        case .cpu: .blue
-        case .gpu: .purple
-        case .memory: .teal
-        case .storage: .orange
+        case .cpu: DoreStyle.accent
+        case .gpu: DoreStyle.secondary
+        case .memory: DoreStyle.accent
+        case .storage: DoreStyle.amber
         case .airflow: .cyan
         case .other: .secondary
         }
@@ -38,15 +38,7 @@ struct TemperatureSensorsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            HStack(alignment: .firstTextBaseline) {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("温度概览").font(.title2.weight(.semibold))
-                    Text("硬件温度与实时传感器读数").font(.subheadline).foregroundStyle(.secondary)
-                }
-                Spacer()
-                Label(monitor.paused ? "已暂停" : "实时", systemImage: monitor.paused ? "pause.circle" : "waveform.path")
-                    .font(.caption).foregroundStyle(.secondary)
-            }
+            DoreSectionHeading(title: "温度分布", detail: "各组平均值 · °C")
             HStack(spacing: 12) {
                 ForEach([TemperatureGroup.cpu, .gpu, .memory]) { group in
                     let values = monitor.temperatureSensors.filter { $0.group == group }
@@ -101,7 +93,7 @@ struct TemperatureSensorsView: View {
                 .font(.subheadline.weight(.medium)).foregroundStyle(group.tint)
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text(average, format: .number.precision(.fractionLength(1)))
-                    .font(.system(size: 28, weight: .medium)).monospacedDigit()
+                    .font(.system(size: 24, weight: .medium)).monospacedDigit()
                 Text("°C").font(.body).foregroundStyle(.secondary)
             }
             HStack {
@@ -109,9 +101,7 @@ struct TemperatureSensorsView: View {
                 Spacer()
                 Text("\(sensors.count) 个")
             }.font(.caption).foregroundStyle(.secondary)
-        }.padding(16).frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color(nsColor: .controlBackgroundColor), in: RoundedRectangle(cornerRadius: 12))
-            .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(.primary.opacity(0.06)) }
+        }.dashboardSurface()
     }
 
     private func sensorGroup(_ group: TemperatureGroup, sensors: [TemperatureSensor]) -> some View {
@@ -156,8 +146,7 @@ struct TemperatureSensorsView: View {
                 }.padding(.horizontal, 16).padding(.bottom, 10)
             }
         }
-        .background(Color(nsColor: .controlBackgroundColor), in: RoundedRectangle(cornerRadius: 10))
-        .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(.primary.opacity(0.06)) }
+        .dashboardSurface(inset: 0)
     }
 }
 

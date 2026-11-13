@@ -16,7 +16,7 @@ struct DoreApp: App {
                 .preferredColorScheme(colorScheme)
                 .task { monitor.start() }
         }
-        .defaultSize(width: 960, height: 680)
+        .defaultSize(width: 1080, height: 780)
         .windowToolbarStyle(.unified)
         .commands {
             CommandGroup(replacing: .newItem) { }
