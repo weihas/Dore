@@ -5,7 +5,7 @@ struct FanReading: Identifiable {
     let rpm: Double?
     let minimum: Double?
     let maximum: Double?
-    var name: String { "风扇 \(id + 1)" }
+    var name: String { L("Fan %@", String(id + 1)) }
 }
 
 struct HardwareMetrics {

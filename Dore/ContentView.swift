@@ -5,6 +5,17 @@ import AppKit
 enum MonitorSection: String, CaseIterable, Identifiable {
     case overview = "总览", cpu = "处理器", memory = "内存", network = "网络", storage = "存储", power = "电源", thermal = "散热"
     var id: String { rawValue }
+    var title: String {
+        switch self {
+        case .overview: L("Overview")
+        case .cpu: L("Processor")
+        case .memory: L("Memory")
+        case .network: L("Network")
+        case .storage: L("Storage")
+        case .power: L("Power")
+        case .thermal: L("Thermals")
+        }
+    }
     var symbol: String {
         switch self {
         case .overview: "square.grid.2x2"
@@ -42,9 +53,9 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             List(selection: $selection) {
-                Section("监控") {
+                Section(L("Monitoring")) {
                     ForEach(MonitorSection.allCases) { section in
-                        Label(section.rawValue, systemImage: section.symbol)
+                        Label(section.title, systemImage: section.symbol)
                             .padding(.vertical, 4)
                             .tag(section)
                     }
@@ -78,37 +89,37 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity)
             }
             .background(DoreBackdrop())
-            .navigationTitle(selection.rawValue)
+            .navigationTitle(Text(verbatim: selection.title))
             .toolbar {
                 ToolbarItem(placement: .automatic) {
                     if [.overview, .cpu, .memory, .network].contains(selection) {
-                        Picker("时间范围", selection: $period) {
-                            Text("1 分钟").tag(60)
-                            Text("5 分钟").tag(300)
+                        Picker(L("Time Range"), selection: $period) {
+                            Text(L("1 minute")).tag(60)
+                            Text(L("5 minutes")).tag(300)
                         }
                         .pickerStyle(.segmented)
                         .labelsHidden()
                         .frame(width: 140)
-                        .help("图表时间范围")
+                        .help(L("Chart time range"))
                     }
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Button { monitor.togglePause() } label: {
-                        Label(monitor.paused ? "继续监控" : "暂停监控", systemImage: monitor.paused ? "play" : "pause")
+                        Label(monitor.paused ? L("Resume Monitoring") : L("Pause Monitoring"), systemImage: monitor.paused ? "play" : "pause")
                     }
-                    .help(monitor.paused ? "继续监控" : "暂停监控")
+                    .help(monitor.paused ? L("Resume Monitoring") : L("Pause Monitoring"))
                 }
                 ToolbarItem(placement: .primaryAction) {
-                    SettingsLink { Label("设置", systemImage: "gearshape") }
+                    SettingsLink { Label(L("Settings"), systemImage: "gearshape") }
                 }
             }
             .safeAreaInset(edge: .bottom, spacing: 0) {
                 VStack(spacing: 0) {
                     Divider()
                     HStack {
-                        Text(monitor.paused ? "监控已暂停" : "实时更新")
+                        Text(monitor.paused ? L("Monitoring paused") : L("Live updates"))
                         Spacer()
-                        Text("数据仅保留在本机")
+                        Text(L("Data stays on this Mac"))
                     }
                     .font(.caption)
                     .foregroundStyle(.secondary)
@@ -125,19 +136,19 @@ struct ContentView: View {
         HStack(spacing: 14) {
             Image(systemName: "bolt.fill").foregroundStyle(.secondary).font(.title3).frame(width: 24)
             VStack(alignment: .leading, spacing: 4) {
-                Text(monitor.battery.map { "电池电量 \(Int($0))%" } ?? "交流电供电").font(.system(size: 12, weight: .semibold))
-                Text(monitor.charging ? "正在充电" : monitor.onAC ? "已连接电源" : "正在使用电池").font(.caption).foregroundStyle(.secondary)
+                Text(monitor.battery.map { L("Battery %@%%", String(Int($0))) } ?? L("Connected to AC Power")).font(.system(size: 12, weight: .semibold))
+                Text(monitor.charging ? L("Charging") : monitor.onAC ? L("Power connected") : L("Running on battery")).font(.caption).foregroundStyle(.secondary)
             }
             Spacer()
             if let watts = monitor.systemPower {
-                Text(String(format: "%.1f W", watts)).font(.subheadline).monospacedDigit()
-                    .help("整机功耗")
+                Text(String(format: "%.1f W", locale: .current, watts)).font(.subheadline).monospacedDigit()
+                    .help(L("System Power"))
             }
             Button { selection = .thermal } label: {
-                Label("温控\(monitor.thermalDescription)", systemImage: "thermometer.medium")
-            }.buttonStyle(.borderless).font(.system(size: 11)).help("查看散热详情")
+                Label(L("Thermal: %@", String(monitor.thermalDescription)), systemImage: "thermometer.medium")
+            }.buttonStyle(.borderless).font(.system(size: 11)).help(L("View thermal details"))
             Divider().frame(height: 24).padding(.horizontal, 8)
-            Button("电源详情") { selection = .power }.buttonStyle(.borderless).font(.system(size: 11))
+            Button(L("Power Details")) { selection = .power }.buttonStyle(.borderless).font(.system(size: 11))
         }.dashboardSurface()
     }
 
@@ -152,9 +163,9 @@ struct ContentView: View {
             HardwareDetailView(monitor: monitor, section: selection, samples: visibleSamples, period: period)
         case .power:
             PowerSummaryView(monitor: monitor)
-            informationCard("供电信息", rows: [("电量", monitor.battery.map { "\(Int($0))%" } ?? "此设备没有内置电池"), ("供电方式", monitor.onAC ? "交流电源" : "电池"), ("充电状态", monitor.charging ? "正在充电" : "未充电")])
+            informationCard(L("Power Information"), rows: [(L("Battery Level"), monitor.battery.map { "\(Int($0))%" } ?? L("No built-in battery")), (L("Power Source"), monitor.onAC ? L("AC Power") : L("Battery")), (L("Charging Status"), monitor.charging ? L("Charging") : L("Not Charging"))])
         case .thermal:
-            DorePageHeading(title: "散热", subtitle: "温度、风扇与系统热状态")
+            DorePageHeading(title: L("Thermals"), subtitle: L("Temperatures, fans and thermal state"))
             FanSpeedView(monitor: monitor)
             TemperatureSensorsView(monitor: monitor)
         case .overview: EmptyView()
@@ -185,10 +196,10 @@ struct HistoryChart: View {
 
     var body: some View {
         Chart(samples) { sample in
-            AreaMark(x: .value("时间", sample.date), yStart: .value("基线", 0), yEnd: .value("数值", sample[keyPath: value]))
+            AreaMark(x: .value(L("Time"), sample.date), yStart: .value(L("Baseline"), 0), yEnd: .value(L("Value"), sample[keyPath: value]))
                 .foregroundStyle(LinearGradient(colors: [tint.opacity(0.22), tint.opacity(0.01)], startPoint: .top, endPoint: .bottom))
                 .interpolationMethod(.linear)
-            LineMark(x: .value("时间", sample.date), y: .value("数值", sample[keyPath: value]))
+            LineMark(x: .value(L("Time"), sample.date), y: .value(L("Value"), sample[keyPath: value]))
                 .foregroundStyle(tint).lineStyle(StrokeStyle(lineWidth: 1.7, lineCap: .round))
                 .interpolationMethod(.linear)
         }
@@ -211,7 +222,7 @@ struct HistoryChart: View {
         .background(alignment: .center) {
             VStack { Divider(); Spacer(); Divider(); Spacer(); Divider() }.opacity(showsAxes ? 0 : 0.20)
         }
-        .accessibilityLabel("\(percentage ? "使用率" : "传输速率")历史图表，共 \(samples.count) 个采样点")
+        .accessibilityLabel(L("%@ history, samples: %@", String(percentage ? L("Usage") : L("Transfer rate")), String(samples.count)))
     }
 }
 
@@ -243,36 +254,36 @@ struct MonitorPopover: View {
                 Image(systemName: "waveform.path").foregroundStyle(DoreStyle.accent)
                 Text("Dore").font(.headline)
                 Spacer()
-                Text(monitor.paused ? "已暂停" : "实时监控").font(.caption).foregroundStyle(.secondary)
+                Text(monitor.paused ? L("Paused") : L("Live monitoring")).font(.caption).foregroundStyle(.secondary)
                 Circle().fill(monitor.paused ? .orange : .green).frame(width: 6, height: 6)
             }
             HStack(spacing: 12) {
                 miniMetric("CPU", value: monitor.cpu, tint: DoreStyle.accent, key: \.cpu)
-                miniMetric("内存", value: monitor.memoryPercent, tint: DoreStyle.secondary, key: \.memory)
+                miniMetric(L("Memory"), value: monitor.memoryPercent, tint: DoreStyle.secondary, key: \.memory)
             }
             HStack {
-                transferValue("下载", symbol: "arrow.down", value: monitor.download, tint: .teal)
+                transferValue(L("Download"), symbol: "arrow.down", value: monitor.download, tint: .teal)
                 Spacer()
-                transferValue("上传", symbol: "arrow.up", value: monitor.upload, tint: .blue)
+                transferValue(L("Upload"), symbol: "arrow.up", value: monitor.upload, tint: .blue)
             }.padding(4).cardSurface()
             HStack {
-                Label("可用空间", systemImage: "internaldrive").foregroundStyle(.secondary)
+                Label(L("Available Space"), systemImage: "internaldrive").foregroundStyle(.secondary)
                 Spacer()
                 Text(byteString(monitor.diskFree)).monospacedDigit()
             }.font(.system(size: 12))
             HStack {
-                Label(monitor.battery == nil ? "交流电源" : "电池", systemImage: "bolt.fill").foregroundStyle(.secondary)
+                Label(monitor.battery == nil ? L("AC Power") : L("Battery"), systemImage: "bolt.fill").foregroundStyle(.secondary)
                 Spacer()
-                Text(monitor.battery.map { "\(Int($0))%" } ?? "已连接")
-                Text("· 温控\(monitor.thermalDescription)").foregroundStyle(.secondary)
+                Text(monitor.battery.map { "\(Int($0))%" } ?? L("Connected"))
+                Text(L("· Thermal: %@", String(monitor.thermalDescription))).foregroundStyle(.secondary)
             }.font(.system(size: 12))
             HStack {
-                Label("整机功耗", systemImage: "bolt.circle").foregroundStyle(.secondary)
+                Label(L("System Power"), systemImage: "bolt.circle").foregroundStyle(.secondary)
                 Spacer()
                 if let watts = monitor.systemPower {
-                    Text(String(format: "%.1f W", watts)).monospacedDigit()
+                    Text(String(format: "%.1f W", locale: .current, watts)).monospacedDigit()
                 } else {
-                    Text("暂不可用").foregroundStyle(.secondary)
+                    Text(L("Unavailable")).foregroundStyle(.secondary)
                 }
             }.font(.system(size: 12))
             CompactHardwareView(monitor: monitor)
@@ -283,13 +294,13 @@ struct MonitorPopover: View {
                     openWindow(id: "dashboard")
                     NSApp.activate(ignoringOtherApps: true)
                     dismiss()
-                } label: { Label("打开仪表盘", systemImage: "macwindow") }
+                } label: { Label(L("Open Dashboard"), systemImage: "macwindow") }
                 .buttonStyle(.borderless)
                 Spacer()
                 Button { monitor.togglePause() } label: { Image(systemName: monitor.paused ? "play" : "pause") }
-                    .help(monitor.paused ? "继续监控" : "暂停监控")
-                SettingsLink { Image(systemName: "gearshape") }.help("设置")
-                Button { NSApp.terminate(nil) } label: { Image(systemName: "power") }.help("退出 Dore")
+                    .help(monitor.paused ? L("Resume Monitoring") : L("Pause Monitoring"))
+                SettingsLink { Image(systemName: "gearshape") }.help(L("Settings"))
+                Button { NSApp.terminate(nil) } label: { Image(systemName: "power") }.help(L("Quit Dore"))
             }.buttonStyle(.borderless).font(.system(size: 12))
         }.padding(16).frame(width: 350)
     }
@@ -310,32 +321,32 @@ struct MonitorSettings: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            DorePageHeading(title: "偏好设置", subtitle: "按照你的习惯调整 Dore")
+            DorePageHeading(title: L("Preferences"), subtitle: L("Make Dore work your way"))
                 .padding(.horizontal, 26).padding(.top, 20)
         Form {
-            Section("监控") {
-                Picker("更新频率", selection: $refreshInterval) {
-                    Text("每秒").tag(1.0)
-                    Text("每 2 秒").tag(2.0)
-                    Text("每 5 秒").tag(5.0)
+            Section(L("Monitoring")) {
+                Picker(L("Refresh Interval"), selection: $refreshInterval) {
+                    Text(L("Every second")).tag(1.0)
+                    Text(L("Every 2 seconds")).tag(2.0)
+                    Text(L("Every 5 seconds")).tag(5.0)
                 }
-                Picker("菜单栏显示", selection: $menuMetric) {
-                    Text("CPU 曲线、内存与温度").tag("全部")
-                    Text("CPU 曲线").tag("CPU")
-                    Text("内存使用率").tag("内存")
-                    Text("整机功耗（W）").tag("功耗")
-                    Text("仅图标").tag("图标")
+                Picker(L("Menu Bar"), selection: $menuMetric) {
+                    Text(L("CPU, Memory & Temperature")).tag("全部")
+                    Text(L("CPU Graph")).tag("CPU")
+                    Text(L("Memory Usage")).tag("内存")
+                    Text(L("System Power (W)")).tag("功耗")
+                    Text(L("Icon Only")).tag("图标")
                 }
             }
-            Section("外观") {
-                Picker("主题", selection: $appearance) {
-                    Text("跟随系统").tag("system")
-                    Text("浅色").tag("light")
-                    Text("深色").tag("dark")
+            Section(L("Appearance")) {
+                Picker(L("Theme"), selection: $appearance) {
+                    Text(L("System")).tag("system")
+                    Text(L("Light")).tag("light")
+                    Text(L("Dark")).tag("dark")
                 }
             }
             Section {
-                Text("数据仅在本地采集，历史记录在退出后清除。")
+                Text(L("Data is collected locally. History is cleared when Dore quits."))
                     .font(.caption).foregroundStyle(.secondary)
             }
         }.formStyle(.grouped).scrollContentBackground(.hidden)

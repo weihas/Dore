@@ -9,7 +9,7 @@ struct OverviewDashboardView: View {
     var body: some View {
         VStack(spacing: 16) {
             deviceHeader
-            DoreSectionHeading(title: "性能与资源", detail: "")
+            DoreSectionHeading(title: L("Performance & Resources"), detail: "")
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 320), spacing: 16, alignment: .top)], spacing: 16) {
                 cpuCard
                 memoryCard
@@ -49,26 +49,26 @@ struct OverviewDashboardView: View {
     private var deviceInformation: some View {
         VStack(alignment: .leading, spacing: 18) {
             VStack(alignment: .leading, spacing: 6) {
-                Text(Host.current().localizedName ?? "我的 Mac")
+                Text(Host.current().localizedName ?? L("My Mac"))
                     .font(.system(size: 20, weight: .semibold)).textSelection(.enabled)
                 Text("\(monitor.chip) · macOS \(osVersion)")
                     .font(.subheadline).foregroundStyle(.secondary)
             }
             Grid(alignment: .leading, horizontalSpacing: 24, verticalSpacing: 12) {
                 GridRow {
-                    specification("机型标识", monitor.model)
-                    specification("逻辑核心", "\(monitor.cores) 核")
+                    specification(L("Model Identifier"), monitor.model)
+                    specification(L("Logical Cores"), L("Cores: %@", String(monitor.cores)))
                 }
                 GridRow {
-                    specification("物理内存", byteString(monitor.memoryTotal))
-                    specification("磁盘容量", monitor.diskTotal > 0 ? byteString(monitor.diskTotal) : "正在读取…")
+                    specification(L("Physical Memory"), byteString(monitor.memoryTotal))
+                    specification(L("Disk Capacity"), monitor.diskTotal > 0 ? byteString(monitor.diskTotal) : L("Reading…"))
                 }
             }
             HStack(spacing: 7) {
                 Image(systemName: "thermometer.medium")
-                Text("温控\(monitor.thermalDescription)")
+                Text(L("Thermal: %@", String(monitor.thermalDescription)))
                 Text("·").foregroundStyle(.tertiary)
-                Text("已运行 \(Int(ProcessInfo.processInfo.systemUptime / 3600)) 小时")
+                Text(L("Uptime (hours): %@", String(Int(ProcessInfo.processInfo.systemUptime / 3600))))
             }.font(.caption).foregroundStyle(.secondary)
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -86,17 +86,17 @@ struct OverviewDashboardView: View {
     }
 
     private var cpuCard: some View {
-        dashboardCard("处理器", symbol: "cpu", tint: DoreStyle.accent, section: .cpu) {
+        dashboardCard(L("Processor"), symbol: "cpu", tint: DoreStyle.accent, section: .cpu) {
             HStack(alignment: .firstTextBaseline, spacing: 5) {
-                Text(monitor.samples.count > 1 ? String(format: "%.1f", monitor.cpu) : "—")
+                Text(monitor.samples.count > 1 ? String(format: "%.1f", locale: .current, monitor.cpu) : "—")
                     .font(.system(size: 34, weight: .medium)).monospacedDigit()
                 Text("%").font(.title3).foregroundStyle(.secondary)
                 Spacer()
-                Text("\(monitor.cores) 核心").font(.caption).foregroundStyle(.secondary)
+                Text(L("Core count: %@", String(monitor.cores))).font(.caption).foregroundStyle(.secondary)
             }
             HistoryChart(samples: samples, value: \.cpu, tint: DoreStyle.accent, percentage: true).frame(height: 60)
             HStack {
-                Label(monitor.cpuTemperature.map { String(format: "%.0f °C", $0) } ?? "温度暂不可用", systemImage: "thermometer.medium")
+                Label(monitor.cpuTemperature.map { String(format: "%.0f °C", locale: .current, $0) } ?? L("Temperature unavailable"), systemImage: "thermometer.medium")
                 Spacer()
                 Text(watts(monitor.hardware.cpuPower))
             }.font(.caption).foregroundStyle(.secondary)
@@ -104,57 +104,57 @@ struct OverviewDashboardView: View {
     }
 
     private var memoryCard: some View {
-        dashboardCard("内存", symbol: "memorychip", tint: DoreStyle.secondary, section: .memory) {
+        dashboardCard(L("Memory"), symbol: "memorychip", tint: DoreStyle.secondary, section: .memory) {
             HStack(spacing: 18) {
                 UsageRing(value: monitor.lastUpdated == nil ? nil : monitor.memoryPercent, tint: DoreStyle.secondary)
                 VStack(spacing: 14) {
-                    reading("联动", byteString(monitor.memoryWired))
-                    reading("压缩", byteString(monitor.memoryCompressed))
-                    reading("可用", byteString(max(0, monitor.memoryTotal - monitor.memoryUsed)))
+                    reading(L("Wired"), byteString(monitor.memoryWired))
+                    reading(L("Compressed"), byteString(monitor.memoryCompressed))
+                    reading(L("Available"), byteString(max(0, monitor.memoryTotal - monitor.memoryUsed)))
                 }
             }.frame(maxWidth: .infinity)
             Divider().opacity(0.5)
-            chartHeader("已用 \(byteString(monitor.memoryUsed))", "共 \(byteString(monitor.memoryTotal))")
+            chartHeader(L("%@ used", String(byteString(monitor.memoryUsed))), L("Total: %@", String(byteString(monitor.memoryTotal))))
             HistoryChart(samples: samples, value: \.memory, tint: DoreStyle.secondary, percentage: true).frame(height: 50)
         }
     }
 
     private var gpuCard: some View {
-        dashboardCard("图形处理器", symbol: "square.3.layers.3d", tint: DoreStyle.accent, section: .power) {
+        dashboardCard(L("Graphics"), symbol: "square.3.layers.3d", tint: DoreStyle.accent, section: .power) {
             HStack(alignment: .firstTextBaseline) {
-                Text(monitor.hardware.gpuUtilization.map { String(format: "%.0f%%", $0) } ?? "—")
+                Text(monitor.hardware.gpuUtilization.map { String(format: "%.0f%%", locale: .current, $0) } ?? "—")
                     .font(.system(size: 28, weight: .medium)).monospacedDigit()
                 Spacer()
                 Text(watts(monitor.hardware.gpuPower)).font(.subheadline).foregroundStyle(.secondary)
             }
             ProgressView(value: monitor.hardware.gpuUtilization ?? 0, total: 100).tint(DoreStyle.accent)
-            Text(monitor.hardware.gpuUtilization == nil ? "等待硬件读数" : "最繁忙 GPU 的使用率")
+            Text(monitor.hardware.gpuUtilization == nil ? L("Waiting for hardware readings") : L("Usage of the busiest GPU"))
                 .font(.caption).foregroundStyle(.secondary)
         }
     }
 
     private var networkCard: some View {
-        dashboardCard("网络", symbol: "network", tint: DoreStyle.accent, section: .network) {
+        dashboardCard(L("Network"), symbol: "network", tint: DoreStyle.accent, section: .network) {
             HStack {
-                transfer("下载", value: monitor.download, symbol: "arrow.down", tint: DoreStyle.accent)
+                transfer(L("Download"), value: monitor.download, symbol: "arrow.down", tint: DoreStyle.accent)
                 Spacer()
-                transfer("上传", value: monitor.upload, symbol: "arrow.up", tint: DoreStyle.secondary)
+                transfer(L("Upload"), value: monitor.upload, symbol: "arrow.up", tint: DoreStyle.secondary)
             }
             HistoryChart(samples: samples, value: \.download, tint: DoreStyle.accent, percentage: false).frame(height: 58)
-            Text("Wi-Fi 与以太网 · 实时速率").font(.caption).foregroundStyle(.secondary)
+            Text(L("Wi-Fi & Ethernet · Live rates")).font(.caption).foregroundStyle(.secondary)
         }
     }
 
     private var storageCard: some View {
-        dashboardCard("存储", symbol: "internaldrive", tint: DoreStyle.amber, section: .storage) {
+        dashboardCard(L("Storage"), symbol: "internaldrive", tint: DoreStyle.amber, section: .storage) {
             HStack(alignment: .firstTextBaseline) {
                 Text(byteString(monitor.diskFree)).font(.system(size: 24, weight: .medium)).monospacedDigit()
-                Text("可用空间").font(.caption).foregroundStyle(.secondary)
+                Text(L("Available Space")).font(.caption).foregroundStyle(.secondary)
                 Spacer()
-                Text("已用 \(Int(monitor.diskPercent))% ").font(.subheadline).monospacedDigit()
+                Text(L("%@%% used", String(Int(monitor.diskPercent)))).font(.subheadline).monospacedDigit()
             }
             ProgressView(value: monitor.diskPercent, total: 100).tint(DoreStyle.amber)
-            chartHeader("Macintosh HD", "共 \(byteString(monitor.diskTotal))")
+            chartHeader("Macintosh HD", L("Total: %@", String(byteString(monitor.diskTotal))))
         }
     }
 
@@ -169,7 +169,7 @@ struct OverviewDashboardView: View {
                     Spacer()
                     Image(systemName: "arrow.up.right").font(.system(size: 11, weight: .medium)).foregroundStyle(.tertiary)
                 }.contentShape(Rectangle())
-            }.buttonStyle(.plain).help("查看\(title)详情")
+            }.buttonStyle(.plain).help(L("View %@ details", String(title)))
             content()
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)
@@ -196,7 +196,7 @@ struct OverviewDashboardView: View {
     }
 
     private func watts(_ value: Double?) -> String {
-        value.map { String(format: "%.2f W", $0) } ?? "暂不可用"
+        value.map { String(format: "%.2f W", locale: .current, $0) } ?? L("Unavailable")
     }
 }
 

@@ -23,7 +23,7 @@ final class SystemMonitor {
         let values = temperatureSensors.filter { $0.group == .cpu }.map(\.value)
         return values.isEmpty ? nil : values.reduce(0, +) / Double(values.count)
     }
-    var temperatureDiagnostic = "尚未读取"
+    var temperatureDiagnostic = L("Not read yet")
     private var temperaturePeaks: [String: Double] = [:]
     private let helperClient = DoreHelperClient()
     var memoryUsed = 0.0
@@ -53,11 +53,11 @@ final class SystemMonitor {
     var diskPercent: Double { diskTotal > 0 ? (diskTotal - diskFree) / diskTotal * 100 : 0 }
     var thermalDescription: String {
         switch thermalState {
-        case .nominal: return "正常"
-        case .fair: return "温暖"
-        case .serious: return "较高"
-        case .critical: return "过热"
-        @unknown default: return "未知"
+        case .nominal: return L("Normal")
+        case .fair: return L("Warm")
+        case .serious: return L("Elevated")
+        case .critical: return L("Overheating")
+        @unknown default: return L("Unknown")
         }
     }
 
@@ -210,7 +210,7 @@ func byteString(_ bytes: Double) -> String {
 }
 
 func rateString(_ bytes: Double) -> String {
-    if bytes < 1_024 { return String(format: "%.0f B/s", bytes) }
-    if bytes < 1_048_576 { return String(format: "%.1f KB/s", bytes / 1_024) }
-    return String(format: "%.1f MB/s", bytes / 1_048_576)
+    if bytes < 1_024 { return String(format: "%.0f B/s", locale: .current, bytes) }
+    if bytes < 1_048_576 { return String(format: "%.1f KB/s", locale: .current, bytes / 1_024) }
+    return String(format: "%.1f MB/s", locale: .current, bytes / 1_048_576)
 }

@@ -29,7 +29,7 @@ struct DoreApp: App {
         } label: {
             if menuMetric == "功耗" {
                 Image(systemName: "bolt.fill")
-                Text(monitor.systemPower.map { String(format: "%.1f W", $0) } ?? "功耗不可用")
+                Text(monitor.systemPower.map { String(format: "%.1f W", locale: .current, $0) } ?? L("Power unavailable"))
             } else if menuMetric == "图标" {
                 Image(systemName: "waveform.path")
             } else {

@@ -74,9 +74,9 @@ struct MenuBarMetrics {
     }
 
     var accessibilityDescription: String {
-        let status = monitor.paused ? "监控已暂停。" : ""
-        let temperature = monitor.cpuTemperature.map { "CPU 温度 \(Int($0.rounded())) 摄氏度。" } ?? "CPU 温度暂不可用。"
-        return "\(status)CPU \(Int(monitor.cpu))%，内存 \(Int(monitor.memoryPercent))%。\(temperature)点击打开监控面板。"
+        let status = monitor.paused ? L("Monitoring paused. ") : ""
+        let temperature = monitor.cpuTemperature.map { L("CPU temperature %@ degrees Celsius. ", String(Int($0.rounded()))) } ?? L("CPU temperature unavailable. ")
+        return L("%@CPU %@%%, memory %@%%. %@Click to open the monitor.", String(status), String(Int(monitor.cpu)), String(Int(monitor.memoryPercent)), String(temperature))
     }
 
     private static func verticalLabel(_ label: String, x: CGFloat) {
