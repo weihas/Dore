@@ -6,13 +6,13 @@ struct FanSpeedView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Label("风扇转速", systemImage: "fan").font(.headline)
+                Label(L("Fan Speed"), systemImage: "fan").font(.headline)
                 Spacer()
-                Text(monitor.paused ? "已暂停" : "实时转速")
+                Text(monitor.paused ? L("Paused") : L("Live speed"))
                     .font(.caption).foregroundStyle(.secondary)
             }
             if monitor.hardware.fans.isEmpty {
-                Text(monitor.hardware.fanCount == 0 ? "此设备没有风扇" : "暂时无法读取风扇")
+                Text(monitor.hardware.fanCount == 0 ? L("This Mac has no fans") : L("Fan readings unavailable"))
                     .font(.subheadline).foregroundStyle(.secondary)
             } else {
                 ForEach(monitor.hardware.fans) { fan in
@@ -28,7 +28,7 @@ struct FanSpeedView: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text(fan.name).font(.subheadline)
                 if let maximum = fan.maximum, maximum > 0 {
-                    Text(String(format: "最高转速 %.0f RPM", maximum))
+                    Text(String(format: L("Maximum %.0f RPM"), locale: .current, maximum))
                         .font(.caption).foregroundStyle(.secondary)
                 }
             }
@@ -37,12 +37,12 @@ struct FanSpeedView: View {
                 if let maximum = fan.maximum, maximum > 0 {
                     ProgressView(value: min(rpm, maximum), total: maximum)
                         .frame(width: 130).tint(DoreStyle.accent)
-                        .accessibilityLabel("\(fan.name)转速占最大转速的比例")
+                        .accessibilityLabel(L("%@ speed relative to maximum", String(fan.name)))
                 }
-                Text(String(format: "%.0f RPM", rpm)).font(.system(size: 22, weight: .medium, design: .rounded)).monospacedDigit()
+                Text(String(format: "%.0f RPM", locale: .current, rpm)).font(.system(size: 22, weight: .medium, design: .rounded)).monospacedDigit()
                     .frame(minWidth: 110, alignment: .trailing)
             } else {
-                Text("暂不可用").foregroundStyle(.secondary)
+                Text(L("Unavailable")).foregroundStyle(.secondary)
             }
         }.padding(.vertical, 3)
     }

@@ -8,6 +8,9 @@
     "development": "en",
     "supported": [
       "Base",
+      "en",
+      "zh-Hans",
+      "zh-Hant",
     ],
   },
   "files": [

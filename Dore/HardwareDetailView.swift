@@ -23,27 +23,27 @@ struct HardwareDetailView: View {
             }.dashboardSurface()
             switch section {
             case .cpu:
-                history("CPU 使用率", symbol: "waveform.path", value: \.cpu, tint: DoreStyle.accent, percentage: true)
-                information("处理器信息", rows: [
-                    ("芯片", monitor.chip), ("逻辑核心", "\(monitor.cores) 核"),
-                    ("空闲比例", cpuReady ? percent(100 - monitor.cpu) : "正在采样…"),
-                    ("系统温控", monitor.thermalDescription)
+                history(L("CPU Usage"), symbol: "waveform.path", value: \.cpu, tint: DoreStyle.accent, percentage: true)
+                information(L("Processor Information"), rows: [
+                    (L("Chip"), monitor.chip), (L("Logical Cores"), L("Cores: %@", String(monitor.cores))),
+                    (L("Idle"), cpuReady ? percent(100 - monitor.cpu) : L("Sampling…")),
+                    (L("Thermal State"), monitor.thermalDescription)
                 ])
             case .memory:
-                history("内存使用率", symbol: "waveform.path", value: \.memory, tint: DoreStyle.secondary, percentage: true)
+                history(L("Memory Usage"), symbol: "waveform.path", value: \.memory, tint: DoreStyle.secondary, percentage: true)
                 memoryAllocation
-                note("已使用内存根据活动、联动与压缩页估算，可能与活动监视器略有差异。")
+                note(L("Used memory is estimated from active, wired and compressed pages and may differ slightly from Activity Monitor."))
             case .network:
-                history("下载速率", symbol: "arrow.down", value: \.download, tint: DoreStyle.accent, percentage: false)
-                history("上传速率", symbol: "arrow.up", value: \.upload, tint: DoreStyle.secondary, percentage: false)
-                information("采样信息", rows: [("统计范围", "Wi-Fi 与以太网物理接口"),
-                    ("历史记录", "最近 5 分钟，仅保留在内存中")])
+                history(L("Download Rate"), symbol: "arrow.down", value: \.download, tint: DoreStyle.accent, percentage: false)
+                history(L("Upload Rate"), symbol: "arrow.up", value: \.upload, tint: DoreStyle.secondary, percentage: false)
+                information(L("Sampling Information"), rows: [(L("Interfaces"), L("Wi-Fi and Ethernet interfaces")),
+                    (L("History"), L("Last 5 minutes, held in memory only"))])
             case .storage:
                 storageAllocation
-                information("磁盘信息", rows: [("卷名称", "Macintosh HD"), ("总容量", diskReady ? byteString(monitor.diskTotal) : "正在读取…"),
-                    ("已使用", diskReady ? byteString(max(0, monitor.diskTotal - monitor.diskFree)) : "正在读取…"),
-                    ("可用空间", diskReady ? byteString(monitor.diskFree) : "正在读取…")])
-                note("可用空间不包含系统可清除缓存，可能与系统设置显示的数值不同。")
+                information(L("Disk Information"), rows: [(L("Volume Name"), "Macintosh HD"), (L("Capacity"), diskReady ? byteString(monitor.diskTotal) : L("Reading…")),
+                    (L("Used"), diskReady ? byteString(max(0, monitor.diskTotal - monitor.diskFree)) : L("Reading…")),
+                    (L("Available Space"), diskReady ? byteString(monitor.diskFree) : L("Reading…"))])
+                note(L("Available space excludes purgeable caches and may differ from System Settings."))
             default: EmptyView()
             }
         }
@@ -52,18 +52,18 @@ struct HardwareDetailView: View {
     private var cpuReady: Bool { monitor.samples.count > 1 }
     private var memoryReady: Bool { monitor.lastUpdated != nil }
     private var diskReady: Bool { monitor.diskTotal > 0 }
-    private var interval: String { period == 60 ? "最近 1 分钟" : "最近 5 分钟" }
+    private var interval: String { period == 60 ? L("Last minute") : L("Last 5 minutes") }
 
     private var header: some View {
-        DorePageHeading(title: section.rawValue, subtitle: subtitle)
+        DorePageHeading(title: section.title, subtitle: subtitle)
     }
 
     private var subtitle: String {
         switch section {
         case .cpu: monitor.chip
-        case .memory: "\(byteString(monitor.memoryTotal)) 物理内存"
-        case .network: "Wi-Fi 与以太网 · 实时传输"
-        case .storage: "Macintosh HD · 本机磁盘空间"
+        case .memory: L("%@ physical memory", String(byteString(monitor.memoryTotal)))
+        case .network: L("Wi-Fi & Ethernet · Live transfer")
+        case .storage: L("Macintosh HD · Local storage")
         default: ""
         }
     }
@@ -77,20 +77,20 @@ struct HardwareDetailView: View {
     private var statistics: [Statistic] {
         switch section {
         case .cpu:
-            return [Statistic("当前使用率", cpuReady ? percent(monitor.cpu) : "正在采样…"),
-                    Statistic("CPU 温度", monitor.cpuTemperature.map { String(format: "%.0f °C", $0) } ?? "暂不可用"),
-                    Statistic("CPU 功耗", monitor.hardware.cpuPower.map { String(format: "%.2f W", $0) } ?? "暂不可用")]
+            return [Statistic(L("Current Usage"), cpuReady ? percent(monitor.cpu) : L("Sampling…")),
+                    Statistic(L("CPU Temperature"), monitor.cpuTemperature.map { String(format: "%.0f °C", locale: .current, $0) } ?? L("Unavailable")),
+                    Statistic(L("CPU Power"), monitor.hardware.cpuPower.map { String(format: "%.2f W", locale: .current, $0) } ?? L("Unavailable"))]
         case .memory:
-            return [Statistic("当前使用率", memoryReady ? percent(monitor.memoryPercent) : "正在采样…"),
-                    Statistic("已使用", memoryReady ? byteString(monitor.memoryUsed) : "正在采样…"),
-                    Statistic("可用", memoryReady ? byteString(max(0, monitor.memoryTotal - monitor.memoryUsed)) : "正在采样…")]
+            return [Statistic(L("Current Usage"), memoryReady ? percent(monitor.memoryPercent) : L("Sampling…")),
+                    Statistic(L("Used"), memoryReady ? byteString(monitor.memoryUsed) : L("Sampling…")),
+                    Statistic(L("Available"), memoryReady ? byteString(max(0, monitor.memoryTotal - monitor.memoryUsed)) : L("Sampling…"))]
         case .network:
-            return [Statistic("下载速率", cpuReady ? rateString(monitor.download) : "正在采样…"),
-                    Statistic("上传速率", cpuReady ? rateString(monitor.upload) : "正在采样…")]
+            return [Statistic(L("Download Rate"), cpuReady ? rateString(monitor.download) : L("Sampling…")),
+                    Statistic(L("Upload Rate"), cpuReady ? rateString(monitor.upload) : L("Sampling…"))]
         case .storage:
-            return [Statistic("可用空间", diskReady ? byteString(monitor.diskFree) : "正在读取…"),
-                    Statistic("已用比例", diskReady ? percent(monitor.diskPercent) : "正在读取…"),
-                    Statistic("总容量", diskReady ? byteString(monitor.diskTotal) : "正在读取…")]
+            return [Statistic(L("Available Space"), diskReady ? byteString(monitor.diskFree) : L("Reading…")),
+                    Statistic(L("Space Used"), diskReady ? percent(monitor.diskPercent) : L("Reading…")),
+                    Statistic(L("Capacity"), diskReady ? byteString(monitor.diskTotal) : L("Reading…"))]
         default: return []
         }
     }
@@ -106,37 +106,37 @@ struct HardwareDetailView: View {
                 .frame(height: 155)
                 .overlay {
                     if samples.count < 2 {
-                        Text("正在收集采样数据…").font(.caption).foregroundStyle(.secondary)
+                        Text(L("Collecting samples…")).font(.caption).foregroundStyle(.secondary)
                     }
                 }
             HStack {
-                Text(samples.first.map { $0.date.formatted(date: .omitted, time: .standard) } ?? "等待采样")
+                Text(samples.first.map { $0.date.formatted(date: .omitted, time: .standard) } ?? L("Waiting for samples"))
                 Spacer()
-                Text(monitor.paused ? "暂停时刻" : "最新采样")
+                Text(monitor.paused ? L("Paused sample") : L("Latest sample"))
             }.font(.caption2).foregroundStyle(.tertiary)
         }.dashboardSurface()
     }
 
     private var memoryAllocation: some View {
         VStack(alignment: .leading, spacing: 18) {
-            cardTitle("内存分配", symbol: "square.stack.3d.up", tint: DoreStyle.secondary)
-            allocationRow("联动内存", bytes: monitor.memoryWired, total: monitor.memoryTotal, tint: DoreStyle.secondary, ready: memoryReady)
-            allocationRow("已压缩", bytes: monitor.memoryCompressed, total: monitor.memoryTotal, tint: DoreStyle.secondary.opacity(0.7), ready: memoryReady)
-            allocationRow("可用内存", bytes: max(0, monitor.memoryTotal - monitor.memoryUsed), total: monitor.memoryTotal, tint: DoreStyle.accent, ready: memoryReady)
-            Text("各项占物理内存的比例；联动与压缩内存包含在已使用内存中。")
+            cardTitle(L("Memory Allocation"), symbol: "square.stack.3d.up", tint: DoreStyle.secondary)
+            allocationRow(L("Wired Memory"), bytes: monitor.memoryWired, total: monitor.memoryTotal, tint: DoreStyle.secondary, ready: memoryReady)
+            allocationRow(L("Compressed Memory"), bytes: monitor.memoryCompressed, total: monitor.memoryTotal, tint: DoreStyle.secondary.opacity(0.7), ready: memoryReady)
+            allocationRow(L("Available Memory"), bytes: max(0, monitor.memoryTotal - monitor.memoryUsed), total: monitor.memoryTotal, tint: DoreStyle.accent, ready: memoryReady)
+            Text(L("Shown as a share of physical memory. Wired and compressed memory are included in used memory."))
                 .font(.caption).foregroundStyle(.secondary)
         }.dashboardSurface()
     }
 
     private var storageAllocation: some View {
         VStack(alignment: .leading, spacing: 20) {
-            cardTitle("空间分配", symbol: "chart.bar.fill", tint: DoreStyle.amber)
+            cardTitle(L("Space Allocation"), symbol: "chart.bar.fill", tint: DoreStyle.amber)
             ProgressView(value: min(100, max(0, monitor.diskPercent)), total: 100).tint(DoreStyle.amber)
-                .accessibilityLabel("磁盘已用比例")
+                .accessibilityLabel(L("Disk space used"))
             HStack {
-                Label(diskReady ? "已用 \(byteString(max(0, monitor.diskTotal - monitor.diskFree)))" : "正在读取…", systemImage: "circle.fill").foregroundStyle(DoreStyle.amber)
+                Label(diskReady ? L("%@ used", String(byteString(max(0, monitor.diskTotal - monitor.diskFree)))) : L("Reading…"), systemImage: "circle.fill").foregroundStyle(DoreStyle.amber)
                 Spacer()
-                Text(diskReady ? "可用 \(byteString(monitor.diskFree))" : "正在读取…").foregroundStyle(.secondary)
+                Text(diskReady ? L("%@ available", String(byteString(monitor.diskFree))) : L("Reading…")).foregroundStyle(.secondary)
             }.font(.caption).monospacedDigit()
         }.dashboardSurface()
     }
@@ -146,7 +146,7 @@ struct HardwareDetailView: View {
             HStack {
                 Text(title).foregroundStyle(.secondary)
                 Spacer()
-                Text(ready ? byteString(bytes) : "正在采样…").monospacedDigit()
+                Text(ready ? byteString(bytes) : L("Sampling…")).monospacedDigit()
             }.font(.system(size: 12))
             ProgressView(value: ready && total > 0 ? min(1, max(0, bytes / total)) : 0).tint(tint)
                 .accessibilityLabel(title)
@@ -175,7 +175,7 @@ struct HardwareDetailView: View {
         }
     }
 
-    private func percent(_ value: Double) -> String { String(format: "%.1f%%", value) }
+    private func percent(_ value: Double) -> String { String(format: "%.1f%%", locale: .current, value) }
     private func note(_ text: String) -> some View {
         Label(text, systemImage: "info.circle").font(.caption).foregroundStyle(.secondary).padding(.horizontal, 4)
     }

@@ -20,14 +20,14 @@ final class DoreHelperClient {
                     guard let self, self.connectionID == connectionID else { return }
                     self.connection = nil
                     self.connectionID = nil
-                    if let id = self.pending?.0 { self.finish(id, value: [], message: "硬件监控服务连接已关闭，将自动重试") }
+                    if let id = self.pending?.0 { self.finish(id, value: [], message: L("Hardware service disconnected. Retrying automatically.")) }
                 }
             }
             connection.interruptionHandler = { [weak self] in
                 Task { @MainActor in
                     guard let self, self.connectionID == connectionID else { return }
                     self.resetConnection()
-                    if let id = self.pending?.0 { self.finish(id, value: [], message: "硬件监控服务暂时中断，将自动重试") }
+                    if let id = self.pending?.0 { self.finish(id, value: [], message: L("Hardware service interrupted. Retrying automatically.")) }
                 }
             }
             connection.resume()
@@ -37,14 +37,14 @@ final class DoreHelperClient {
         timeout = Task { [weak self] in
             try? await Task.sleep(for: .seconds(5))
             guard !Task.isCancelled else { return }
-            self?.fail(id, message: "硬件读取超时，将自动重试")
+            self?.fail(id, message: L("Hardware read timed out. Retrying automatically."))
         }
         let proxy = connection?.remoteObjectProxyWithErrorHandler { [weak self] error in
             let message = error.localizedDescription
-            Task { @MainActor in self?.fail(id, message: "硬件监控服务不可用：\(message)") }
+            Task { @MainActor in self?.fail(id, message: L("Hardware service unavailable: %@", String(message))) }
         } as? DoreHelperProtocol
         guard let proxy else {
-            fail(id, message: "无法连接硬件监控服务")
+            fail(id, message: L("Unable to connect to the hardware service"))
             return
         }
         proxy.readSensors { [weak self] data, diagnostic in
@@ -54,7 +54,7 @@ final class DoreHelperClient {
                 return TemperatureSensor(id: key, value: value)
             }.sorted { $0.id < $1.id }
             Task { @MainActor in
-                self?.finish(id, value: sensors, hardware: HardwareMetrics(values: values), message: diagnostic)
+                self?.finish(id, value: sensors, hardware: HardwareMetrics(values: values), message: localizedSensorDiagnostic(diagnostic))
             }
         }
     }

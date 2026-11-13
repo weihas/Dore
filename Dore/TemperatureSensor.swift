@@ -3,6 +3,16 @@ import Foundation
 enum TemperatureGroup: String, CaseIterable, Identifiable {
     case cpu = "CPU", gpu = "GPU", memory = "内存", storage = "存储", airflow = "气流", other = "其他传感器"
     var id: String { rawValue }
+    var title: String {
+        switch self {
+        case .cpu: L("CPU")
+        case .gpu: L("GPU")
+        case .memory: L("Memory")
+        case .storage: L("Storage")
+        case .airflow: L("Airflow")
+        case .other: L("Other Sensors")
+        }
+    }
 }
 
 struct TemperatureSensor: Identifiable, Sendable {
@@ -26,13 +36,13 @@ struct TemperatureSensor: Identifiable, Sendable {
 
     var name: String {
         #if arch(arm64)
-        if id.hasPrefix("Tp") { return "CPU 温度传感器" }
-        if id.hasPrefix("Te") { return "CPU 温度传感器" }
-        if id.hasPrefix("Tg") { return "GPU 传感器" }
+        if id.hasPrefix("Tp") { return L("CPU temperature sensor") }
+        if id.hasPrefix("Te") { return L("CPU temperature sensor") }
+        if id.hasPrefix("Tg") { return L("GPU sensor") }
         #endif
-        if group == .memory { return "内存温度传感器" }
-        if group == .storage { return "存储温度传感器" }
-        let names = ["TaFL": "前侧左气流", "TaFR": "前侧右气流", "TaRL": "后侧左气流", "TaRR": "后侧右气流"]
-        return names[id] ?? "未识别温度通道"
+        if group == .memory { return L("Memory temperature sensor") }
+        if group == .storage { return L("Storage temperature sensor") }
+        let names = ["TaFL": L("Front left airflow"), "TaFR": L("Front right airflow"), "TaRL": L("Rear left airflow"), "TaRR": L("Rear right airflow")]
+        return names[id] ?? L("Unidentified temperature channel")
     }
 }

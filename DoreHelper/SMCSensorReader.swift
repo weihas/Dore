@@ -7,7 +7,7 @@ final class SMCSensorReader {
     private var connection: io_connect_t = 0
     private var keys: [String]?
     private var metadata: [String: (UInt32, UInt32)] = [:]
-    private(set) var diagnostic = "尚未读取"
+    private(set) var diagnostic = "smc.pending"
 
     deinit {
         if connection != 0 { IOServiceClose(connection) }
@@ -29,11 +29,11 @@ final class SMCSensorReader {
     func readAll() -> [String: Double] {
         if connection == 0 {
             let service = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceMatching("AppleSMC"))
-            guard service != 0 else { diagnostic = "设备未提供 AppleSMC"; return [:] }
+            guard service != 0 else { diagnostic = "smc.unavailable"; return [:] }
             defer { IOObjectRelease(service) }
             let result = IOServiceOpen(service, mach_task_self_, 0, &connection)
             guard result == KERN_SUCCESS else {
-                diagnostic = "温度传感器访问被拒绝（\(result)）"
+                diagnostic = "smc.denied:\(result)"
                 return [:]
             }
         }
@@ -42,7 +42,7 @@ final class SMCSensorReader {
         for key in keys ?? [] {
             if let value = temperature(key) { readings[key] = value }
         }
-        diagnostic = readings.isEmpty ? "未发现可读取的温度传感器" : "已读取 \(readings.count) 个温度传感器"
+        diagnostic = readings.isEmpty ? "smc.empty" : "smc.read:\(readings.count)"
         return readings
     }
 
