@@ -13,10 +13,25 @@
   "files": [
     { "kind": "folder", "path": "Dore", "target-membership": [ "Dore" ] },
     {
+      "kind": "folder",
+      "path": "DoreHelper",
+      "target-membership": [
+        "DoreHelper",
+      ],
+      "membership-exceptions": [
+        {
+          "target": "DoreHelper",
+          "exclusions": [
+            "Info.plist",
+          ],
+        },
+      ],
+    }, {
       "kind": "group",
       "name": "Products",
       "children": [
         { "path": "<PRODUCTS>/Dore.app", "id": "35BAD08E30A6FBBA007B661E", "type": "wrapper.application", "index": false },
+        { "path": "<PRODUCTS>/DoreHelper.xpc", "id": "356DC09930A71201009984DF", "type": "wrapper.xpc-service", "index": false, "target-membership": [ { "build-phase": "Dore/copy/Embed XPC Services", "header-preservation": "remove-on-copy" } ] },
       ],
     },
   ],
@@ -26,10 +41,19 @@
       "id": "35BAD08D30A6FBBA007B661E",
       "product": "Products/Dore.app",
       "product-type": "application",
+      "dependencies": [
+        "DoreHelper",
+      ],
       "build-phases": [
         "compile-sources",
         "frameworks",
         "resources",
+        {
+          "kind": "copy",
+          "name": "Embed XPC Services",
+          "bundle-base-path": "build-products-directory",
+          "relative-path": "$(CONTENTS_FOLDER_PATH)/XPCServices",
+        },
       ],
       "build-settings": {
         "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
@@ -53,6 +77,36 @@
         "STRING_CATALOG_GENERATE_SYMBOLS": "YES",
         "SWIFT_APPROACHABLE_CONCURRENCY": "YES",
         "SWIFT_DEFAULT_ACTOR_ISOLATION": "MainActor",
+        "SWIFT_EMIT_LOC_STRINGS": "YES",
+        "SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY": "YES",
+        "SWIFT_VERSION": "5.0",
+      },
+    }, {
+      "name": "DoreHelper",
+      "id": "356DC09830A71201009984DF",
+      "product": "Products/DoreHelper.xpc",
+      "product-type": "xpc-service",
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "build-settings": {
+        "CODE_SIGN_STYLE": "Automatic",
+        "COMBINE_HIDPI_IMAGES": "YES",
+        "CURRENT_PROJECT_VERSION": "1",
+        "ENABLE_APP_SANDBOX": "NO",
+        "GENERATE_INFOPLIST_FILE": "YES",
+        "INFOPLIST_FILE": "DoreHelper/Info.plist",
+        "INFOPLIST_KEY_CFBundleDisplayName": "DoreHelper",
+        "INFOPLIST_KEY_NSHumanReadableCopyright": "",
+        "MARKETING_VERSION": "1.0",
+        "PRODUCT_BUNDLE_IDENTIFIER": "io.iftech.Dore.DoreHelper",
+        "PRODUCT_NAME": "$(TARGET_NAME)",
+        "REGISTER_APP_GROUPS": "YES",
+        "SKIP_INSTALL": "YES",
+        "STRING_CATALOG_GENERATE_SYMBOLS": "YES",
+        "SWIFT_APPROACHABLE_CONCURRENCY": "YES",
         "SWIFT_EMIT_LOC_STRINGS": "YES",
         "SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY": "YES",
         "SWIFT_VERSION": "5.0",
