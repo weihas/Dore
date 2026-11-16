@@ -27,15 +27,7 @@ struct DoreApp: App {
                 .preferredColorScheme(colorScheme)
                 .task { monitor.start() }
         } label: {
-            if menuMetric == "功耗" {
-                Image(systemName: "bolt.fill")
-                Text(monitor.systemPower.map { String(format: "%.1f W", locale: .current, $0) } ?? L("Power unavailable"))
-            } else if menuMetric == "图标" {
-                Image(systemName: "waveform.path")
-            } else {
-                Image(nsImage: MenuBarMetrics(monitor: monitor, layout: menuMetric).image)
-                    .accessibilityLabel(MenuBarMetrics(monitor: monitor, layout: menuMetric).accessibilityDescription)
-            }
+            MenuBarLabel(monitor: monitor, layout: menuMetric)
         }
         .menuBarExtraStyle(.window)
 

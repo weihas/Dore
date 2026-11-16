@@ -3,7 +3,6 @@ import SwiftUI
 struct UsageRing: View {
     let value: Double?
     let tint: Color
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         ZStack {
@@ -13,7 +12,6 @@ struct UsageRing: View {
                     .trim(from: 0, to: min(1, max(0, value / 100)))
                     .stroke(tint, style: StrokeStyle(lineWidth: 9, lineCap: .round))
                     .rotationEffect(.degrees(-90))
-                    .animation(reduceMotion ? nil : .easeInOut(duration: 0.35), value: value)
                 VStack(spacing: 4) {
                     HStack(alignment: .firstTextBaseline, spacing: 2) {
                         Text(value, format: .number.precision(.fractionLength(0)))

@@ -4,7 +4,7 @@ import IOKit
 final class DoreHelper: NSObject, DoreHelperProtocol {
     private let reader = SMCSensorReader()
     private let energyReader = EnergyReader()
-    private let queue = DispatchQueue(label: "io.iftech.Dore.hardware", qos: .utility)
+    private let queue = DispatchQueue(label: "com.weihas.Dore.hardware", qos: .utility)
 
     func readSensors(withReply reply: @escaping (Data?, String) -> Void) {
         queue.async { [self] in

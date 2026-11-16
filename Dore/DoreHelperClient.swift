@@ -13,7 +13,7 @@ final class DoreHelperClient {
         pending = (id, completion)
         if connection == nil {
             let connectionID = UUID()
-            let connection = NSXPCConnection(serviceName: "io.iftech.Dore.DoreHelper")
+            let connection = NSXPCConnection(serviceName: "com.weihas.Dore.DoreHelper")
             connection.remoteObjectInterface = NSXPCInterface(with: DoreHelperProtocol.self)
             connection.invalidationHandler = { [weak self] in
                 Task { @MainActor in
