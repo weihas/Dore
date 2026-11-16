@@ -23,7 +23,7 @@ final class SystemMonitor {
         let values = temperatureSensors.filter { $0.group == .cpu }.map(\.value)
         return values.isEmpty ? nil : values.reduce(0, +) / Double(values.count)
     }
-    var temperatureDiagnostic = L("Not read yet")
+    var temperatureDiagnostic = String(localized: "Not read yet")
     private var temperaturePeaks: [String: Double] = [:]
     private let helperClient = DoreHelperClient()
     var memoryUsed = 0.0
@@ -53,11 +53,11 @@ final class SystemMonitor {
     var diskPercent: Double { diskTotal > 0 ? (diskTotal - diskFree) / diskTotal * 100 : 0 }
     var thermalDescription: String {
         switch thermalState {
-        case .nominal: return L("Normal")
-        case .fair: return L("Warm")
-        case .serious: return L("Elevated")
-        case .critical: return L("Overheating")
-        @unknown default: return L("Unknown")
+        case .nominal: return String(localized: "Normal")
+        case .fair: return String(localized: "Warm")
+        case .serious: return String(localized: "Elevated")
+        case .critical: return String(localized: "Overheating")
+        @unknown default: return String(localized: "Unknown")
         }
     }
 

@@ -7,13 +7,13 @@ enum MonitorSection: String, CaseIterable, Identifiable {
     var id: String { rawValue }
     var title: String {
         switch self {
-        case .overview: L("Overview")
-        case .cpu: L("Processor")
-        case .memory: L("Memory")
-        case .network: L("Network")
-        case .storage: L("Storage")
-        case .power: L("Power")
-        case .thermal: L("Thermals")
+        case .overview: String(localized: "Overview")
+        case .cpu: String(localized: "Processor")
+        case .memory: String(localized: "Memory")
+        case .network: String(localized: "Network")
+        case .storage: String(localized: "Storage")
+        case .power: String(localized: "Power")
+        case .thermal: String(localized: "Thermals")
         }
     }
     var symbol: String {
@@ -53,7 +53,7 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             List(selection: $selection) {
-                Section(L("Monitoring")) {
+                Section("Monitoring") {
                     ForEach(MonitorSection.allCases) { section in
                         Label(section.title, systemImage: section.symbol)
                             .padding(.vertical, 4)
@@ -93,33 +93,33 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .automatic) {
                     if [.overview, .cpu, .memory, .network].contains(selection) {
-                        Picker(L("Time Range"), selection: $period) {
-                            Text(L("1 minute")).tag(60)
-                            Text(L("5 minutes")).tag(300)
+                        Picker("Time Range", selection: $period) {
+                            Text("1 minute").tag(60)
+                            Text("5 minutes").tag(300)
                         }
                         .pickerStyle(.segmented)
                         .labelsHidden()
                         .frame(width: 140)
-                        .help(L("Chart time range"))
+                        .help("Chart time range")
                     }
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Button { monitor.togglePause() } label: {
-                        Label(monitor.paused ? L("Resume Monitoring") : L("Pause Monitoring"), systemImage: monitor.paused ? "play" : "pause")
+                        Label(monitor.paused ? String(localized: "Resume Monitoring") : String(localized: "Pause Monitoring"), systemImage: monitor.paused ? "play" : "pause")
                     }
-                    .help(monitor.paused ? L("Resume Monitoring") : L("Pause Monitoring"))
+                    .help(monitor.paused ? String(localized: "Resume Monitoring") : String(localized: "Pause Monitoring"))
                 }
                 ToolbarItem(placement: .primaryAction) {
-                    SettingsLink { Label(L("Settings"), systemImage: "gearshape") }
+                    SettingsLink { Label("Settings", systemImage: "gearshape") }
                 }
             }
             .safeAreaInset(edge: .bottom, spacing: 0) {
                 VStack(spacing: 0) {
                     Divider()
                     HStack {
-                        Text(monitor.paused ? L("Monitoring paused") : L("Live updates"))
+                        Text(monitor.paused ? String(localized: "Monitoring paused") : String(localized: "Live updates"))
                         Spacer()
-                        Text(L("Data stays on this Mac"))
+                        Text("Data stays on this Mac")
                     }
                     .font(.caption)
                     .foregroundStyle(.secondary)
@@ -136,19 +136,19 @@ struct ContentView: View {
         HStack(spacing: 14) {
             Image(systemName: "bolt.fill").foregroundStyle(.secondary).font(.title3).frame(width: 24)
             VStack(alignment: .leading, spacing: 4) {
-                Text(monitor.battery.map { L("Battery %@%%", String(Int($0))) } ?? L("Connected to AC Power")).font(.system(size: 12, weight: .semibold))
-                Text(monitor.charging ? L("Charging") : monitor.onAC ? L("Power connected") : L("Running on battery")).font(.caption).foregroundStyle(.secondary)
+                Text(monitor.battery.map { String(format: String(localized: "Battery %@%%"), locale: .current, String(Int($0))) } ?? String(localized: "Connected to AC Power")).font(.system(size: 12, weight: .semibold))
+                Text(monitor.charging ? String(localized: "Charging") : monitor.onAC ? String(localized: "Power connected") : String(localized: "Running on battery")).font(.caption).foregroundStyle(.secondary)
             }
             Spacer()
             if let watts = monitor.systemPower {
                 Text(String(format: "%.1f W", locale: .current, watts)).font(.subheadline).monospacedDigit()
-                    .help(L("System Power"))
+                    .help("System Power")
             }
             Button { selection = .thermal } label: {
-                Label(L("Thermal: %@", String(monitor.thermalDescription)), systemImage: "thermometer.medium")
-            }.buttonStyle(.borderless).font(.system(size: 11)).help(L("View thermal details"))
+                Label(String(format: String(localized: "Thermal: %@"), locale: .current, String(monitor.thermalDescription)), systemImage: "thermometer.medium")
+            }.buttonStyle(.borderless).font(.system(size: 11)).help("View thermal details")
             Divider().frame(height: 24).padding(.horizontal, 8)
-            Button(L("Power Details")) { selection = .power }.buttonStyle(.borderless).font(.system(size: 11))
+            Button("Power Details") { selection = .power }.buttonStyle(.borderless).font(.system(size: 11))
         }.dashboardSurface()
     }
 
@@ -163,9 +163,9 @@ struct ContentView: View {
             HardwareDetailView(monitor: monitor, section: selection, samples: visibleSamples, period: period)
         case .power:
             PowerSummaryView(monitor: monitor)
-            informationCard(L("Power Information"), rows: [(L("Battery Level"), monitor.battery.map { "\(Int($0))%" } ?? L("No built-in battery")), (L("Power Source"), monitor.onAC ? L("AC Power") : L("Battery")), (L("Charging Status"), monitor.charging ? L("Charging") : L("Not Charging"))])
+            informationCard(String(localized: "Power Information"), rows: [(String(localized: "Battery Level"), monitor.battery.map { "\(Int($0))%" } ?? String(localized: "No built-in battery")), (String(localized: "Power Source"), monitor.onAC ? String(localized: "AC Power") : String(localized: "Battery")), (String(localized: "Charging Status"), monitor.charging ? String(localized: "Charging") : String(localized: "Not Charging"))])
         case .thermal:
-            DorePageHeading(title: L("Thermals"), subtitle: L("Temperatures, fans and thermal state"))
+            DorePageHeading(title: String(localized: "Thermals"), subtitle: String(localized: "Temperatures, fans and thermal state"))
             FanSpeedView(monitor: monitor)
             TemperatureSensorsView(monitor: monitor)
         case .overview: EmptyView()
@@ -196,10 +196,10 @@ struct HistoryChart: View {
 
     var body: some View {
         Chart(samples) { sample in
-            AreaMark(x: .value(L("Time"), sample.date), yStart: .value(L("Baseline"), 0), yEnd: .value(L("Value"), sample[keyPath: value]))
+            AreaMark(x: .value(String(localized: "Time"), sample.date), yStart: .value(String(localized: "Baseline"), 0), yEnd: .value(String(localized: "Value"), sample[keyPath: value]))
                 .foregroundStyle(LinearGradient(colors: [tint.opacity(0.22), tint.opacity(0.01)], startPoint: .top, endPoint: .bottom))
                 .interpolationMethod(.linear)
-            LineMark(x: .value(L("Time"), sample.date), y: .value(L("Value"), sample[keyPath: value]))
+            LineMark(x: .value(String(localized: "Time"), sample.date), y: .value(String(localized: "Value"), sample[keyPath: value]))
                 .foregroundStyle(tint).lineStyle(StrokeStyle(lineWidth: 1.7, lineCap: .round))
                 .interpolationMethod(.linear)
         }
@@ -222,7 +222,7 @@ struct HistoryChart: View {
         .background(alignment: .center) {
             VStack { Divider(); Spacer(); Divider(); Spacer(); Divider() }.opacity(showsAxes ? 0 : 0.20)
         }
-        .accessibilityLabel(L("%@ history, samples: %@", String(percentage ? L("Usage") : L("Transfer rate")), String(samples.count)))
+        .accessibilityLabel(String(format: String(localized: "%@ history, samples: %@"), locale: .current, String(percentage ? String(localized: "Usage") : String(localized: "Transfer rate")), String(samples.count)))
     }
 }
 
@@ -254,36 +254,36 @@ struct MonitorPopover: View {
                 Image(systemName: "waveform.path").foregroundStyle(DoreStyle.accent)
                 Text("Dore").font(.headline)
                 Spacer()
-                Text(monitor.paused ? L("Paused") : L("Live monitoring")).font(.caption).foregroundStyle(.secondary)
+                Text(monitor.paused ? String(localized: "Paused") : String(localized: "Live monitoring")).font(.caption).foregroundStyle(.secondary)
                 Circle().fill(monitor.paused ? .orange : .green).frame(width: 6, height: 6)
             }
             HStack(spacing: 12) {
                 miniMetric("CPU", value: monitor.cpu, tint: DoreStyle.accent, key: \.cpu)
-                miniMetric(L("Memory"), value: monitor.memoryPercent, tint: DoreStyle.secondary, key: \.memory)
+                miniMetric(String(localized: "Memory"), value: monitor.memoryPercent, tint: DoreStyle.secondary, key: \.memory)
             }
             HStack {
-                transferValue(L("Download"), symbol: "arrow.down", value: monitor.download, tint: .teal)
+                transferValue(String(localized: "Download"), symbol: "arrow.down", value: monitor.download, tint: .teal)
                 Spacer()
-                transferValue(L("Upload"), symbol: "arrow.up", value: monitor.upload, tint: .blue)
+                transferValue(String(localized: "Upload"), symbol: "arrow.up", value: monitor.upload, tint: .blue)
             }.padding(4).cardSurface()
             HStack {
-                Label(L("Available Space"), systemImage: "internaldrive").foregroundStyle(.secondary)
+                Label("Available Space", systemImage: "internaldrive").foregroundStyle(.secondary)
                 Spacer()
                 Text(byteString(monitor.diskFree)).monospacedDigit()
             }.font(.system(size: 12))
             HStack {
-                Label(monitor.battery == nil ? L("AC Power") : L("Battery"), systemImage: "bolt.fill").foregroundStyle(.secondary)
+                Label(monitor.battery == nil ? String(localized: "AC Power") : String(localized: "Battery"), systemImage: "bolt.fill").foregroundStyle(.secondary)
                 Spacer()
-                Text(monitor.battery.map { "\(Int($0))%" } ?? L("Connected"))
-                Text(L("· Thermal: %@", String(monitor.thermalDescription))).foregroundStyle(.secondary)
+                Text(monitor.battery.map { "\(Int($0))%" } ?? String(localized: "Connected"))
+                Text(String(format: String(localized: "· Thermal: %@"), locale: .current, String(monitor.thermalDescription))).foregroundStyle(.secondary)
             }.font(.system(size: 12))
             HStack {
-                Label(L("System Power"), systemImage: "bolt.circle").foregroundStyle(.secondary)
+                Label("System Power", systemImage: "bolt.circle").foregroundStyle(.secondary)
                 Spacer()
                 if let watts = monitor.systemPower {
                     Text(String(format: "%.1f W", locale: .current, watts)).monospacedDigit()
                 } else {
-                    Text(L("Unavailable")).foregroundStyle(.secondary)
+                    Text("Unavailable").foregroundStyle(.secondary)
                 }
             }.font(.system(size: 12))
             CompactHardwareView(monitor: monitor)
@@ -294,13 +294,13 @@ struct MonitorPopover: View {
                     openWindow(id: "dashboard")
                     NSApp.activate(ignoringOtherApps: true)
                     dismiss()
-                } label: { Label(L("Open Dashboard"), systemImage: "macwindow") }
+                } label: { Label("Open Dashboard", systemImage: "macwindow") }
                 .buttonStyle(.borderless)
                 Spacer()
                 Button { monitor.togglePause() } label: { Image(systemName: monitor.paused ? "play" : "pause") }
-                    .help(monitor.paused ? L("Resume Monitoring") : L("Pause Monitoring"))
-                SettingsLink { Image(systemName: "gearshape") }.help(L("Settings"))
-                Button { NSApp.terminate(nil) } label: { Image(systemName: "power") }.help(L("Quit Dore"))
+                    .help(monitor.paused ? String(localized: "Resume Monitoring") : String(localized: "Pause Monitoring"))
+                SettingsLink { Image(systemName: "gearshape") }.help("Settings")
+                Button { NSApp.terminate(nil) } label: { Image(systemName: "power") }.help("Quit Dore")
             }.buttonStyle(.borderless).font(.system(size: 12))
         }.padding(16).frame(width: 350)
     }
@@ -321,32 +321,32 @@ struct MonitorSettings: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            DorePageHeading(title: L("Preferences"), subtitle: L("Make Dore work your way"))
+            DorePageHeading(title: String(localized: "Preferences"), subtitle: String(localized: "Make Dore work your way"))
                 .padding(.horizontal, 26).padding(.top, 20)
         Form {
-            Section(L("Monitoring")) {
-                Picker(L("Refresh Interval"), selection: $refreshInterval) {
-                    Text(L("Every second")).tag(1.0)
-                    Text(L("Every 2 seconds")).tag(2.0)
-                    Text(L("Every 5 seconds")).tag(5.0)
+            Section("Monitoring") {
+                Picker("Refresh Interval", selection: $refreshInterval) {
+                    Text("Every second").tag(1.0)
+                    Text("Every 2 seconds").tag(2.0)
+                    Text("Every 5 seconds").tag(5.0)
                 }
-                Picker(L("Menu Bar"), selection: $menuMetric) {
-                    Text(L("CPU, Memory & Temperature")).tag("全部")
-                    Text(L("CPU Graph")).tag("CPU")
-                    Text(L("Memory Usage")).tag("内存")
-                    Text(L("System Power (W)")).tag("功耗")
-                    Text(L("Icon Only")).tag("图标")
+                Picker("Menu Bar", selection: $menuMetric) {
+                    Text("CPU, Memory & Temperature").tag("全部")
+                    Text("CPU Graph").tag("CPU")
+                    Text("Memory Usage").tag("内存")
+                    Text("System Power (W)").tag("功耗")
+                    Text("Icon Only").tag("图标")
                 }
             }
-            Section(L("Appearance")) {
-                Picker(L("Theme"), selection: $appearance) {
-                    Text(L("System")).tag("system")
-                    Text(L("Light")).tag("light")
-                    Text(L("Dark")).tag("dark")
+            Section("Appearance") {
+                Picker("Theme", selection: $appearance) {
+                    Text("System").tag("system")
+                    Text("Light").tag("light")
+                    Text("Dark").tag("dark")
                 }
             }
             Section {
-                Text(L("Data is collected locally. History is cleared when Dore quits."))
+                Text("Data is collected locally. History is cleared when Dore quits.")
                     .font(.caption).foregroundStyle(.secondary)
             }
         }.formStyle(.grouped).scrollContentBackground(.hidden)

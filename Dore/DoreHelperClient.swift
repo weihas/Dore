@@ -20,14 +20,14 @@ final class DoreHelperClient {
                     guard let self, self.connectionID == connectionID else { return }
                     self.connection = nil
                     self.connectionID = nil
-                    if let id = self.pending?.0 { self.finish(id, value: [], message: L("Hardware service disconnected. Retrying automatically.")) }
+                    if let id = self.pending?.0 { self.finish(id, value: [], message: String(localized: "Hardware service disconnected. Retrying automatically.")) }
                 }
             }
             connection.interruptionHandler = { [weak self] in
                 Task { @MainActor in
                     guard let self, self.connectionID == connectionID else { return }
                     self.resetConnection()
-                    if let id = self.pending?.0 { self.finish(id, value: [], message: L("Hardware service interrupted. Retrying automatically.")) }
+                    if let id = self.pending?.0 { self.finish(id, value: [], message: String(localized: "Hardware service interrupted. Retrying automatically.")) }
                 }
             }
             connection.resume()
@@ -37,14 +37,14 @@ final class DoreHelperClient {
         timeout = Task { [weak self] in
             try? await Task.sleep(for: .seconds(5))
             guard !Task.isCancelled else { return }
-            self?.fail(id, message: L("Hardware read timed out. Retrying automatically."))
+            self?.fail(id, message: String(localized: "Hardware read timed out. Retrying automatically."))
         }
         let proxy = connection?.remoteObjectProxyWithErrorHandler { [weak self] error in
             let message = error.localizedDescription
-            Task { @MainActor in self?.fail(id, message: L("Hardware service unavailable: %@", String(message))) }
+            Task { @MainActor in self?.fail(id, message: String(format: String(localized: "Hardware service unavailable: %@"), locale: .current, String(message))) }
         } as? DoreHelperProtocol
         guard let proxy else {
-            fail(id, message: L("Unable to connect to the hardware service"))
+            fail(id, message: String(localized: "Unable to connect to the hardware service"))
             return
         }
         proxy.readSensors { [weak self] data, diagnostic in

@@ -19,17 +19,17 @@ struct UsageRing: View {
                             .monospacedDigit()
                         Text("%").font(.system(size: 14)).foregroundStyle(.secondary)
                     }
-                    Text(L("Usage")).font(.system(size: 10)).foregroundStyle(.secondary)
+                    Text("Usage").font(.system(size: 10)).foregroundStyle(.secondary)
                 }
             } else {
-                Text(L("Unavailable")).font(.caption).foregroundStyle(.secondary)
+                Text("Unavailable").font(.caption).foregroundStyle(.secondary)
             }
         }
         .frame(width: 104, height: 104)
         .padding(5)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(L("Usage"))
-        .accessibilityValue(value.map { String(format: "%.0f%%", locale: .current, $0) } ?? L("Unavailable"))
+        .accessibilityLabel("Usage")
+        .accessibilityValue(value.map { String(format: "%.0f%%", locale: .current, $0) } ?? String(localized: "Unavailable"))
     }
 }
 

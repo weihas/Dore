@@ -38,7 +38,7 @@ struct TemperatureSensorsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            DoreSectionHeading(title: L("Temperatures"), detail: L("Group averages · °C"))
+            DoreSectionHeading(title: String(localized: "Temperatures"), detail: String(localized: "Group averages · °C"))
             HStack(spacing: 12) {
                 ForEach([TemperatureGroup.cpu, .gpu, .memory]) { group in
                     let values = monitor.temperatureSensors.filter { $0.group == group }
@@ -46,29 +46,29 @@ struct TemperatureSensorsView: View {
                 }
             }
             HStack {
-                Text(L("Sensors")).font(.headline)
+                Text("Sensors").font(.headline)
                 Text("\(monitor.temperatureSensors.count)").font(.caption.monospacedDigit()).foregroundStyle(.secondary)
                 Spacer()
                 HStack(spacing: 6) {
                     Image(systemName: "magnifyingglass").foregroundStyle(.secondary)
-                    TextField(L("Search"), text: $search).textFieldStyle(.plain)
+                    TextField("Search", text: $search).textFieldStyle(.plain)
                     if !search.isEmpty {
                         Button { search = "" } label: { Image(systemName: "xmark.circle.fill") }
-                            .buttonStyle(.plain).foregroundStyle(.secondary).help(L("Clear search"))
+                            .buttonStyle(.plain).foregroundStyle(.secondary).help("Clear search")
                     }
                 }.padding(.horizontal, 9).padding(.vertical, 6)
                     .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 7))
                     .frame(width: 160)
                 Menu {
-                    Picker(L("Sort"), selection: $hottestFirst) {
-                        Text(L("Sort by ID")).tag(false)
-                        Text(L("Hottest First")).tag(true)
+                    Picker("Sort", selection: $hottestFirst) {
+                        Text("Sort by ID").tag(false)
+                        Text("Hottest First").tag(true)
                     }
                     Divider()
-                    Button(L("Expand All")) { expanded = Set(TemperatureGroup.allCases) }
-                    Button(L("Collapse All")) { expanded = [] }
+                    Button("Expand All") { expanded = Set(TemperatureGroup.allCases) }
+                    Button("Collapse All") { expanded = [] }
                 } label: { Image(systemName: "line.3.horizontal.decrease") }
-                    .menuStyle(.borderlessButton).fixedSize().help(L("Sort and expand"))
+                    .menuStyle(.borderlessButton).fixedSize().help("Sort and expand")
             }
             LazyVStack(spacing: 10) {
                 ForEach(TemperatureGroup.allCases) { group in
@@ -77,11 +77,11 @@ struct TemperatureSensorsView: View {
                 }
             }
             if TemperatureGroup.allCases.allSatisfy({ readings($0).isEmpty }) {
-                ContentUnavailableView(search.isEmpty ? L("No Temperature Readings") : L("No Matching Sensors"),
+                ContentUnavailableView(search.isEmpty ? String(localized: "No Temperature Readings") : String(localized: "No Matching Sensors"),
                     systemImage: "thermometer.medium",
-                    description: Text(search.isEmpty ? monitor.temperatureDiagnostic : L("Try a hardware name or sensor ID.")))
+                    description: Text(search.isEmpty ? monitor.temperatureDiagnostic : String(localized: "Try a hardware name or sensor ID.")))
             }
-            Text(L("Groups show average temperatures. Expand to see current and session peak readings. Unknown channels retain their original IDs."))
+            Text("Groups show average temperatures. Expand to see current and session peak readings. Unknown channels retain their original IDs.")
                 .font(.caption).foregroundStyle(.secondary)
         }
     }
@@ -97,9 +97,9 @@ struct TemperatureSensorsView: View {
                 Text("°C").font(.body).foregroundStyle(.secondary)
             }
             HStack {
-                Text(L("Average temperature"))
+                Text("Average temperature")
                 Spacer()
-                Text(L("%@ total", String(sensors.count)))
+                Text(String(format: String(localized: "%@ total"), locale: .current, String(sensors.count)))
             }.font(.caption).foregroundStyle(.secondary)
         }.dashboardSurface()
     }
@@ -117,20 +117,20 @@ struct TemperatureSensorsView: View {
                         .background(group.tint.opacity(0.08), in: RoundedRectangle(cornerRadius: 8))
                     VStack(alignment: .leading, spacing: 3) {
                         Text(group.title).font(.subheadline.weight(.semibold))
-                        Text(L("Sensors: %@", String(sensors.count))).font(.caption).foregroundStyle(.secondary)
+                        Text(String(format: String(localized: "Sensors: %@"), locale: .current, String(sensors.count))).font(.caption).foregroundStyle(.secondary)
                     }
                     Spacer()
                     Text(String(format: "%.1f °C", locale: .current, average)).monospacedDigit().font(.subheadline)
                     Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
                         .font(.system(size: 10, weight: .semibold)).foregroundStyle(.secondary).frame(width: 12)
                 }.padding(14).contentShape(Rectangle())
-            }.buttonStyle(.plain).accessibilityLabel(L("%@, sensors: %@, %@", String(group.title), String(sensors.count), String(isExpanded ? L("Collapse") : L("Expand"))))
+            }.buttonStyle(.plain).accessibilityLabel(String(format: String(localized: "%@, sensors: %@, %@"), locale: .current, String(group.title), String(sensors.count), String(isExpanded ? String(localized: "Collapse") : String(localized: "Expand"))))
             if isExpanded {
                 Divider().padding(.horizontal, 14)
                 HStack {
-                    Text(L("Sensor ID"))
+                    Text("Sensor ID")
                     Spacer()
-                    Text(L("Current / Session Peak"))
+                    Text("Current / Session Peak")
                 }.font(.caption).foregroundStyle(.secondary).padding(.horizontal, 16).padding(.top, 12)
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: 24), GridItem(.flexible())], spacing: 0) {
                     ForEach(sensors) { sensor in
@@ -175,9 +175,9 @@ struct CompactTemperaturesView: View {
             }.frame(height: 220)
         } label: {
             HStack {
-                Label(L("All Temperatures"), systemImage: "thermometer.medium")
+                Label("All Temperatures", systemImage: "thermometer.medium")
                 Spacer()
-                Text(L("%@ total", String(monitor.temperatureSensors.count))).foregroundStyle(.secondary)
+                Text(String(format: String(localized: "%@ total"), locale: .current, String(monitor.temperatureSensors.count))).foregroundStyle(.secondary)
             }.font(.system(size: 12))
         }
     }

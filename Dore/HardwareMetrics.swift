@@ -5,7 +5,7 @@ struct FanReading: Identifiable {
     let rpm: Double?
     let minimum: Double?
     let maximum: Double?
-    var name: String { L("Fan %@", String(id + 1)) }
+    var name: String { String(format: String(localized: "Fan %@"), locale: .current, String(id + 1)) }
 }
 
 struct HardwareMetrics {

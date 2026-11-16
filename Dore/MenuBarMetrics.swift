@@ -64,9 +64,9 @@ struct MenuBarMetrics {
     }
 
     var accessibilityDescription: String {
-        let status = monitor.paused ? L("Monitoring paused. ") : ""
+        let status = monitor.paused ? String(localized: "Monitoring paused. ") : ""
         let descriptions = visibleItems.map { $0.component(monitor: monitor).accessibilityDescription }
-        return status + descriptions.joined(separator: " ") + " " + L("Click to open the monitor.")
+        return status + descriptions.joined(separator: " ") + " " + String(localized: "Click to open the monitor.")
     }
 }
 
@@ -82,7 +82,7 @@ private extension MenuBarMetricItem {
         switch self {
         case .cpuGraph:
             let history = monitor.samples
-            return MenuBarMetricComponent(width: width, accessibilityDescription: L("CPU %@%%", String(Int(monitor.cpu)))) { x in
+            return MenuBarMetricComponent(width: width, accessibilityDescription: String(format: String(localized: "CPU %@%%"), locale: .current, String(Int(monitor.cpu)))) { x in
                 MenuBarDrawing.verticalLabel("CPU", x: x)
                 let frame = NSRect(x: x + 9, y: 0.75, width: 35, height: 16.5)
                 let border = NSBezierPath(roundedRect: frame, xRadius: 1.5, yRadius: 1.5)
@@ -112,7 +112,7 @@ private extension MenuBarMetricItem {
             }
         case .memory:
             let percent = monitor.memoryPercent
-            return MenuBarMetricComponent(width: width, accessibilityDescription: L("Memory %@%%", String(Int(percent)))) { x in
+            return MenuBarMetricComponent(width: width, accessibilityDescription: String(format: String(localized: "Memory %@%%"), locale: .current, String(Int(percent)))) { x in
                 MenuBarDrawing.verticalLabel("RAM", x: x)
                 let bar = NSRect(x: x + 9, y: 0.5, width: 6, height: 17)
                 NSColor.black.withAlphaComponent(0.2).setFill()
@@ -125,7 +125,7 @@ private extension MenuBarMetricItem {
             }
         case .cpuTemperature:
             let temperature = monitor.cpuTemperature
-            let description = temperature.map { L("CPU temperature %@ degrees Celsius. ", String(Int($0.rounded()))) } ?? L("CPU temperature unavailable. ")
+            let description = temperature.map { String(format: String(localized: "CPU temperature %@ degrees Celsius. "), locale: .current, String(Int($0.rounded()))) } ?? String(localized: "CPU temperature unavailable. ")
             return MenuBarMetricComponent(width: width, accessibilityDescription: description) { x in
                 guard let temperature else { return }
                 MenuBarDrawing.verticalLabel("CPU", x: x)
@@ -173,7 +173,7 @@ struct MenuBarLabel: View {
     var body: some View {
         if layout == "功耗" {
             Image(systemName: "bolt.fill")
-            Text(monitor.systemPower.map { String(format: "%.1f W", locale: .current, $0) } ?? L("Power unavailable"))
+            Text(monitor.systemPower.map { String(format: "%.1f W", locale: .current, $0) } ?? String(localized: "Power unavailable"))
         } else if layout == "图标" {
             Image(systemName: "waveform.path")
         } else {

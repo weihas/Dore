@@ -9,7 +9,7 @@ struct OverviewDashboardView: View {
     var body: some View {
         VStack(spacing: 16) {
             deviceHeader
-            DoreSectionHeading(title: L("Performance & Resources"), detail: "")
+            DoreSectionHeading(title: String(localized: "Performance & Resources"), detail: "")
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 320), spacing: 16, alignment: .top)], spacing: 16) {
                 cpuCard
                 memoryCard
@@ -49,26 +49,26 @@ struct OverviewDashboardView: View {
     private var deviceInformation: some View {
         VStack(alignment: .leading, spacing: 18) {
             VStack(alignment: .leading, spacing: 6) {
-                Text(Host.current().localizedName ?? L("My Mac"))
+                Text(Host.current().localizedName ?? String(localized: "My Mac"))
                     .font(.system(size: 20, weight: .semibold)).textSelection(.enabled)
                 Text("\(monitor.chip) · macOS \(osVersion)")
                     .font(.subheadline).foregroundStyle(.secondary)
             }
             Grid(alignment: .leading, horizontalSpacing: 24, verticalSpacing: 12) {
                 GridRow {
-                    specification(L("Model Identifier"), monitor.model)
-                    specification(L("Logical Cores"), L("Cores: %@", String(monitor.cores)))
+                    specification(String(localized: "Model Identifier"), monitor.model)
+                    specification(String(localized: "Logical Cores"), String(format: String(localized: "Cores: %@"), locale: .current, String(monitor.cores)))
                 }
                 GridRow {
-                    specification(L("Physical Memory"), byteString(monitor.memoryTotal))
-                    specification(L("Disk Capacity"), monitor.diskTotal > 0 ? byteString(monitor.diskTotal) : L("Reading…"))
+                    specification(String(localized: "Physical Memory"), byteString(monitor.memoryTotal))
+                    specification(String(localized: "Disk Capacity"), monitor.diskTotal > 0 ? byteString(monitor.diskTotal) : String(localized: "Reading…"))
                 }
             }
             HStack(spacing: 7) {
                 Image(systemName: "thermometer.medium")
-                Text(L("Thermal: %@", String(monitor.thermalDescription)))
+                Text(String(format: String(localized: "Thermal: %@"), locale: .current, String(monitor.thermalDescription)))
                 Text("·").foregroundStyle(.tertiary)
-                Text(L("Uptime (hours): %@", String(Int(ProcessInfo.processInfo.systemUptime / 3600))))
+                Text(String(format: String(localized: "Uptime (hours): %@"), locale: .current, String(Int(ProcessInfo.processInfo.systemUptime / 3600))))
             }.font(.caption).foregroundStyle(.secondary)
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -86,17 +86,17 @@ struct OverviewDashboardView: View {
     }
 
     private var cpuCard: some View {
-        dashboardCard(L("Processor"), symbol: "cpu", tint: DoreStyle.accent, section: .cpu) {
+        dashboardCard(String(localized: "Processor"), symbol: "cpu", tint: DoreStyle.accent, section: .cpu) {
             HStack(alignment: .firstTextBaseline, spacing: 5) {
                 Text(monitor.samples.count > 1 ? String(format: "%.1f", locale: .current, monitor.cpu) : "—")
                     .font(.system(size: 34, weight: .medium)).monospacedDigit()
                 Text("%").font(.title3).foregroundStyle(.secondary)
                 Spacer()
-                Text(L("Core count: %@", String(monitor.cores))).font(.caption).foregroundStyle(.secondary)
+                Text(String(format: String(localized: "Core count: %@"), locale: .current, String(monitor.cores))).font(.caption).foregroundStyle(.secondary)
             }
             HistoryChart(samples: samples, value: \.cpu, tint: DoreStyle.accent, percentage: true).frame(height: 60)
             HStack {
-                Label(monitor.cpuTemperature.map { String(format: "%.0f °C", locale: .current, $0) } ?? L("Temperature unavailable"), systemImage: "thermometer.medium")
+                Label(monitor.cpuTemperature.map { String(format: "%.0f °C", locale: .current, $0) } ?? String(localized: "Temperature unavailable"), systemImage: "thermometer.medium")
                 Spacer()
                 Text(watts(monitor.hardware.cpuPower))
             }.font(.caption).foregroundStyle(.secondary)
@@ -104,23 +104,23 @@ struct OverviewDashboardView: View {
     }
 
     private var memoryCard: some View {
-        dashboardCard(L("Memory"), symbol: "memorychip", tint: DoreStyle.secondary, section: .memory) {
+        dashboardCard(String(localized: "Memory"), symbol: "memorychip", tint: DoreStyle.secondary, section: .memory) {
             HStack(spacing: 18) {
                 UsageRing(value: monitor.lastUpdated == nil ? nil : monitor.memoryPercent, tint: DoreStyle.secondary)
                 VStack(spacing: 14) {
-                    reading(L("Wired"), byteString(monitor.memoryWired))
-                    reading(L("Compressed"), byteString(monitor.memoryCompressed))
-                    reading(L("Available"), byteString(max(0, monitor.memoryTotal - monitor.memoryUsed)))
+                    reading(String(localized: "Wired"), byteString(monitor.memoryWired))
+                    reading(String(localized: "Compressed"), byteString(monitor.memoryCompressed))
+                    reading(String(localized: "Available"), byteString(max(0, monitor.memoryTotal - monitor.memoryUsed)))
                 }
             }.frame(maxWidth: .infinity)
             Divider().opacity(0.5)
-            chartHeader(L("%@ used", String(byteString(monitor.memoryUsed))), L("Total: %@", String(byteString(monitor.memoryTotal))))
+            chartHeader(String(format: String(localized: "%@ used"), locale: .current, String(byteString(monitor.memoryUsed))), String(format: String(localized: "Total: %@"), locale: .current, String(byteString(monitor.memoryTotal))))
             HistoryChart(samples: samples, value: \.memory, tint: DoreStyle.secondary, percentage: true).frame(height: 50)
         }
     }
 
     private var gpuCard: some View {
-        dashboardCard(L("Graphics"), symbol: "square.3.layers.3d", tint: DoreStyle.accent, section: .power) {
+        dashboardCard(String(localized: "Graphics"), symbol: "square.3.layers.3d", tint: DoreStyle.accent, section: .power) {
             HStack(alignment: .firstTextBaseline) {
                 Text(monitor.hardware.gpuUtilization.map { String(format: "%.0f%%", locale: .current, $0) } ?? "—")
                     .font(.system(size: 28, weight: .medium)).monospacedDigit()
@@ -128,33 +128,33 @@ struct OverviewDashboardView: View {
                 Text(watts(monitor.hardware.gpuPower)).font(.subheadline).foregroundStyle(.secondary)
             }
             ProgressView(value: monitor.hardware.gpuUtilization ?? 0, total: 100).tint(DoreStyle.accent)
-            Text(monitor.hardware.gpuUtilization == nil ? L("Waiting for hardware readings") : L("Usage of the busiest GPU"))
+            Text(monitor.hardware.gpuUtilization == nil ? String(localized: "Waiting for hardware readings") : String(localized: "Usage of the busiest GPU"))
                 .font(.caption).foregroundStyle(.secondary)
         }
     }
 
     private var networkCard: some View {
-        dashboardCard(L("Network"), symbol: "network", tint: DoreStyle.accent, section: .network) {
+        dashboardCard(String(localized: "Network"), symbol: "network", tint: DoreStyle.accent, section: .network) {
             HStack {
-                transfer(L("Download"), value: monitor.download, symbol: "arrow.down", tint: DoreStyle.accent)
+                transfer(String(localized: "Download"), value: monitor.download, symbol: "arrow.down", tint: DoreStyle.accent)
                 Spacer()
-                transfer(L("Upload"), value: monitor.upload, symbol: "arrow.up", tint: DoreStyle.secondary)
+                transfer(String(localized: "Upload"), value: monitor.upload, symbol: "arrow.up", tint: DoreStyle.secondary)
             }
             HistoryChart(samples: samples, value: \.download, tint: DoreStyle.accent, percentage: false).frame(height: 58)
-            Text(L("Wi-Fi & Ethernet · Live rates")).font(.caption).foregroundStyle(.secondary)
+            Text("Wi-Fi & Ethernet · Live rates").font(.caption).foregroundStyle(.secondary)
         }
     }
 
     private var storageCard: some View {
-        dashboardCard(L("Storage"), symbol: "internaldrive", tint: DoreStyle.amber, section: .storage) {
+        dashboardCard(String(localized: "Storage"), symbol: "internaldrive", tint: DoreStyle.amber, section: .storage) {
             HStack(alignment: .firstTextBaseline) {
                 Text(byteString(monitor.diskFree)).font(.system(size: 24, weight: .medium)).monospacedDigit()
-                Text(L("Available Space")).font(.caption).foregroundStyle(.secondary)
+                Text("Available Space").font(.caption).foregroundStyle(.secondary)
                 Spacer()
-                Text(L("%@%% used", String(Int(monitor.diskPercent)))).font(.subheadline).monospacedDigit()
+                Text(String(format: String(localized: "%@%% used"), locale: .current, String(Int(monitor.diskPercent)))).font(.subheadline).monospacedDigit()
             }
             ProgressView(value: monitor.diskPercent, total: 100).tint(DoreStyle.amber)
-            chartHeader("Macintosh HD", L("Total: %@", String(byteString(monitor.diskTotal))))
+            chartHeader("Macintosh HD", String(format: String(localized: "Total: %@"), locale: .current, String(byteString(monitor.diskTotal))))
         }
     }
 
@@ -169,7 +169,7 @@ struct OverviewDashboardView: View {
                     Spacer()
                     Image(systemName: "arrow.up.right").font(.system(size: 11, weight: .medium)).foregroundStyle(.tertiary)
                 }.contentShape(Rectangle())
-            }.buttonStyle(.plain).help(L("View %@ details", String(title)))
+            }.buttonStyle(.plain).help(String(format: String(localized: "View %@ details"), locale: .current, String(title)))
             content()
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)
@@ -196,7 +196,7 @@ struct OverviewDashboardView: View {
     }
 
     private func watts(_ value: Double?) -> String {
-        value.map { String(format: "%.2f W", locale: .current, $0) } ?? L("Unavailable")
+        value.map { String(format: "%.2f W", locale: .current, $0) } ?? String(localized: "Unavailable")
     }
 }
 

@@ -6,7 +6,7 @@ struct CompactHardwareView: View {
     var body: some View {
         VStack(spacing: 9) {
             HStack {
-                Label(L("CPU Power"), systemImage: "cpu").foregroundStyle(.secondary)
+                Label("CPU Power", systemImage: "cpu").foregroundStyle(.secondary)
                 Spacer()
                 power(monitor.hardware.cpuPower)
                 Text("·").foregroundStyle(.tertiary)
@@ -20,7 +20,7 @@ struct CompactHardwareView: View {
                     if let rpm = fan.rpm {
                         Text(String(format: "%.0f RPM", locale: .current, rpm)).monospacedDigit()
                     } else {
-                        Text(L("Unavailable")).foregroundStyle(.secondary)
+                        Text("Unavailable").foregroundStyle(.secondary)
                     }
                 }
             }
@@ -31,7 +31,7 @@ struct CompactHardwareView: View {
         if let watts {
             Text(String(format: "%.2f W", locale: .current, watts)).monospacedDigit()
         } else {
-            Text(L("Unavailable")).foregroundStyle(.secondary)
+            Text("Unavailable").foregroundStyle(.secondary)
         }
     }
 }
